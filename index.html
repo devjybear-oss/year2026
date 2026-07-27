@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mid-Year Review 2026 — Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #0b7a86;
+      --accent-deep: #065a63;
+      --accent-soft: rgba(11, 122, 134, 0.12);
+      --slide-pad: clamp(1.5rem, 3.2vw, 2.75rem);
+      --content-w: min(100%, 68rem);
+      --ink: #0a3a42;
+      --ink-soft: #2d5a62;
+      --ink-muted: #5a7a82;
+      --line: rgba(6, 90, 99, 0.14);
+      --bg-light-top: #f3fafb;
+      --bg-light-bot: #e5f3f5;
+      --bg-dark-top: #041418;
+      --bg-dark-mid: #0a3a42;
+      --bg-dark-bot: #065a63;
+      --on-dark: #e8f6f7;
+      --on-dark-soft: rgba(232, 246, 247, 0.78);
+      --on-dark-muted: rgba(232, 246, 247, 0.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg-dark-top);
+      color: var(--ink);
+      font-family: "Anuphan", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Slides ── */
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: clamp(0.65rem, 1.4vh, 1rem);
+      padding: var(--slide-pad);
+      padding-left: calc(var(--slide-pad) + 0.55rem);
+      padding-bottom: calc(var(--slide-pad) + 1.25rem);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(14px);
+      transition: opacity 0.42s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.42s;
+      background: linear-gradient(165deg, var(--bg-light-top) 0%, var(--bg-light-bot) 100%);
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10%;
+      bottom: 10%;
+      width: 3px;
+      background: linear-gradient(180deg, transparent, var(--accent) 25%, var(--accent-deep) 75%, transparent);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+      z-index: 2;
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--content-w);
+    }
+
+    .slide .watermark { width: auto; max-width: none; }
+
+    /* Cover & Closing — deep teal dark */
+    .slide.cover,
+    .slide.closing {
+      background: linear-gradient(160deg, var(--bg-dark-top) 0%, var(--bg-dark-mid) 48%, var(--bg-dark-bot) 100%);
+      color: var(--on-dark);
+      padding-left: var(--slide-pad);
+    }
+
+    .slide.cover::after,
+    .slide.closing::after {
+      background: linear-gradient(180deg, transparent, rgba(232, 246, 247, 0.35), transparent);
+      opacity: 0.4;
+    }
+
+    /* ── Typography ── */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .cover .eyebrow,
+    .closing .eyebrow { color: var(--on-dark-muted); }
+
+    .eyebrow::before {
+      content: "";
+      width: 1.4rem;
+      height: 2px;
+      background: currentColor;
+    }
+
+    h1, h2, .display {
+      font-family: "Syne", "Anuphan", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--ink);
+    }
+
+    .cover h1, .closing h1 { color: var(--on-dark); }
+
+    h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
+    h2 { font-size: clamp(1.75rem, 3vw, 2.45rem); margin-bottom: 0.35rem; }
+    h3 {
+      font-family: "Syne", "Anuphan", sans-serif;
+      font-size: clamp(1.05rem, 1.45vw, 1.22rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.45rem;
+      color: var(--accent-deep);
+    }
+
+    .sub {
+      font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+      color: var(--ink-soft);
+      max-width: 56rem;
+      line-height: 1.48;
+      font-weight: 400;
+    }
+
+    .cover .sub,
+    .closing .sub { color: var(--on-dark-soft); }
+
+    /* ── Cover / Closing layout ── */
+    .cover-brand {
+      position: relative;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 0.92;
+      margin: 0.35rem 0 0.85rem;
+      max-width: 14ch;
+      color: var(--on-dark);
+    }
+
+    .slide.cover.active .cover-brand::after,
+    .slide.closing.active .cover-brand::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.3rem;
+      width: min(7rem, 38%);
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      animation: growX 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+    }
+
+    .cover-lead {
+      font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+      font-weight: 500;
+      max-width: 30rem;
+      line-height: 1.35;
+      color: var(--on-dark-soft);
+    }
+
+    .cover-main {
+      margin-top: auto;
+      margin-bottom: auto;
+      padding: 1.75rem 0;
+    }
+
+    .closing .cover-brand { max-width: none; font-size: clamp(2.8rem, 8.5vw, 6.5rem); }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem 2.25rem;
+      margin-top: auto;
+      padding-top: 1.35rem;
+      border-top: 1px solid rgba(232, 246, 247, 0.16);
+    }
+
+    .meta-item label {
+      display: block;
+      font-size: 0.82rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--on-dark-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-item strong {
+      font-family: "Syne", "Anuphan", sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--on-dark);
+    }
+
+    /* ── Slide head & fill ── */
+    .slide-head {
+      flex: 0 0 auto;
+      margin-bottom: 0.15rem;
+    }
+
+    .fill {
+      flex: 0 1 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: clamp(0.65rem, 1.3vh, 0.95rem);
+    }
+
+    /* ── Grids ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.1rem, 2.4vw, 2rem);
+      align-items: start;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1rem, 2vw, 1.6rem);
+      align-items: start;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(1rem, 2vw, 1.6rem) clamp(1.2rem, 2.5vw, 2rem);
+      align-items: start;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem 1.75rem;
+      align-items: start;
+    }
+
+    .sys-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(0.9rem, 1.6vw, 1.3rem);
+      align-items: start;
+    }
+
+    /* ── Panels & blocks — thin top border only ── */
+    .panel {
+      border-top: 2px solid var(--accent);
+      padding: 0.65rem 0 0;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+
+    .panel .list {
+      gap: 0.35rem;
+      margin-top: 0.05rem;
+    }
+
+    .panel p,
+    .list li {
+      font-size: clamp(0.98rem, 1.18vw, 1.08rem);
+      line-height: 1.42;
+      color: var(--ink-soft);
+    }
+
+    .list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 0.32rem;
+      height: 0.32rem;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── Portfolio ── */
+    .port-item {
+      border-top: 2px solid var(--line);
+      padding: 0.75rem 0 0.15rem;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+      transition: border-color 0.22s ease, transform 0.25s ease;
+    }
+
+    .port-item:hover {
+      border-top-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .port-num {
+      font-family: "Syne", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .port-item h3 {
+      margin-bottom: 0.35rem;
+      font-size: clamp(1.1rem, 1.5vw, 1.28rem);
+      color: var(--ink);
+    }
+
+    .port-item p {
+      font-size: clamp(0.96rem, 1.15vw, 1.06rem);
+      color: var(--ink-soft);
+      line-height: 1.44;
+    }
+
+    /* ── Flow bar ── */
+    .flow-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem 1rem;
+      padding: 0.65rem 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      flex: 0 0 auto;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin: 0;
+    }
+
+    .flow span {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.75rem;
+      background: var(--accent);
+      color: #f3fafb;
+    }
+
+    .flow i {
+      font-style: normal;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .flow-note {
+      font-size: clamp(0.92rem, 1.05vw, 1rem);
+      color: var(--ink-soft);
+      line-height: 1.4;
+      max-width: 26rem;
+    }
+
+    /* ── KPI / Impact ── */
+    .kpi {
+      border-top: 2px solid var(--accent);
+      padding: 0.65rem 0 0.1rem;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+
+    .kpi strong {
+      display: block;
+      font-family: "Syne", "Anuphan", sans-serif;
+      font-size: clamp(1rem, 1.22vw, 1.12rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+      color: var(--ink);
+    }
+
+    .kpi p {
+      font-size: clamp(0.94rem, 1.1vw, 1.04rem);
+      color: var(--ink-soft);
+      line-height: 1.42;
+    }
+
+    .impact-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem 1.1rem;
+      margin-top: 0.25rem;
+    }
+
+    /* ── QA block ── */
+    .qa-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .qa {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem 1.1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .qa li {
+      list-style: none;
+      font-size: clamp(0.94rem, 1.1vw, 1.04rem);
+      color: var(--ink-soft);
+      line-height: 1.4;
+      padding: 0.1rem 0 0.1rem 0.8rem;
+      border-left: 2px solid var(--accent);
+      background: transparent;
+    }
+
+    /* ── Principle banner ── */
+    .principle {
+      margin: 0;
+      padding: 0.65rem 0.95rem;
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      color: var(--accent-deep);
+      font-family: "Syne", "Anuphan", sans-serif;
+      font-weight: 600;
+      font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+      letter-spacing: -0.01em;
+      width: 100%;
+    }
+
+    /* ── Scope list ── */
+    .scope-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.38rem 1rem;
+      list-style: none;
+    }
+
+    .scope-list li {
+      font-size: clamp(0.96rem, 1.1vw, 1.04rem);
+      color: var(--ink-soft);
+      padding-left: 0.85rem;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .scope-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 0.3rem;
+      height: 0.3rem;
+      background: var(--accent);
+    }
+
+    /* ── Cases ── */
+    .case {
+      border-top: 2px solid var(--line);
+      padding: 0.7rem 0 0.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      background: transparent;
+    }
+
+    .case h3 { margin-bottom: 0.1rem; color: var(--ink); }
+    .case .row {
+      font-size: clamp(0.94rem, 1.1vw, 1.04rem);
+      line-height: 1.42;
+      color: var(--ink-soft);
+    }
+
+    .case .row b {
+      display: inline-block;
+      min-width: 3.6rem;
+      color: var(--accent);
+      font-size: 0.76rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      vertical-align: top;
+      margin-top: 0.1rem;
+    }
+
+    /* ── Skills ── */
+    .skill-block {
+      border-top: 2px solid var(--line);
+      padding: 0.65rem 0 0.1rem;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+
+    .skill-block h3 {
+      font-size: 1rem;
+      color: var(--accent-deep);
+      margin-bottom: 0.35rem;
+    }
+
+    .skill-block .list { gap: 0.3rem; }
+
+    /* ── System blocks ── */
+    .sys {
+      border-top: 2px solid var(--line);
+      padding: 0.65rem 0 0.05rem;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+
+    .sys h3 { font-size: 1rem; margin-bottom: 0.35rem; color: var(--ink); }
+    .sys .list { gap: 0.3rem; }
+
+    .foot-panel {
+      border-top: 2px solid var(--accent);
+      padding: 0.65rem 0 0.05rem;
+      margin-top: 0.25rem;
+      background: transparent;
+    }
+
+    .foot-panel p {
+      color: var(--ink-soft);
+      font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+      line-height: 1.48;
+    }
+
+    /* ── Watermark ── */
+    .watermark {
+      position: absolute;
+      right: var(--slide-pad);
+      bottom: calc(var(--slide-pad) + 0.15rem);
+      font-family: "Syne", sans-serif;
+      font-size: clamp(4.5rem, 12vw, 9.5rem);
+      font-weight: 800;
+      line-height: 0.8;
+      letter-spacing: -0.06em;
+      color: rgba(6, 90, 99, 0.06);
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+      max-width: none;
+    }
+
+    .cover .watermark,
+    .closing .watermark { color: rgba(255, 255, 255, 0.05); }
+
+    /* ── Enter animations ── */
+    .slide.active .anim {
+      animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .slide.active .anim-d1 { animation-delay: 0.07s; }
+    .slide.active .anim-d2 { animation-delay: 0.14s; }
+    .slide.active .anim-d3 { animation-delay: 0.21s; }
+    .slide.active .anim-d4 { animation-delay: 0.28s; }
+    .slide.active .anim-d5 { animation-delay: 0.35s; }
+
+    .slide.active .panel,
+    .slide.active .port-item,
+    .slide.active .kpi,
+    .slide.active .case,
+    .slide.active .skill-block,
+    .slide.active .sys {
+      animation: rise 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .slide.active .panel:nth-child(1),
+    .slide.active .port-item:nth-child(1),
+    .slide.active .kpi:nth-child(1),
+    .slide.active .case:nth-child(1),
+    .slide.active .skill-block:nth-child(1),
+    .slide.active .sys:nth-child(1) { animation-delay: 0.08s; }
+
+    .slide.active .panel:nth-child(2),
+    .slide.active .port-item:nth-child(2),
+    .slide.active .kpi:nth-child(2),
+    .slide.active .case:nth-child(2),
+    .slide.active .skill-block:nth-child(2),
+    .slide.active .sys:nth-child(2) { animation-delay: 0.15s; }
+
+    .slide.active .panel:nth-child(3),
+    .slide.active .port-item:nth-child(3),
+    .slide.active .kpi:nth-child(3),
+    .slide.active .case:nth-child(3),
+    .slide.active .skill-block:nth-child(3),
+    .slide.active .sys:nth-child(3) { animation-delay: 0.22s; }
+
+    .slide.active .panel:nth-child(4),
+    .slide.active .port-item:nth-child(4),
+    .slide.active .kpi:nth-child(4),
+    .slide.active .skill-block:nth-child(4),
+    .slide.active .sys:nth-child(4) { animation-delay: 0.29s; }
+
+    .slide.active .kpi:nth-child(5),
+    .slide.active .skill-block:nth-child(5) { animation-delay: 0.36s; }
+
+    .slide.active .kpi:nth-child(6),
+    .slide.active .skill-block:nth-child(6) { animation-delay: 0.42s; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes growX {
+      from { transform: scaleX(0); opacity: 0; }
+      to { transform: scaleX(1); opacity: 1; }
+    }
+
+    /* ── Chrome ── */
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-deep), var(--accent));
+      z-index: 60;
+      transition: width 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hint {
+      position: fixed;
+      right: var(--slide-pad);
+      top: 0.85rem;
+      z-index: 50;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    body:has(.slide.cover.active) .hint,
+    body:has(.slide.closing.active) .hint {
+      color: var(--on-dark-muted);
+    }
+
+    .chrome {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem var(--slide-pad);
+      pointer-events: none;
+      color: var(--ink-muted);
+      font-size: 0.74rem;
+      font-weight: 500;
+    }
+
+    body:has(.slide.cover.active) .chrome,
+    body:has(.slide.closing.active) .chrome {
+      color: var(--on-dark-muted);
+    }
+
+    .chrome span:last-child {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .grid-2, .grid-3, .grid-4, .two-col, .sys-grid {
+        grid-template-columns: 1fr;
+      }
+      .qa, .impact-strip { grid-template-columns: 1fr; }
+      .scope-list { grid-template-columns: 1fr; }
+      .flow-bar { flex-direction: column; align-items: flex-start; }
+      h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); }
+      .cover-brand { font-size: clamp(2.4rem, 11vw, 4rem); }
+      .watermark { display: none; }
+      .slide { overflow-y: auto; padding-left: var(--slide-pad); }
+      .slide::after { display: none; }
+    }
+
+    @media (max-height: 760px) {
+      .list li, .panel p, .port-item p, .kpi p { font-size: 0.94rem; }
+      h2 { font-size: clamp(1.55rem, 2.8vw, 2rem); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <div class="hint">← →  Space  ·  F Fullscreen</div>
+
+  <div class="deck" id="deck">
+
+    <!-- 1 Cover -->
+    <section class="slide cover active" data-title="Cover">
+      <div class="watermark">01</div>
+      <p class="eyebrow anim">ChillPay · Mid-Year Review</p>
+      <div class="cover-main">
+        <p class="cover-lead anim anim-d1">สรุปผลงานครึ่งปีแรก</p>
+        <h1 class="cover-brand anim anim-d2">Mid-Year<br />Review 2026</h1>
+        <p class="sub anim anim-d3">Building reliable systems, improving quality, and supporting business growth.</p>
+      </div>
+      <div class="meta-row anim anim-d4">
+        <div class="meta-item">
+          <label>Presenter</label>
+          <strong>Phatson A.</strong>
+        </div>
+        <div class="meta-item">
+          <label>Role</label>
+          <strong>Software Developer</strong>
+        </div>
+        <div class="meta-item">
+          <label>Period</label>
+          <strong>January – June 2026</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 Overview -->
+    <section class="slide" data-title="Overview">
+      <div class="watermark">02</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">First-Half Performance</p>
+        <h2>ภาพรวมผลงานครึ่งปีแรก</h2>
+        <p class="sub">มีส่วนร่วมตลอดวงจร — วิเคราะห์ Requirement, ออกแบบ Flow, พัฒนา Backend & Web, ทดสอบ และสนับสนุนการแก้ไขปัญหาจากการใช้งานจริง</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="grid-3">
+          <div class="panel">
+            <span class="tag">Project Delivery</span>
+            <ul class="list">
+              <li>PayOut Fee Management</li>
+              <li>Admin Transfer</li>
+              <li>ChillPay Operation Logs</li>
+              <li>Transaction Status: Pending</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <span class="tag">Quality Improvement</span>
+            <ul class="list">
+              <li>Unit Test ระบบสำคัญ 4 ระบบ</li>
+              <li>Playwright Automation — Admin Transfer</li>
+              <li>ตรวจ Business Logic, Validation, Error Handling</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <span class="tag">Incident & Support</span>
+            <ul class="list">
+              <li>สนับสนุนทีม Finance</li>
+              <li>วิเคราะห์ Log & Config ให้ทีม CS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Portfolio -->
+    <section class="slide" data-title="Portfolio">
+      <div class="watermark">03</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Project Portfolio</p>
+        <h2>โปรเจกต์ที่รับผิดชอบ</h2>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="grid-4">
+          <article class="port-item">
+            <div class="port-num">01</div>
+            <h3>PayOut Fee Management</h3>
+            <p>บริหารค่าธรรมเนียม PayOut ยืดหยุ่นขึ้น — Receiver Fee, ช่วงยอด, Priority, Effective Date และ e-Tax</p>
+          </article>
+          <article class="port-item">
+            <div class="port-num">02</div>
+            <h3>Admin Transfer</h3>
+            <p>กระบวนการโอนเงิน Back-office ตั้งแต่รับรายการจนพร้อมประมวลผล</p>
+          </article>
+          <article class="port-item">
+            <div class="port-num">03</div>
+            <h3>Operation Logs</h3>
+            <p>ระบบ Audit Log กลาง — พัฒนา API, Web Admin และเชื่อม Merchant Frontend</p>
+          </article>
+          <article class="port-item">
+            <div class="port-num">04</div>
+            <h3>Transaction Status: Pending</h3>
+            <p>สถานะชั่วคราวเมื่อยังสรุปผลธุรกรรมไม่ได้ เช่น Check Payer Name และตรวจสอบบัญชีม้า AMLO</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 PayOut Fee Management -->
+    <section class="slide" data-title="PayOut Fee Management">
+      <div class="watermark">04</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">01 · PayOut Fee Management</p>
+        <h2>ระบบบริหารค่าธรรมเนียม PayOut</h2>
+        <p class="sub">พัฒนาระบบให้ยืดหยุ่นมากขึ้น จากเดิมที่รองรับเฉพาะค่าธรรมเนียมฝั่ง Merchant โดยเพิ่มการเรียกเก็บจาก Receiver พร้อมกำหนดอัตราตามช่วงยอดธุรกรรม, Priority, Effective Date และการออก e-Tax Invoice สำหรับ Receiver Fee</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="grid-2">
+          <div class="panel">
+            <h3>My Contribution</h3>
+            <ul class="list">
+              <li>วิเคราะห์ Requirement และออกแบบ Fee Management Flow</li>
+              <li>พัฒนา PayOut Merchant Fee และ Receiver Fee</li>
+              <li>รองรับค่าธรรมเนียมแบบ Fixed / Percentage และตามช่วงยอดธุรกรรม</li>
+              <li>พัฒนา Logic เลือก Fee Rule ตาม Priority และ Effective Date</li>
+              <li>ดึงและแสดง Fee ตาม Merchant / ช่องทาง พร้อมตรวจยอดโอนขั้นต่ำ–สูงสุด</li>
+              <li>เพิ่ม Validation และตรวจสอบการคำนวณ VAT, WHT และยอดสุทธิ</li>
+              <li>เชื่อมโยงข้อมูลระหว่าง Frontend, Backend และ PayOut Service API</li>
+              <li>รองรับ PayOut Summary Report, e-Tax System และวิเคราะห์ Error 3106</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Impact / Result</h3>
+            <ul class="list">
+              <li>Merchant กำหนดผู้รับภาระค่าธรรมเนียมได้ยืดหยุ่นขึ้น</li>
+              <li>รองรับโครงสร้าง Fee และ Business Model ที่หลากหลาย</li>
+              <li>เลือกและคำนวณ Fee Rule ได้ถูกต้องตามเงื่อนไข</li>
+              <li>ลดความผิดพลาดในการตั้งค่าและคำนวณค่าธรรมเนียม</li>
+              <li>ตรวจค่าธรรมเนียม ภาษี และยอดสุทธิได้ชัดเจนก่อนยืนยันรายการ</li>
+              <li>ข้อมูล Web สอดคล้องกับ API และรองรับ e-Tax Invoice ฝั่ง Receiver</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Admin Transfer Back-office -->
+    <section class="slide" data-title="Admin Transfer">
+      <div class="watermark">05</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">02 · Admin Transfer</p>
+        <h2>Back-office Management</h2>
+        <p class="sub">พัฒนาหน้าจอ Back-office ให้เจ้าหน้าที่ Upload ค้นหา ตรวจสอบ และอนุมัติรายการโอนเงินได้อย่างเป็นระบบ</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="flow-bar">
+          <div class="flow">
+            <span>Upload</span><i>→</i>
+            <span>Check</span><i>→</i>
+            <span>Approve</span><i>→</i>
+            <span>Ready</span>
+          </div>
+          <p class="flow-note">รองรับ Decline · Reject · Bulk Check / Approve · อนุมัติหลายลำดับ · Permission ตาม Role</p>
+        </div>
+        <div class="grid-2 anim anim-d2">
+          <div class="panel">
+            <h3>My Contribution</h3>
+            <ul class="list">
+              <li>หน้ารายการและหน้ารายละเอียด Admin Transfer</li>
+              <li>รองรับ Check, Decline, Approve และ Reject</li>
+              <li>Bulk Check และ Bulk Approve</li>
+              <li>Filter และ Dashboard แยกตามสถานะ</li>
+              <li>แสดง Merchant Fee, Receiver Fee, VAT, WHT, ยอดสุทธิ</li>
+              <li>แสดงประวัติและสถานะการอนุมัติ</li>
+              <li>กำหนด Permission ตาม Role และ Action</li>
+              <li>ตรวจสอบ Validation ก่อนดำเนินการแต่ละขั้นตอน</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Impact / Result</h3>
+            <ul class="list">
+              <li>เจ้าหน้าที่จัดการรายการได้สะดวกและรวดเร็วขึ้น</li>
+              <li>ดำเนินการหลายรายการพร้อมกันได้</li>
+              <li>เห็นสถานะและลำดับอนุมัติชัดเจน</li>
+              <li>ลดเวลาค้นหาและตรวจสอบรายการ</li>
+              <li>ลดความผิดพลาดจากการทำผิดขั้นตอน</li>
+              <li>ลดขั้นตอนการทำงานแบบ Manual</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Operation Logs -->
+    <section class="slide" data-title="Operation Logs">
+      <div class="watermark">06</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">03 · ChillPay Operation Logs</p>
+        <h2>Centralized Audit Logging</h2>
+        <p class="sub">พัฒนาระบบกลางสำหรับบันทึก ค้นหา และตรวจสอบประวัติการเปลี่ยนแปลง — ครอบคลุม API, Web Admin และเชื่อมต่อ Merchant Frontend</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="qa-block">
+          <p class="tag">ระบบตอบได้ว่า</p>
+          <ul class="qa">
+            <li>ใครเป็นผู้ดำเนินการ · ทำอะไร · จากระบบใด</li>
+            <li>ทำกับข้อมูลใด · ก่อน/หลังแก้ไขต่างกันอย่างไร</li>
+            <li>รายการเกี่ยวข้องกับ Merchant ใด</li>
+          </ul>
+        </div>
+        <div class="grid-2 anim anim-d2">
+          <div class="panel">
+            <h3>System Scope</h3>
+            <ul class="scope-list">
+              <li>Operation Logs API</li>
+              <li>Database จัดเก็บ Log</li>
+              <li>Registry: Module / Menu / Action</li>
+              <li>Web Admin ค้นหา–ดูรายละเอียด</li>
+              <li>Merchant Frontend Log Writer</li>
+              <li>Phase 1: Merchant</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Key Capabilities</h3>
+            <ul class="list">
+              <li>บันทึก Create, Update, Delete และ Action อื่น</li>
+              <li>ค้นหาตาม System, Module, Menu, Action, Reference</li>
+              <li>ดูรายละเอียด Old Value / New Value</li>
+              <li>เชื่อมโยง Log กับข้อมูลหลักและ Merchant</li>
+              <li>ส่ง Log จาก Frontend หลังรายการสำเร็จ โดยไม่กระทบ Flow หลัก</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Op Logs Contribution -->
+    <section class="slide" data-title="Op Logs Work">
+      <div class="watermark">07</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">03 · My Contribution</p>
+        <h2>API · Frontend · Documentation</h2>
+      </div>
+      <p class="principle anim anim-d1">Business Success → Build Payload → Send to Operation Logs API</p>
+      <div class="fill anim anim-d2">
+        <div class="grid-3">
+          <div class="panel">
+            <h3>Analysis & API</h3>
+            <ul class="list">
+              <li>วิเคราะห์ Requirement และออกแบบ Flow</li>
+              <li>ออกแบบ Database Schema, Enum, Registry</li>
+              <li>พัฒนา API บันทึก / ค้นหา / รายละเอียด</li>
+              <li>จัดเก็บ Old Value และ New Value</li>
+              <li>พัฒนา Web Admin และ Search Filter</li>
+              <li>Unit Test, SDD และ Project Plan</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Frontend Integration</h3>
+            <ul class="list">
+              <li>พัฒนา Helper และ Writer เรียก API</li>
+              <li>Mapping System, Menu และ Action</li>
+              <li>กำหนด Reference ของข้อมูลที่เปลี่ยน</li>
+              <li>บันทึกผู้ดำเนินการและ Merchant</li>
+              <li>เชื่อม Log กับ Profile, Users และ Roles</li>
+              <li>จัดการกรณี API ยังไม่ตั้งค่า — ไม่กระทบ Flow หลัก</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Impact / Result</h3>
+            <ul class="list">
+              <li>มีระบบกลางสำหรับ Audit ประวัติการทำงาน</li>
+              <li>ตรวจผู้ดำเนินการและก่อน–หลังแก้ไขได้</li>
+              <li>ลดเวลาค้นหาและวิเคราะห์สาเหตุปัญหา</li>
+              <li>การเปลี่ยนแปลงจาก Frontend ถูกบันทึกเป็นระบบ</li>
+              <li>ปัญหา Log ไม่ทำให้รายการหลักล้มเหลว</li>
+              <li>มีโครงสร้างมาตรฐานให้ Module อื่นใช้ต่อ</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Transaction Status Pending -->
+    <section class="slide" data-title="Status Pending">
+      <div class="watermark">08</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">04 · Transaction Status</p>
+        <h2>Pending</h2>
+        <p class="sub">รองรับกรณีที่ระบบยังสรุปผลธุรกรรมไม่ได้ทันที จากกระบวนการ Check Payer Name และการตรวจสอบบัญชีม้าตามฐานข้อมูล AMLO</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="grid-2">
+          <div class="panel">
+            <h3>ปัญหาเดิม</h3>
+            <ul class="list">
+              <li>ระบบกำหนดสถานะเป็น Success, Voided หรือ Rejected ทันทีเมื่อได้ผลการตรวจสอบ</li>
+              <li>บางกรณีทำต่อไม่ได้ เช่น Void กับธนาคารไม่สำเร็จ</li>
+              <li>ไม่ได้รับผลการตรวจสอบจากระบบ AMLO</li>
+              <li>ทำให้ไม่สามารถสรุปผลธุรกรรมได้อย่างถูกต้อง</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>แนวทางแก้ไข</h3>
+            <ul class="list">
+              <li>เพิ่มสถานะใหม่ Pending เป็นสถานะชั่วคราว</li>
+              <li>ใช้กับรายการที่ต้องให้เจ้าหน้าที่ตรวจสอบเพิ่มเติม</li>
+              <li>รอสรุปผลรายการอีกครั้งเมื่อข้อมูลครบถ้วน</li>
+              <li>รองรับบน Web Frontend และฐานข้อมูลที่เกี่ยวข้อง</li>
+            </ul>
+          </div>
+        </div>
+        <div class="impact-strip anim anim-d2">
+          <div class="kpi"><strong>ไม่สรุปผลผิดพลาด</strong><p>หลีกเลี่ยง Success / Voided / Rejected ก่อนข้อมูลครบ</p></div>
+          <div class="kpi"><strong>รอตรวจสอบ</strong><p>เจ้าหน้าที่ทบทวนรายการก่อนปิดผล</p></div>
+          <div class="kpi"><strong>Check Payer Name</strong><p>รองรับ flow ตรวจสอบชื่อผู้ชำระเงิน</p></div>
+          <div class="kpi"><strong>AMLO</strong><p>รองรับกรณีรอผลตรวจบัญชีม้า</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 Testing -->
+    <section class="slide" data-title="Quality">
+      <div class="watermark">09</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Quality Improvement</p>
+        <h2>Unit Test & Automation</h2>
+        <p class="sub">ตรวจ Business Logic, Validation, Response และ Error Handling — ลดความเสี่ยง Regression เมื่อมีการแก้ไขระบบ</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="sys-grid">
+          <div class="sys">
+            <h3>BAY Online Direct Debit API</h3>
+            <ul class="list">
+              <li>ศึกษา Flow Online Direct Debit — BAY</li>
+              <li>ทดสอบ Success / Error, Validation, Response</li>
+            </ul>
+          </div>
+          <div class="sys">
+            <h3>ChillPay Recurring API</h3>
+            <ul class="list">
+              <li>Validation และ Business Logic</li>
+              <li>กรณีข้อมูลถูกต้อง / ไม่ถูกต้อง</li>
+            </ul>
+          </div>
+          <div class="sys">
+            <h3>Recurring Services</h3>
+            <ul class="list">
+              <li>Logic ใน Service Layer + Mock Dependency</li>
+              <li>Exception และ Error Handling</li>
+            </ul>
+          </div>
+          <div class="sys">
+            <h3>Process Payment Services V4</h3>
+            <ul class="list">
+              <li>หลาย Version · Header · Checksum</li>
+              <li>Merchant Validation · Channel · Condition</li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot-panel anim anim-d2">
+          <h3>Playwright — Admin Transfer</h3>
+          <p>Upload · Check / Decline · Approve / Reject · Bulk Check · Bulk Approve · Validation & Permission · การเปลี่ยนสถานะตาม Workflow</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Incidents -->
+    <section class="slide" data-title="Incidents">
+      <div class="watermark">10</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Incident & Team Support</p>
+        <h2>Incident Case and Support</h2>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="grid-3">
+          <article class="case">
+            <h3>Payment Summary TXT</h3>
+            <p class="row"><b>Problem</b> ทีม Finance ต้องการ Invoice No. สำหรับอ้างอิงรายการ</p>
+            <p class="row"><b>Action</b> เพิ่มคอลัมน์ Invoice No. (ABB) ในไฟล์ Payment Summary TXT</p>
+            <p class="row"><b>Impact</b> ตรวจสอบและอ้างอิงข้อมูลได้สะดวก ถูกต้องขึ้น</p>
+          </article>
+          <article class="case">
+            <h3>Merchant Report Access</h3>
+            <p class="row"><b>Problem</b> Merchant สถานะ Suspended / Inactive ดาวน์โหลดรายงานไม่ได้</p>
+            <p class="row"><b>Action</b> ปรับเงื่อนไขให้รองรับการดาวน์โหลดในสถานะดังกล่าว</p>
+            <p class="row"><b>Impact</b> Finance เข้าถึงข้อมูลต่อเนื่อง ลดข้อจำกัดการทำงาน</p>
+          </article>
+          <article class="case">
+            <h3>PayOut API Error 3106</h3>
+            <p class="row"><b>Problem</b> พบ Error 3106 ขณะเรียก PayOut API</p>
+            <p class="row"><b>Action</b> ตรวจ Log, Config, Merchant Setting, Fee แล้วสรุปสาเหตุให้ทีม CS</p>
+            <p class="row"><b>Impact</b> CS ระบุสาเหตุและแก้ปัญหาได้เร็ว แม่นยำขึ้น</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Skills -->
+    <section class="slide" data-title="Skills">
+      <div class="watermark">11</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Skills & Growth</p>
+        <h2>ทักษะที่ได้พัฒนา</h2>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="grid-3">
+          <div class="skill-block">
+            <h3>System Analysis</h3>
+            <ul class="list">
+              <li>Requirement และ Business Flow</li>
+              <li>Workflow หลาย Role / หลายสถานะ</li>
+              <li>แปลง Business → Technical Solution</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Backend Development</h3>
+            <ul class="list">
+              <li>API Design และ Integration</li>
+              <li>Business Logic และ Validation</li>
+              <li>Error Handling · Schema · Mapping</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Frontend & Back-office</h3>
+            <ul class="list">
+              <li>Workflow ที่ซับซ้อน</li>
+              <li>Filter, Dashboard, Bulk Action</li>
+              <li>Permission ตาม Role และ Action</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Software Quality</h3>
+            <ul class="list">
+              <li>Unit Test และ Dependency Mocking</li>
+              <li>Playwright Automation</li>
+              <li>SIT Support · Regression Prevention</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Documentation</h3>
+            <ul class="list">
+              <li>Software Design Document</li>
+              <li>Project Plan · Test Case</li>
+              <li>Technical Flow และ Mapping</li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h3>Team Collaboration</h3>
+            <ul class="list">
+              <li>ประสาน Finance, CS, Tester</li>
+              <li>วิเคราะห์ปัญหาจากการใช้งานจริง</li>
+              <li>สื่อสารสาเหตุและแนวทางแก้เชิงเทคนิค</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 Achievements -->
+    <section class="slide" data-title="Achievements">
+      <div class="watermark">12</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Key Achievements</p>
+        <h2>ผลลัพธ์สำคัญในครึ่งปีแรก</h2>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="grid-3">
+          <div class="kpi">
+            <strong>Delivered Business Features</strong>
+            <p>ส่งมอบ PayOut Fee Management, Admin Transfer, Operation Logs และ Transaction Status: Pending เพื่อรองรับ Business Flow ใหม่</p>
+          </div>
+          <div class="kpi">
+            <strong>Improved Operational Efficiency</strong>
+            <p>ลด Manual ด้วย Workflow Upload → Check → Approve และ Bulk Action</p>
+          </div>
+          <div class="kpi">
+            <strong>Increased Data Accuracy</strong>
+            <p>เพิ่ม Validation และการตรวจ Fee ให้ API, Web และ Database สอดคล้องกัน</p>
+          </div>
+          <div class="kpi">
+            <strong>Strengthened Audit Capability</strong>
+            <p>Operation Logs ตรวจผู้ดำเนินการ Action และข้อมูลก่อน–หลังแก้ไขได้</p>
+          </div>
+          <div class="kpi">
+            <strong>Improved Software Quality</strong>
+            <p>Unit Test และ Automation ลด Regression เพิ่มความมั่นใจก่อน Deploy</p>
+          </div>
+          <div class="kpi">
+            <strong>Supported Cross-functional Teams</strong>
+            <p>สนับสนุน Finance, CS และ Tester ในการตรวจข้อมูล วิเคราะห์ Incident และทดสอบ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 Thank You -->
+    <section class="slide closing" data-title="Thank You">
+      <div class="watermark">13</div>
+      <p class="eyebrow anim">Mid-Year Review 2026</p>
+      <div class="cover-main">
+        <h1 class="cover-brand anim anim-d1">Thank You</h1>
+        <p class="cover-lead anim anim-d2">Questions & Discussion</p>
+        <p class="sub anim anim-d3" style="margin-top:1.1rem;">Building reliable systems, improving quality, and supporting business growth.</p>
+      </div>
+      <div class="meta-row anim anim-d4">
+        <div class="meta-item">
+          <label>Role</label>
+          <strong>Software Developer</strong>
+        </div>
+        <div class="meta-item">
+          <label>Focus</label>
+          <strong>Delivery · Quality · Collaboration</strong>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="chrome">
+    <span id="slideTitle">Cover</span>
+    <span id="slideCounter">01 / 13</span>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const progress = document.getElementById("progress");
+    const counter = document.getElementById("slideCounter");
+    const titleEl = document.getElementById("slideTitle");
+    let index = 0;
+    let prevIndex = 0;
+
+    function replayAnims(slide) {
+      slide.querySelectorAll(".anim, .panel, .port-item, .kpi, .case, .skill-block, .sys").forEach((el) => {
+        el.style.animation = "none";
+        void el.offsetWidth;
+        el.style.animation = "";
+      });
+    }
+
+    function show(i) {
+      const next = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, n) => {
+        s.classList.toggle("active", n === next);
+      });
+      index = next;
+      prevIndex = next;
+      replayAnims(slides[index]);
+      const pct = ((index + 1) / slides.length) * 100;
+      progress.style.width = pct + "%";
+      counter.textContent = String(index + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
+      titleEl.textContent = slides[index].dataset.title || "";
+    }
+
+    function next() { show(index + 1); }
+    function prev() { show(index - 1); }
+
+    document.addEventListener("keydown", (e) => {
+      if (["ArrowRight", "ArrowDown", "PageDown", " ", "Enter"].includes(e.key)) {
+        e.preventDefault();
+        next();
+      } else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(e.key)) {
+        e.preventDefault();
+        prev();
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        show(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        show(slides.length - 1);
+      } else if (e.key.toLowerCase() === "f") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+    });
+
+    let touchX = null;
+    document.addEventListener("touchstart", (e) => {
+      touchX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    document.addEventListener("touchend", (e) => {
+      if (touchX == null) return;
+      const dx = e.changedTouches[0].screenX - touchX;
+      if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+      touchX = null;
+    }, { passive: true });
+
+    document.getElementById("deck").addEventListener("click", (e) => {
+      if (e.target.closest("a, button")) return;
+      if (e.clientX > window.innerWidth * 0.65) next();
+      else if (e.clientX < window.innerWidth * 0.35) prev();
+    });
+
+    show(0);
+  </script>
+</body>
+</html>
