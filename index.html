@@ -6,7 +6,7 @@
   <title>Mid-Year Review 2026 — Software Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --accent: #0b7a86;
@@ -26,6 +26,8 @@
       --on-dark: #e8f6f7;
       --on-dark-soft: rgba(232, 246, 247, 0.78);
       --on-dark-muted: rgba(232, 246, 247, 0.55);
+      --font-display: "Outfit", "Anuphan", sans-serif;
+      --font-body: "Anuphan", system-ui, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +37,7 @@
       overflow: hidden;
       background: var(--bg-dark-top);
       color: var(--ink);
-      font-family: "Anuphan", system-ui, sans-serif;
+      font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -136,10 +138,10 @@
     }
 
     h1, h2, .display {
-      font-family: "Syne", "Anuphan", sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
       color: var(--ink);
     }
 
@@ -148,10 +150,10 @@
     h1 { font-size: clamp(2.8rem, 6vw, 5rem); }
     h2 { font-size: clamp(1.75rem, 3vw, 2.45rem); margin-bottom: 0.35rem; }
     h3 {
-      font-family: "Syne", "Anuphan", sans-serif;
+      font-family: var(--font-body);
       font-size: clamp(1.05rem, 1.45vw, 1.22rem);
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
       margin-bottom: 0.45rem;
       color: var(--accent-deep);
     }
@@ -170,11 +172,11 @@
     /* ── Cover / Closing layout ── */
     .cover-brand {
       position: relative;
-      font-family: "Syne", sans-serif;
+      font-family: var(--font-display);
       font-size: clamp(3.6rem, 9vw, 7.25rem);
       font-weight: 800;
-      letter-spacing: -0.055em;
-      line-height: 0.88;
+      letter-spacing: -0.04em;
+      line-height: 0.92;
       margin: 0.45rem 0 1rem;
       max-width: 12ch;
       color: #fff;
@@ -250,7 +252,7 @@
     }
 
     .meta-item strong {
-      font-family: "Syne", "Anuphan", sans-serif;
+      font-family: var(--font-body);
       font-size: 1.15rem;
       font-weight: 600;
       color: var(--on-dark);
@@ -419,7 +421,7 @@
     }
 
     .port-num {
-      font-family: "Syne", sans-serif;
+      font-family: var(--font-display);
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--accent);
@@ -537,10 +539,11 @@
     }
 
     .sys-stat strong {
-      font-family: "Syne", "Anuphan", sans-serif;
-      font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+      font-family: var(--font-body);
+      font-size: clamp(0.98rem, 1.15vw, 1.08rem);
       color: var(--ink);
       font-weight: 700;
+      letter-spacing: 0;
     }
 
     .sys-stat span {
@@ -549,15 +552,18 @@
       display: block;
       margin-top: 0.15rem;
       line-height: 1.3;
+      font-family: var(--font-body);
     }
 
     .sys-stat em {
-      font-family: "Syne", sans-serif;
+      font-family: var(--font-body);
       font-style: normal;
-      font-weight: 800;
-      font-size: 1.05rem;
+      font-weight: 700;
+      font-size: 1.02rem;
       color: var(--accent-deep);
       white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
     }
 
     .outcome-list .list li {
@@ -604,10 +610,12 @@
     }
 
     .kpi-row strong {
-      font-family: "Syne", "Anuphan", sans-serif;
+      font-family: var(--font-body);
       font-size: clamp(0.92rem, 1.1vw, 1.02rem);
       color: var(--ink);
       line-height: 1.3;
+      font-weight: 700;
+      letter-spacing: 0;
     }
 
     .kpi-target {
@@ -621,11 +629,13 @@
     }
 
     .kpi-pct {
-      font-family: "Syne", sans-serif;
+      font-family: var(--font-body);
       font-size: 1.15rem;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--accent-deep);
       text-align: right;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
     }
 
     .kpi-bar {
@@ -676,7 +686,7 @@
     }
 
     .flow span {
-      font-family: "Syne", sans-serif;
+      font-family: var(--font-display);
       font-weight: 700;
       font-size: 0.95rem;
       padding: 0.4rem 0.75rem;
@@ -708,7 +718,7 @@
 
     .kpi strong {
       display: block;
-      font-family: "Syne", "Anuphan", sans-serif;
+      font-family: var(--font-display);
       font-size: clamp(1rem, 1.22vw, 1.12rem);
       font-weight: 700;
       letter-spacing: -0.02em;
@@ -774,7 +784,7 @@
       background: var(--accent-soft);
       border-left: 3px solid var(--accent);
       color: var(--accent-deep);
-      font-family: "Syne", "Anuphan", sans-serif;
+      font-family: var(--font-display);
       font-weight: 600;
       font-size: clamp(0.98rem, 1.15vw, 1.08rem);
       letter-spacing: -0.01em;
@@ -883,7 +893,7 @@
       position: absolute;
       right: var(--slide-pad);
       bottom: calc(var(--slide-pad) + 0.15rem);
-      font-family: "Syne", sans-serif;
+      font-family: var(--font-display);
       font-size: clamp(4.5rem, 12vw, 9.5rem);
       font-weight: 800;
       line-height: 0.8;
