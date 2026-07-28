@@ -307,6 +307,41 @@
       align-items: start;
     }
 
+    /* ── Overview — larger type, 2-col split ── */
+    .slide.overview h2 {
+      font-size: clamp(2.05rem, 3.5vw, 2.85rem);
+    }
+
+    .slide.overview .panel h3 {
+      font-size: clamp(1.22rem, 1.7vw, 1.45rem);
+      margin-bottom: 0.7rem;
+    }
+
+    .slide.overview .list {
+      gap: 0.55rem;
+    }
+
+    .slide.overview .list li {
+      font-size: clamp(1.12rem, 1.45vw, 1.28rem);
+      line-height: 1.45;
+      padding-left: 1.15rem;
+    }
+
+    .slide.overview .list li::before {
+      width: 0.38rem;
+      height: 0.38rem;
+      top: 0.62em;
+    }
+
+    .overview-split {
+      gap: clamp(1.5rem, 3.5vw, 3rem);
+      align-items: start;
+    }
+
+    .overview-split .panel {
+      padding-top: 0.85rem;
+    }
+
     /* ── Panels & blocks — thin top border only ── */
     .panel {
       border-top: 2px solid var(--accent);
@@ -795,36 +830,30 @@
     </section>
 
     <!-- 2 Overview -->
-    <section class="slide" data-title="Overview">
+    <section class="slide overview" data-title="Overview">
       <div class="watermark">02</div>
       <div class="slide-head anim">
         <p class="eyebrow">First-Half Performance</p>
         <h2>ภาพรวมผลงานครึ่งปีแรก</h2>
-        <p class="sub">มีส่วนร่วมในการวิเคราะห์ Requirement, ออกแบบ Flow และ UX/UI, พัฒนา Backend, Web Portal และ API รวมถึงศึกษา Unit Test และ Playwright เพิ่มเติม</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="grid-3">
+        <div class="grid-2 overview-split">
           <div class="panel">
-            <span class="tag">Project Delivery</span>
+            <h3>สิ่งที่ได้เรียนรู้</h3>
+            <ul class="list">
+              <li>วิเคราะห์ Requirement</li>
+              <li>ออกแบบ Flow และ UX/UI</li>
+              <li>พัฒนา Backend, Web Portal และ API</li>
+              <li>ศึกษา Unit Test และ Playwright เพิ่มเติม</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>โปรเจกต์</h3>
             <ul class="list">
               <li>PayOut Fee Management</li>
               <li>Admin Transfer</li>
               <li>ChillPay Operation Logs</li>
               <li>Transaction Status: Pending</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <span class="tag">Quality Improvement</span>
-            <ul class="list">
-              <li>Unit Test ระบบสำคัญ 4 ระบบ</li>
-              <li>Playwright Automation — Admin Transfer</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <span class="tag">Incident & Support</span>
-            <ul class="list">
-              <li>สนับสนุนทีม Finance</li>
-              <li>วิเคราะห์ Log & Config ให้ทีม CS</li>
             </ul>
           </div>
         </div>
