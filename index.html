@@ -941,47 +941,9 @@
       </div>
     </section>
 
-    <!-- 7 Transaction Status Pending -->
-    <section class="slide" data-title="Status Pending">
-      <div class="watermark">07</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">04 · Transaction Status</p>
-        <h2>Pending</h2>
-        <p class="sub">รองรับกรณีที่ระบบยังสรุปผลธุรกรรมไม่ได้ทันที จากกระบวนการ Check Payer Name และการตรวจสอบบัญชีม้าตามฐานข้อมูล AMLO</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="grid-2">
-          <div class="panel">
-            <h3>ปัญหาเดิม</h3>
-            <ul class="list">
-              <li>ระบบกำหนดสถานะเป็น Success, Voided หรือ Rejected ทันทีเมื่อได้ผลการตรวจสอบ</li>
-              <li>บางกรณีทำต่อไม่ได้ เช่น Void กับธนาคารไม่สำเร็จ</li>
-              <li>ไม่ได้รับผลการตรวจสอบจากระบบ AMLO</li>
-              <li>ทำให้ไม่สามารถสรุปผลธุรกรรมได้อย่างถูกต้อง</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>แนวทางแก้ไข</h3>
-            <ul class="list">
-              <li>เพิ่มสถานะใหม่ Pending เป็นสถานะชั่วคราว</li>
-              <li>ใช้กับรายการที่ต้องให้เจ้าหน้าที่ตรวจสอบเพิ่มเติม</li>
-              <li>รอสรุปผลรายการอีกครั้งเมื่อข้อมูลครบถ้วน</li>
-              <li>รองรับบน Web Frontend และฐานข้อมูลที่เกี่ยวข้อง</li>
-            </ul>
-          </div>
-        </div>
-        <div class="impact-strip anim anim-d2">
-          <div class="kpi"><strong>ไม่สรุปผลผิดพลาด</strong><p>หลีกเลี่ยง Success / Voided / Rejected ก่อนข้อมูลครบ</p></div>
-          <div class="kpi"><strong>รอตรวจสอบ</strong><p>เจ้าหน้าที่ทบทวนรายการก่อนปิดผล</p></div>
-          <div class="kpi"><strong>Check Payer Name</strong><p>รองรับ flow ตรวจสอบชื่อผู้ชำระเงิน</p></div>
-          <div class="kpi"><strong>AMLO</strong><p>รองรับกรณีรอผลตรวจบัญชีม้า</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8 Testing -->
+    <!-- 7 Testing -->
     <section class="slide" data-title="Quality">
-      <div class="watermark">08</div>
+      <div class="watermark">07</div>
       <div class="slide-head anim">
         <p class="eyebrow">Quality Improvement</p>
         <h2>Unit Test & Automation</h2>
@@ -1021,9 +983,9 @@
       </div>
     </section>
 
-    <!-- 9 Incidents -->
+    <!-- 8 Incidents -->
     <section class="slide" data-title="Incidents">
-      <div class="watermark">09</div>
+      <div class="watermark">08</div>
       <div class="slide-head anim">
         <p class="eyebrow">Incident & Team Support</p>
         <h2>Incident Case and Support</h2>
@@ -1055,7 +1017,7 @@
 
   <div class="chrome">
     <span id="slideTitle">Cover</span>
-    <span id="slideCounter">01 / 09</span>
+    <span id="slideCounter">01 / 08</span>
   </div>
 
   <script>
