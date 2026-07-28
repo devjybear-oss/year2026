@@ -448,6 +448,19 @@
       margin-top: 0.25rem;
     }
 
+    .challenge-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1rem, 2vw, 1.6rem);
+      margin-top: 0.15rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .challenge-pair .panel p {
+      margin: 0;
+    }
+
     /* ── QA block ── */
     .qa-block {
       display: flex;
@@ -721,7 +734,7 @@
       .grid-2, .grid-3, .grid-4, .two-col, .sys-grid {
         grid-template-columns: 1fr;
       }
-      .qa, .impact-strip { grid-template-columns: 1fr; }
+      .qa, .impact-strip, .challenge-pair { grid-template-columns: 1fr; }
       .scope-list { grid-template-columns: 1fr; }
       .flow-bar { flex-direction: column; align-items: flex-start; }
       h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); }
@@ -921,6 +934,16 @@
               <li>ลดความผิดพลาดจากการทำผิดขั้นตอน</li>
               <li>ลดขั้นตอนการทำงานแบบ Manual</li>
             </ul>
+          </div>
+        </div>
+        <div class="challenge-pair anim anim-d2">
+          <div class="panel">
+            <h3>Challenges Encountered</h3>
+            <p>ไม่ทราบว่าต้องทำรายการให้ Success อย่างไร จึงทดสอบฟีเจอร์ได้ไม่ครบ Full Loop</p>
+          </div>
+          <div class="panel">
+            <h3>How I Solved It</h3>
+            <p>สอบถามพี่พงษ์ ซึ่งอธิบาย Flow การทำงานตั้งแต่ต้นจนจบ ทำให้ทดสอบ Full Loop บน DEV ได้ครบ</p>
           </div>
         </div>
       </div>
