@@ -458,10 +458,149 @@
       margin: 0;
     }
 
+    .port-meta {
+      grid-column: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.75rem;
+      align-items: center;
+      margin-top: 0.15rem;
+    }
+
+    .port-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent-deep);
+      padding: 0.2rem 0.55rem;
+      border: 1px solid rgba(11, 122, 134, 0.28);
+      background: var(--accent-soft);
+    }
+
+    .port-status.late {
+      color: #8a4b12;
+      border-color: rgba(138, 75, 18, 0.28);
+      background: rgba(138, 75, 18, 0.08);
+    }
+
+    .port-status-note {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+    }
+
     @media (max-width: 960px) {
       .port-body { grid-template-columns: 1fr; }
       .port-item { grid-template-columns: 1fr; }
       .port-num { grid-row: auto; }
+    }
+
+    /* ── Quality outcomes ── */
+    .quality-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(1.2rem, 3vw, 2.5rem);
+      align-items: start;
+    }
+
+    .sys-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+    }
+
+    .sys-chip {
+      font-size: clamp(0.92rem, 1.1vw, 1.02rem);
+      color: var(--ink);
+      padding: 0.45rem 0.7rem;
+      border-top: 2px solid var(--accent);
+      background: rgba(11, 122, 134, 0.04);
+    }
+
+    .outcome-list .list li {
+      font-size: clamp(1.05rem, 1.3vw, 1.18rem);
+      line-height: 1.45;
+    }
+
+    /* ── Incident rows ── */
+    .case-rows {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.85rem, 1.8vh, 1.2rem);
+    }
+
+    .case-row {
+      display: grid;
+      grid-template-columns: minmax(10rem, 14rem) 1fr 1fr;
+      gap: 0.85rem 1.25rem;
+      padding: 0.75rem 0 0.15rem;
+      border-top: 2px solid var(--line);
+      align-items: start;
+    }
+
+    .case-row h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+    }
+
+    /* ── KPI rows ── */
+    .kpi-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: minmax(12rem, 1.3fr) 5.5rem 1fr;
+      gap: 0.75rem 1.1rem;
+      align-items: center;
+      padding: 0.55rem 0 0.35rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .kpi-row strong {
+      font-family: "Syne", "Anuphan", sans-serif;
+      font-size: clamp(1rem, 1.2vw, 1.12rem);
+      color: var(--ink);
+    }
+
+    .kpi-pct {
+      font-family: "Syne", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent-deep);
+      text-align: right;
+    }
+
+    .kpi-bar {
+      height: 0.45rem;
+      background: rgba(11, 122, 134, 0.12);
+      overflow: hidden;
+      margin-bottom: 0.35rem;
+    }
+
+    .kpi-bar > span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+    }
+
+    .kpi-note {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* ── Next half ── */
+    .focus-list .list li {
+      font-size: clamp(1.08rem, 1.35vw, 1.22rem);
+      line-height: 1.48;
+      padding-left: 1.2rem;
     }
 
     /* ── Flow bar ── */
@@ -628,13 +767,16 @@
     }
 
     .case h3 { margin-bottom: 0.1rem; color: var(--ink); }
-    .case .row {
+    .case .row,
+    .case-row .row {
       font-size: clamp(0.94rem, 1.1vw, 1.04rem);
       line-height: 1.42;
       color: var(--ink-soft);
+      margin: 0;
     }
 
-    .case .row b {
+    .case .row b,
+    .case-row .row b {
       display: block;
       color: var(--accent);
       font-size: 0.76rem;
@@ -807,12 +949,14 @@
 
     /* ── Responsive ── */
     @media (max-width: 960px) {
-      .grid-2, .grid-3, .grid-4, .two-col, .sys-grid {
+      .grid-2, .grid-3, .grid-4, .two-col, .sys-grid,
+      .quality-layout, .case-row, .kpi-row {
         grid-template-columns: 1fr;
       }
       .qa, .impact-strip, .challenge-pair { grid-template-columns: 1fr; }
       .scope-list { grid-template-columns: 1fr; }
       .flow-bar { flex-direction: column; align-items: flex-start; }
+      .kpi-pct { text-align: left; }
       h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); }
       .cover-brand { font-size: clamp(2.4rem, 11vw, 4rem); }
       .watermark { display: none; }
@@ -914,6 +1058,9 @@
                 <p>ไล่ Requirement และออกแบบ Flow/UX ให้ชัด แล้วผูก Logic Backend กับหน้า PayOut Transaction ให้ข้อมูลสอดคล้องกัน</p>
               </div>
             </div>
+            <div class="port-meta">
+              <span class="port-status">Delivery · ตรงเวลา</span>
+            </div>
           </article>
           <article class="port-item">
             <div class="port-num">02</div>
@@ -927,6 +1074,9 @@
                 <span class="port-label">How I Solved It</span>
                 <p>สอบถามพี่พงษ์ ซึ่งพี่พงษ์อธิบาย Flow ตั้งแต่ต้นจนจบ ทำให้ทดสอบ Full Loop บน DEV ได้ครบ</p>
               </div>
+            </div>
+            <div class="port-meta">
+              <span class="port-status">Delivery · ตรงเวลา</span>
             </div>
           </article>
           <article class="port-item">
@@ -942,174 +1092,150 @@
                 <p>แก้ HintPath เป็น absolute path, Restore NuGet ให้ครบ แล้ว Clean + Rebuild</p>
               </div>
             </div>
+            <div class="port-meta">
+              <span class="port-status">Delivery · ตรงเวลา</span>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 4 PayOut Fee Management -->
-    <section class="slide" data-title="PayOut Fee Management">
-      <div class="watermark">04</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">01 · PayOut Fee Management</p>
-        <h2>ระบบบริหารค่าธรรมเนียม PayOut</h2>
-        <p class="sub">พัฒนาระบบให้ยืดหยุ่นมากขึ้น จากเดิมที่รองรับเฉพาะค่าธรรมเนียมฝั่ง Merchant โดยเพิ่มการเรียกเก็บจาก Receiver พร้อมกำหนดอัตราตามช่วงยอดธุรกรรม, Priority, Effective Date และการออก e-Tax Invoice สำหรับ Receiver Fee</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="panel">
-          <h3>My Contribution</h3>
-          <ul class="list">
-            <li>รับ Requirement</li>
-            <li>ออกแบบ UX / UI</li>
-            <li>พัฒนา PayOut Merchant Fee และ Receiver Fee ฝั่ง Backend</li>
-            <li>พัฒนา PayOut Transaction ฝั่ง Web Frontend ให้รองรับและแสดงข้อมูลถูกต้องตามระบบ</li>
-            <li>เพิ่มข้อมูลที่เกี่ยวข้องในเมนู — PayOut Merchant, PayOut Transaction, Balance Statement และ Transfer Request — และทดสอบการทำงานให้ทำงานได้ตามปกติ</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5 Admin Transfer Back-office -->
-    <section class="slide" data-title="Admin Transfer">
-      <div class="watermark">05</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">02 · Admin Transfer</p>
-        <h2>Back-office Management</h2>
-        <p class="sub">พัฒนาหน้าจอ Back-office ให้เจ้าหน้าที่ Upload ค้นหา ตรวจสอบ และอนุมัติรายการโอนเงินได้อย่างเป็นระบบ</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="flow-bar">
-          <div class="flow">
-            <span>Upload</span><i>→</i>
-            <span>Check</span><i>→</i>
-            <span>Approve</span><i>→</i>
-            <span>Ready</span>
-          </div>
-          <p class="flow-note">รองรับ Decline · Reject · Bulk Check / Approve · อนุมัติหลายลำดับ · Permission ตาม Role</p>
-        </div>
-        <div class="panel anim anim-d2">
-          <h3>My Contribution</h3>
-          <ul class="list">
-            <li>รับ Requirement</li>
-            <li>ออกแบบ UX / UI</li>
-            <li>พัฒนา Admin Transfer ฝั่ง Backend</li>
-            <li>ตรวจสอบการทำงานของ PayOut Merchant, KYC, Receiver Onboard, PayOut Transaction, Balance Statement และ PayOut Summary Report ว่าแสดงผลถูกต้อง</li>
-          </ul>
-        </div>
-        <div class="challenge-pair anim anim-d2">
-          <div class="panel">
-            <h3>Challenges Encountered</h3>
-            <p>ไม่ทราบว่าต้องทำรายการให้ Success อย่างไร จึงทดสอบฟีเจอร์ได้ไม่ครบ Full Loop</p>
-          </div>
-          <div class="panel">
-            <h3>How I Solved It</h3>
-            <p>สอบถามพี่พงษ์ ซึ่งพี่พงษ์อธิบาย Flow การทำงานตั้งแต่ต้นจนจบ ทำให้ทดสอบ Full Loop บน DEV ได้ครบ</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6 Operation Logs -->
-    <section class="slide" data-title="Operation Logs">
-      <div class="watermark">06</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">03 · ChillPay Operation Logs</p>
-        <h2>Centralized Audit Logging</h2>
-        <p class="sub">พัฒนาระบบกลางสำหรับบันทึก ค้นหา และตรวจสอบประวัติการเปลี่ยนแปลง — ครอบคลุม API และเชื่อมต่อ Merchant Frontend</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="panel">
-          <h3>My Contribution</h3>
-          <ul class="list">
-            <li>รับ Requirement</li>
-            <li>ออกแบบระบบ</li>
-            <li>พัฒนา Operation Logs ฝั่ง API</li>
-            <li>Integrate Frontend ให้รองรับและส่ง Log ได้ถูกต้องตามระบบ</li>
-            <li>Integrate Log กับเมนู User Profile (Personal Information, Change Password) และ Merchant Profile (ข้อมูลร้านค้า)</li>
-          </ul>
-        </div>
-        <div class="challenge-pair anim anim-d2">
-          <div class="panel">
-            <h3>Challenges Encountered</h3>
-            <p>หลังอัป StackExchange.Redis แล้ว HintPath ใน Dev.csproj ชี้ไม่ถึง nuget-packages ทำให้หา DLL ไม่เจอ (Redis และ dependency ที่เกี่ยวข้อง) รัน/build ไม่ได้</p>
-          </div>
-          <div class="panel">
-            <h3>How I Solved It</h3>
-            <p>แก้ HintPath เป็น absolute path เหมือน Deploy, Restore NuGet ที่ C:\Apps\nuget-packages ให้ครบ แล้ว Clean + Rebuild</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7 Testing -->
+    <!-- 4 Testing -->
     <section class="slide" data-title="Quality">
-      <div class="watermark">07</div>
+      <div class="watermark">04</div>
       <div class="slide-head anim">
         <p class="eyebrow">Quality Improvement</p>
         <h2>Unit Test & Automation</h2>
-        <p class="sub">ตรวจ Business Logic, Validation, Response และ Error Handling — ลดความเสี่ยง Regression เมื่อมีการแก้ไขระบบ</p>
+        <p class="sub">โฟกัสที่ผลลัพธ์ด้านคุณภาพ — ลด Regression และเพิ่มความมั่นใจก่อน Deploy</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="sys-grid">
-          <div class="sys">
-            <h3>BAY Online Direct Debit API</h3>
+        <div class="quality-layout">
+          <div class="panel">
+            <h3>Scope</h3>
+            <p class="tag">Unit Test · 4 ระบบ</p>
+            <div class="sys-chips">
+              <span class="sys-chip">BAY Online Direct Debit API</span>
+              <span class="sys-chip">ChillPay Recurring API</span>
+              <span class="sys-chip">Recurring Services</span>
+              <span class="sys-chip">Process Payment Services V4</span>
+            </div>
+            <p class="tag" style="margin-top:1rem;">Automation</p>
+            <div class="sys-chips">
+              <span class="sys-chip">Playwright — Admin Transfer</span>
+            </div>
+          </div>
+          <div class="panel outcome-list">
+            <h3>Result / Outcome</h3>
             <ul class="list">
-              <li>เพิ่ม Unit Test</li>
+              <li>เพิ่ม Unit Test ครอบคลุม 4 ระบบสำคัญ</li>
+              <li>Playwright ครอบคลุม Workflow หลัก Admin Transfer (Upload → Check / Approve / Bulk)</li>
+              <li>ลดความเสี่ยง Regression เมื่อมีการแก้ไขระบบ</li>
+              <li>เพิ่มความมั่นใจก่อน Deploy และสนับสนุนการทดสอบบน SIT</li>
             </ul>
           </div>
-          <div class="sys">
-            <h3>ChillPay Recurring API</h3>
-            <ul class="list">
-              <li>เพิ่ม Unit Test</li>
-            </ul>
-          </div>
-          <div class="sys">
-            <h3>Recurring Services</h3>
-            <ul class="list">
-              <li>เพิ่ม Unit Test</li>
-            </ul>
-          </div>
-          <div class="sys">
-            <h3>Process Payment Services V4</h3>
-            <ul class="list">
-              <li>เพิ่ม Unit Test</li>
-            </ul>
-          </div>
-        </div>
-        <div class="foot-panel anim anim-d2">
-          <h3>Playwright — Admin Transfer</h3>
-          <p>Upload · Check / Decline · Approve / Reject · Bulk Check · Bulk Approve · Validation & Permission · การเปลี่ยนสถานะตาม Workflow</p>
         </div>
       </div>
     </section>
 
-    <!-- 8 Incidents -->
+    <!-- 5 Incidents -->
     <section class="slide" data-title="Incidents">
-      <div class="watermark">08</div>
+      <div class="watermark">05</div>
       <div class="slide-head anim">
         <p class="eyebrow">Incident & Team Support</p>
         <h2>Incident Case and Support</h2>
       </div>
       <div class="fill anim anim-d1">
-        <div class="grid-3">
-          <article class="case">
+        <div class="case-rows">
+          <article class="case-row">
             <h3>Payment Summary TXT</h3>
-            <p class="row"><b>Problem</b>ทีม Finance ต้องการ Invoice No. สำหรับอ้างอิงรายการ</p>
+            <p class="row"><b>Problem</b>Finance ต้องการ Invoice No. สำหรับอ้างอิงรายการ</p>
             <p class="row"><b>Action</b>เพิ่มคอลัมน์ Invoice No. (ABB) ในไฟล์ Payment Summary TXT</p>
-            <p class="row"><b>Impact</b>ตรวจสอบและอ้างอิงข้อมูลได้สะดวก ถูกต้องขึ้น</p>
           </article>
-          <article class="case">
+          <article class="case-row">
             <h3>Merchant Report Access</h3>
-            <p class="row"><b>Problem</b>Merchant สถานะ Suspended / Inactive ดาวน์โหลดรายงานไม่ได้</p>
-            <p class="row"><b>Action</b>ปรับเงื่อนไขให้รองรับการดาวน์โหลดในสถานะดังกล่าว</p>
-            <p class="row"><b>Impact</b>Finance เข้าถึงข้อมูลต่อเนื่อง ลดข้อจำกัดการทำงาน</p>
+            <p class="row"><b>Problem</b>Merchant Suspended / Inactive ดาวน์โหลดรายงานไม่ได้</p>
+            <p class="row"><b>Action</b>ปรับเงื่อนไขให้ดาวน์โหลดได้ในสถานะดังกล่าว</p>
           </article>
-          <article class="case">
+          <article class="case-row">
             <h3>PayOut API Error 3106</h3>
             <p class="row"><b>Problem</b>พบ Error 3106 ขณะเรียก PayOut API</p>
-            <p class="row"><b>Action</b>ตรวจ Log, Config, Merchant Setting, Fee แล้วสรุปสาเหตุให้ทีม CS</p>
-            <p class="row"><b>Impact</b>CS ระบุสาเหตุและแก้ปัญหาได้เร็ว แม่นยำขึ้น</p>
+            <p class="row"><b>Action</b>ตรวจ Log / Config / Fee แล้วสรุปสาเหตุให้ทีม CS</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 KPI -->
+    <section class="slide" data-title="KPI Progress">
+      <div class="watermark">06</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Mid-Year Checkpoint</p>
+        <h2>KPI Progress</h2>
+        <p class="sub">สถานะความคืบหน้าครึ่งปีแรก — ปรับตัวเลขตาม KPI จริงของทีมได้</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="kpi-rows">
+          <div class="kpi-row">
+            <strong>ส่งมอบโปรเจกต์ที่รับผิดชอบ</strong>
+            <div class="kpi-pct">100%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:100%"></span></div>
+              <p class="kpi-note">Fee Management · Admin Transfer · Operation Logs ส่งตามรอบ</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <strong>Unit Test ระบบสำคัญ</strong>
+            <div class="kpi-pct">80%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:80%"></span></div>
+              <p class="kpi-note">ทำครบ 4 ระบบแล้ว — ยังขยาย coverage / จำนวน test case ต่อเนื่อง</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <strong>Playwright Automation</strong>
+            <div class="kpi-pct">70%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:70%"></span></div>
+              <p class="kpi-note">ครอบคลุม Workflow หลัก Admin Transfer — ยังไม่ครบทุก edge case</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <strong>Incident & Team Support</strong>
+            <div class="kpi-pct">100%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:100%"></span></div>
+              <p class="kpi-note">รองรับเคส Finance / CS ที่เข้ามาในช่วงครึ่งปีแรก</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <strong>รัน Test ใน CI ทุก MR</strong>
+            <div class="kpi-pct">0%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:0%"></span></div>
+              <p class="kpi-note">ยังไม่ได้ทำ — โฟกัสสร้าง Unit Test / Automation ก่อน จะต่อ CI ในครึ่งปีหลัง</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Next Half -->
+    <section class="slide" data-title="Next Half">
+      <div class="watermark">07</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Second-Half Focus</p>
+        <h2>แผนเพิ่มคุณค่าครึ่งปีหลัง</h2>
+        <p class="sub">สิ่งที่จะพัฒนาต่อเพื่อเป็นประโยชน์ต่อทีมและองค์กร</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="panel focus-list">
+          <ul class="list">
+            <li>ขยาย Unit Test และ Playwright ให้ครอบคลุมเคสมากขึ้น พร้อมวางแผนเชื่อมเข้า CI pipeline</li>
+            <li>ขยาย Operation Logs ไปยังเมนูอื่นต่อจาก User Profile และ Merchant Profile</li>
+            <li>รับผิดชอบโปรเจกต์แบบ End-to-End มากขึ้น ตั้งแต่ Requirement จนถึงทดสอบ Full Loop</li>
+            <li>แชร์ความรู้ Flow / Troubleshooting ที่เคยติด ให้ทีมลดเวลาแก้ปัญหาซ้ำ</li>
+            <li>พัฒนาทักษะวิเคราะห์ปัญหาจาก Log, Config และ Dependency เพื่อช่วย Support ได้เร็วขึ้น</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1117,7 +1243,7 @@
 
   <div class="chrome">
     <span id="slideTitle">Cover</span>
-    <span id="slideCounter">01 / 08</span>
+    <span id="slideCounter">01 / 07</span>
   </div>
 
   <script>
