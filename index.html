@@ -935,11 +935,11 @@
             <div class="port-body">
               <div class="port-block">
                 <span class="port-label">Challenge</span>
-                <p>ต้องส่ง Log จาก Frontend หลายจุด โดยไม่กระทบ Flow หลัก และ Mapping Menu/Action ให้ถูกต้อง</p>
+                <p>หลังอัป Redis แล้ว HintPath ใน Dev.csproj ชี้ผิด ทำให้ VS หา DLL ไม่เจอ รัน/build ไม่ได้</p>
               </div>
               <div class="port-block">
                 <span class="port-label">How I Solved It</span>
-                <p>ออกแบบระบบและ API ให้ชัดก่อน แล้ว Integrate ทีละเมนู พร้อมจัดการกรณี API ยังไม่พร้อม</p>
+                <p>แก้ HintPath เป็น absolute path, Restore NuGet ให้ครบ แล้ว Clean + Rebuild</p>
               </div>
             </div>
           </article>
@@ -1027,6 +1027,16 @@
             <li>Integrate Frontend ให้รองรับและส่ง Log ได้ถูกต้องตามระบบ</li>
             <li>Integrate Log กับเมนู User Profile (Personal Information, Change Password) และ Merchant Profile (ข้อมูลร้านค้า)</li>
           </ul>
+        </div>
+        <div class="challenge-pair anim anim-d2">
+          <div class="panel">
+            <h3>Challenges Encountered</h3>
+            <p>หลังอัป StackExchange.Redis แล้ว HintPath ใน Dev.csproj ชี้ไม่ถึง nuget-packages ทำให้หา DLL ไม่เจอ (Redis และ dependency ที่เกี่ยวข้อง) รัน/build ไม่ได้</p>
+          </div>
+          <div class="panel">
+            <h3>How I Solved It</h3>
+            <p>แก้ HintPath เป็น absolute path เหมือน Deploy, Restore NuGet ที่ C:\Apps\nuget-packages ให้ครบ แล้ว Clean + Rebuild</p>
+          </div>
         </div>
       </div>
     </section>
