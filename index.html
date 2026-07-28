@@ -171,13 +171,35 @@
     .cover-brand {
       position: relative;
       font-family: "Syne", sans-serif;
-      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-size: clamp(3.6rem, 9vw, 7.25rem);
       font-weight: 800;
-      letter-spacing: -0.045em;
-      line-height: 0.92;
-      margin: 0.35rem 0 0.85rem;
-      max-width: 14ch;
-      color: var(--on-dark);
+      letter-spacing: -0.055em;
+      line-height: 0.88;
+      margin: 0.45rem 0 1rem;
+      max-width: 12ch;
+      color: #fff;
+      background: linear-gradient(
+        165deg,
+        #ffffff 0%,
+        #e8f6f7 42%,
+        #9fd4da 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.35));
+    }
+
+    .cover-brand .year {
+      display: inline-block;
+      margin-top: 0.12em;
+      font-size: 0.72em;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: linear-gradient(90deg, #7ec8d0 0%, #c8eef1 55%, #ffffff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .slide.cover.active .cover-brand::after,
@@ -185,10 +207,11 @@
       content: "";
       position: absolute;
       left: 0;
-      bottom: -0.3rem;
-      width: min(7rem, 38%);
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), transparent);
+      bottom: -0.45rem;
+      width: min(9rem, 48%);
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #2cb5c2, rgba(44, 181, 194, 0.15));
       animation: growX 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
     }
 
@@ -753,7 +776,7 @@
       <p class="eyebrow anim">ChillPay · Mid-Year Review</p>
       <div class="cover-main">
         <p class="cover-lead anim anim-d1">สรุปผลงานครึ่งปีแรก</p>
-        <h1 class="cover-brand anim anim-d2">Mid-Year<br />Review 2026</h1>
+        <h1 class="cover-brand anim anim-d2">Mid-Year<br />Review <span class="year">2026</span></h1>
       </div>
       <div class="meta-row anim anim-d4">
         <div class="meta-item">
