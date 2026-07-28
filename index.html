@@ -688,21 +688,6 @@
       transition: width 0.38s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .hint {
-      position: fixed;
-      right: var(--slide-pad);
-      top: 0.85rem;
-      z-index: 50;
-      font-size: 0.7rem;
-      color: var(--ink-muted);
-      letter-spacing: 0.04em;
-    }
-
-    body:has(.slide.cover.active) .hint,
-    body:has(.slide.closing.active) .hint {
-      color: var(--on-dark-muted);
-    }
-
     .chrome {
       position: fixed;
       left: 0;
@@ -759,7 +744,6 @@
 </head>
 <body>
   <div class="progress" id="progress"></div>
-  <div class="hint">← →  Space  ·  F Fullscreen</div>
 
   <div class="deck" id="deck">
 
