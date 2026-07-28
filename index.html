@@ -551,37 +551,48 @@
     .kpi-rows {
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.45rem;
     }
 
     .kpi-row {
       display: grid;
-      grid-template-columns: minmax(12rem, 1.3fr) 5.5rem 1fr;
-      gap: 0.75rem 1.1rem;
+      grid-template-columns: minmax(11rem, 1.15fr) 4.5rem 1fr;
+      gap: 0.45rem 0.85rem;
       align-items: center;
-      padding: 0.55rem 0 0.35rem;
+      padding: 0.4rem 0 0.25rem;
       border-top: 1px solid var(--line);
     }
 
     .kpi-row strong {
       font-family: "Syne", "Anuphan", sans-serif;
-      font-size: clamp(1rem, 1.2vw, 1.12rem);
+      font-size: clamp(0.92rem, 1.1vw, 1.02rem);
       color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .kpi-target {
+      display: block;
+      margin-top: 0.15rem;
+      font-family: "Anuphan", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      line-height: 1.3;
     }
 
     .kpi-pct {
       font-family: "Syne", sans-serif;
-      font-size: 1.35rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--accent-deep);
       text-align: right;
     }
 
     .kpi-bar {
-      height: 0.45rem;
+      height: 0.38rem;
       background: rgba(11, 122, 134, 0.12);
       overflow: hidden;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.25rem;
     }
 
     .kpi-bar > span {
@@ -591,9 +602,9 @@
     }
 
     .kpi-note {
-      font-size: 0.92rem;
+      font-size: 0.82rem;
       color: var(--ink-muted);
-      line-height: 1.35;
+      line-height: 1.3;
     }
 
     /* ── Next half ── */
@@ -1172,48 +1183,96 @@
       <div class="slide-head anim">
         <p class="eyebrow">Mid-Year Checkpoint</p>
         <h2>KPI Progress</h2>
-        <p class="sub">สถานะความคืบหน้าครึ่งปีแรก — ปรับตัวเลขตาม KPI จริงของทีมได้</p>
+        <p class="sub">อัปเดตสถานะตาม KPI ที่กำหนด — พร้อมเหตุผลในข้อที่ยังไม่ครบเป้า</p>
       </div>
       <div class="fill anim anim-d1">
         <div class="kpi-rows">
           <div class="kpi-row">
-            <strong>ส่งมอบโปรเจกต์ที่รับผิดชอบ</strong>
+            <div>
+              <strong>ส่งงานตรงเวลาและมีคุณภาพ</strong>
+              <span class="kpi-target">Task completion ≥90% · ไม่มี critical bug หลัง release</span>
+            </div>
             <div class="kpi-pct">85%</div>
             <div>
               <div class="kpi-bar"><span style="width:85%"></span></div>
-              <p class="kpi-note">Fee Management และ Operation Logs ตามรอบ — Admin Transfer เลทเพราะระบบกระจายเงิน PayOut ปิดปรับปรุง เทสต่อไม่ได้</p>
+              <p class="kpi-note">ยังไม่ถึง 90% — Admin Transfer เลทเพราะระบบกระจายเงิน PayOut ปิดปรับปรุง เทสต่อไม่ได้ · ยังไม่มี critical bug หลัง release</p>
             </div>
           </div>
           <div class="kpi-row">
-            <strong>Unit Test ระบบสำคัญ</strong>
-            <div class="kpi-pct">80%</div>
             <div>
-              <div class="kpi-bar"><span style="width:80%"></span></div>
-              <p class="kpi-note">ทำครบ 4 ระบบแล้ว — ยังขยาย coverage / จำนวน test case ต่อเนื่อง</p>
+              <strong>เรียนรู้และใช้ Framework / Tool ใหม่</strong>
+              <span class="kpi-target">นำ skill ใหม่ไปใช้จริงใน project ≥1 ชิ้น</span>
             </div>
-          </div>
-          <div class="kpi-row">
-            <strong>Playwright Automation</strong>
-            <div class="kpi-pct">70%</div>
-            <div>
-              <div class="kpi-bar"><span style="width:70%"></span></div>
-              <p class="kpi-note">ครอบคลุม Workflow หลัก Admin Transfer — ยังไม่ครบทุก edge case</p>
-            </div>
-          </div>
-          <div class="kpi-row">
-            <strong>Incident & Team Support</strong>
             <div class="kpi-pct">100%</div>
             <div>
               <div class="kpi-bar"><span style="width:100%"></span></div>
-              <p class="kpi-note">รองรับเคส Finance / CS ที่เข้ามาในช่วงครึ่งปีแรก</p>
+              <p class="kpi-note">ใช้ Unit Test และ Playwright กับงานจริง เช่น Admin Transfer และระบบที่รับผิดชอบ</p>
             </div>
           </div>
           <div class="kpi-row">
-            <strong>รัน Test ใน CI ทุก MR</strong>
+            <div>
+              <strong>เขียน Unit Test ครอบคลุม</strong>
+              <span class="kpi-target">Code coverage ≥70% ในงานที่รับผิดชอบ</span>
+            </div>
+            <div class="kpi-pct">70%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:70%"></span></div>
+              <p class="kpi-note">เพิ่ม Unit Test ครอบคลุม 4 ระบบสำคัญ — กำลังขยายเคสให้ coverage มั่นคงขึ้น</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <div>
+              <strong>ร่วม Code Review อย่างสม่ำเสมอ</strong>
+              <span class="kpi-target">Review / comment ≥1 ครั้งต่อไตรมาส</span>
+            </div>
+            <div class="kpi-pct">100%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:100%"></span></div>
+              <p class="kpi-note">ร่วม Review / comment ตามรอบทีมในช่วงครึ่งปีแรก</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <div>
+              <strong>SPOF Documentation</strong>
+              <span class="kpi-target">จัดทำ SPOF doc ของ module ที่รับผิดชอบตามไตรมาส</span>
+            </div>
             <div class="kpi-pct">0%</div>
             <div>
               <div class="kpi-bar"><span style="width:0%"></span></div>
-              <p class="kpi-note">ยังไม่ได้ทำ — โฟกัสสร้าง Unit Test / Automation ก่อน จะต่อ CI ในครึ่งปีหลัง</p>
+              <p class="kpi-note">ยังไม่ได้จัดทำ — วางแผนทำในครึ่งปีหลังคู่กับ module ที่รับผิดชอบ</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <div>
+              <strong>เข้าใจ Business Logic ของระบบ</strong>
+              <span class="kpi-target">อธิบายระบบเก่า/ใหม่ · flow · dependency · กำหนด scope ก่อนเริ่ม cycle</span>
+            </div>
+            <div class="kpi-pct">90%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:90%"></span></div>
+              <p class="kpi-note">ใช้กับ PayOut Fee, Admin Transfer และ Operation Logs — ยังขยายความเข้าใจระบบเก่ารอบข้างต่อเนื่อง</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <div>
+              <strong>Attendance</strong>
+              <span class="kpi-target">ลาป่วย ≤10 วัน/6 เดือน หรือแจ้งล่วงหน้า / มีแผนส่งต่องาน</span>
+            </div>
+            <div class="kpi-pct">100%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:100%"></span></div>
+              <p class="kpi-note">อยู่ในเกณฑ์ · หากจำเป็นต้องลา จะแจ้งล่วงหน้าและมีแผนส่งงาน</p>
+            </div>
+          </div>
+          <div class="kpi-row">
+            <div>
+              <strong>Collaboration & Escalation</strong>
+              <span class="kpi-target">Escalate ปัญหาที่แก้ไม่ได้ภายใน 4 ชม. — วัดจาก incident log</span>
+            </div>
+            <div class="kpi-pct">100%</div>
+            <div>
+              <div class="kpi-bar"><span style="width:100%"></span></div>
+              <p class="kpi-note">เช่น Admin Transfer escalate ถาม Flow กับพี่พงษ์เมื่อติด Full Loop เพื่อไม่ให้หยุดงานนาน</p>
             </div>
           </div>
         </div>
