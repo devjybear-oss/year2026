@@ -657,11 +657,47 @@
       line-height: 1.3;
     }
 
-    /* ── Next half ── */
-    .focus-list .list li {
-      font-size: clamp(1.08rem, 1.35vw, 1.22rem);
-      line-height: 1.48;
-      padding-left: 1.2rem;
+    .next-half-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: clamp(1.1rem, 2.5vw, 2rem);
+      align-items: start;
+    }
+
+    .next-half-layout .kpi-rows {
+      gap: 0.35rem;
+    }
+
+    .next-half-layout .kpi-row {
+      grid-template-columns: minmax(9rem, 1.1fr) 3.6rem 1fr;
+      gap: 0.35rem 0.65rem;
+      padding: 0.32rem 0 0.2rem;
+    }
+
+    .next-half-layout .kpi-pct {
+      font-size: 1rem;
+    }
+
+    .next-half-layout .kpi-note {
+      font-size: 0.78rem;
+    }
+
+    .next-half-layout .kpi-target {
+      font-size: 0.72rem;
+    }
+
+    .value-panel .list {
+      gap: 0.55rem;
+      margin-top: 0.35rem;
+    }
+
+    .value-panel .list li {
+      font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+      line-height: 1.42;
+    }
+
+    @media (max-width: 960px) {
+      .next-half-layout { grid-template-columns: 1fr; }
     }
 
     /* ── Flow bar ── */
@@ -1366,53 +1402,64 @@
       <div class="slide-head anim">
         <p class="eyebrow">Second-Half Focus</p>
         <h2>แผนปิดช่องว่าง KPI ครึ่งปีหลัง</h2>
-        <p class="sub">โฟกัสข้อที่ยังไม่ถึงเป้า — แปลงเป็นแผนปฏิบัติ ไม่ใช่ wishlist</p>
+        <p class="sub">ปิดเป้าที่ยังไม่ครบ และเพิ่มคุณค่าในตัวเองให้เป็นประโยชน์ต่อทีม/องค์กร</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="kpi-rows">
-          <div class="kpi-row">
-            <div>
-              <strong>ส่งงานตรงเวลาและมีคุณภาพ</strong>
-              <span class="kpi-target">ปัจจุบัน 85% · เป้า ≥90%</span>
+        <div class="next-half-layout">
+          <div class="kpi-rows">
+            <div class="kpi-row">
+              <div>
+                <strong>ส่งงานตรงเวลาและมีคุณภาพ</strong>
+                <span class="kpi-target">ปัจจุบัน 85% · เป้า ≥90%</span>
+              </div>
+              <div class="kpi-pct">85%</div>
+              <div>
+                <div class="kpi-bar"><span style="width:85%"></span></div>
+                <p class="kpi-note">วางแผนทดสอบล่วงหน้า ลด dependency ระบบปิดปรับปรุง · เคลียร์งานค้าง Admin Transfer</p>
+              </div>
             </div>
-            <div class="kpi-pct">85%</div>
-            <div>
-              <div class="kpi-bar"><span style="width:85%"></span></div>
-              <p class="kpi-note">วางแผนทดสอบล่วงหน้า ลด dependency ระบบปิดปรับปรุง · เคลียร์งานค้าง Admin Transfer ให้จบพร้อมคุณภาพ</p>
+            <div class="kpi-row">
+              <div>
+                <strong>ร่วม Code Review อย่างสม่ำเสมอ</strong>
+                <span class="kpi-target">ปัจจุบัน 50% · เป้า ≥1 ครั้ง/ไตรมาส</span>
+              </div>
+              <div class="kpi-pct">50%</div>
+              <div>
+                <div class="kpi-bar"><span style="width:50%"></span></div>
+                <p class="kpi-note">Review/Comment ให้สม่ำเสมอขึ้นทุกไตรมาส</p>
+              </div>
+            </div>
+            <div class="kpi-row">
+              <div>
+                <strong>SPOF Documentation</strong>
+                <span class="kpi-target">ปัจจุบัน 25% · Q3 ยัง Pending Review</span>
+              </div>
+              <div class="kpi-pct">25%</div>
+              <div>
+                <div class="kpi-bar"><span style="width:25%"></span></div>
+                <p class="kpi-note">ผลัก doc Q3 ให้ Done และแก้ Discord Alert ที่ Pending Edit</p>
+              </div>
+            </div>
+            <div class="kpi-row">
+              <div>
+                <strong>Business Logic · Payment Presentation</strong>
+                <span class="kpi-target">ปัจจุบัน 0% · ก่อนประเมินปลายปี</span>
+              </div>
+              <div class="kpi-pct">0%</div>
+              <div>
+                <div class="kpi-bar"><span style="width:0%"></span></div>
+                <p class="kpi-note">ศึกษา Flow ระบบ Payment แล้วทำ Presentation มานำเสนอ</p>
+              </div>
             </div>
           </div>
-          <div class="kpi-row">
-            <div>
-              <strong>ร่วม Code Review อย่างสม่ำเสมอ</strong>
-              <span class="kpi-target">ปัจจุบัน 50% · เป้า ≥1 ครั้ง/ไตรมาส</span>
-            </div>
-            <div class="kpi-pct">50%</div>
-            <div>
-              <div class="kpi-bar"><span style="width:50%"></span></div>
-              <p class="kpi-note">ตั้งเป้า Review/Comment อย่างน้อยทุกไตรมาส และเพิ่มความถี่ให้สม่ำเสมอขึ้น</p>
-            </div>
-          </div>
-          <div class="kpi-row">
-            <div>
-              <strong>SPOF Documentation</strong>
-              <span class="kpi-target">ปัจจุบัน 25% · Q3 ยัง Pending Review</span>
-            </div>
-            <div class="kpi-pct">25%</div>
-            <div>
-              <div class="kpi-bar"><span style="width:25%"></span></div>
-              <p class="kpi-note">ผลักดัน doc ที่รอ Review ให้ Done — PayOut Fee, Admin Transfer, Recurring, Partial Refund และแก้ Discord Alert ที่ Pending Edit</p>
-            </div>
-          </div>
-          <div class="kpi-row">
-            <div>
-              <strong>เข้าใจ Business Logic · Payment Presentation</strong>
-              <span class="kpi-target">ปัจจุบัน 0% · ต้องนำเสนอก่อนประเมินปลายปี</span>
-            </div>
-            <div class="kpi-pct">0%</div>
-            <div>
-              <div class="kpi-bar"><span style="width:0%"></span></div>
-              <p class="kpi-note">ศึกษา Flow ระบบ Payment ที่รันอยู่ปัจจุบัน แล้วจัดทำ Presentation มานำเสนอให้ครบก่อนรอบประเมิน</p>
-            </div>
+          <div class="panel value-panel">
+            <h3>คุณค่าต่อองค์กร</h3>
+            <ul class="list">
+              <li>SPOF doc ช่วยลดความรู้กระจุกคนเดียว ทีมส่งต่องาน/แก้ปัญหาได้ต่อเนื่อง</li>
+              <li>Code Review สม่ำเสมอ ช่วยกันจับจุดเสี่ยงก่อนขึ้น production</li>
+              <li>เข้าใจระบบ Payment ลึกขึ้น → Support และวิเคราะห์ Incident ได้เร็ว แม่นขึ้น</li>
+              <li>ส่งงานตรงเวลาขึ้น ทีมวางแผน release และ dependency ได้แน่นอนกว่า</li>
+            </ul>
           </div>
         </div>
       </div>
