@@ -1,0 +1,15 @@
+---
+description: Always commit and push presentation changes to GitHub
+alwaysApply: true
+---
+
+# Always push to Git
+
+After any content or design change to this project (`index.html`, README, etc.):
+
+1. Commit with a concise message describing why
+2. Push to `origin main` immediately
+3. Do not wait for the user to ask “อัพขึ้น Git”
+
+Repo: `https://github.com/devjybear-oss/year2026.git`  
+Pages: `https://devjybear-oss.github.io/year2026/`
