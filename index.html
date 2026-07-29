@@ -425,7 +425,7 @@
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--accent);
-      grid-row: 1 / span 2;
+      grid-row: 1 / span 3;
       padding-top: 0.15rem;
     }
 
@@ -436,11 +436,19 @@
       grid-column: 2;
     }
 
+    .port-context {
+      grid-column: 2;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent-deep);
+      margin: -0.1rem 0 0.1rem;
+    }
+
     .port-body {
       grid-column: 2;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.55rem 1.5rem;
+      gap: 0.5rem 1.35rem;
     }
 
     .port-block .port-label {
@@ -454,9 +462,9 @@
     }
 
     .port-block p {
-      font-size: clamp(0.94rem, 1.12vw, 1.05rem);
+      font-size: clamp(0.88rem, 1.05vw, 0.98rem);
       color: var(--ink-soft);
-      line-height: 1.42;
+      line-height: 1.38;
       margin: 0;
     }
 
@@ -1305,19 +1313,24 @@
         <div class="port-stack">
           <article class="port-item">
             <div class="port-num">01</div>
-            <h3>PayOut Fee Management</h3>
+            <h3>Improved Financial Accuracy</h3>
+            <p class="port-context">Context · PayOut Fee Management</p>
             <div class="port-body">
               <div class="port-block">
-                <span class="port-label">Challenge</span>
-                <p>ยังไม่เข้าใจวิธีคำนวณ Summary Report และความสัมพันธ์ของ Bank Transaction Fee</p>
+                <span class="port-label">Complexity</span>
+                <p>ต้องทำความเข้าใจการคำนวณ Summary Report และความสัมพันธ์ของ Bank Transaction Fee</p>
               </div>
               <div class="port-block">
-                <span class="port-label">How I Solved It</span>
-                <p>เปรียบเทียบข้อมูล ตรวจสอบเงื่อนไขการคำนวณ และสอบถามผู้มีความรู้ในระบบเพื่อยืนยัน Flow</p>
+                <span class="port-label">Action</span>
+                <p>เปรียบเทียบข้อมูล ตรวจสอบเงื่อนไข และทำงานร่วมกับผู้ดูแลระบบเพื่อยืนยัน Business Flow</p>
               </div>
               <div class="port-block">
-                <span class="port-label">What I Learned</span>
-                <p>เข้าใจ Fee Configuration และผลกระทบต่อ Transaction และ Report มากขึ้น</p>
+                <span class="port-label">Achievement</span>
+                <p>สามารถพัฒนา Business Logic และ Validation ให้รองรับเงื่อนไข Fee พร้อมส่งมอบตามแผน</p>
+              </div>
+              <div class="port-block">
+                <span class="port-label">Growth</span>
+                <p>เข้าใจผลกระทบของ Fee Configuration ต่อ Transaction และ Report มากขึ้น</p>
               </div>
             </div>
             <div class="port-meta">
@@ -1326,41 +1339,51 @@
           </article>
           <article class="port-item">
             <div class="port-num">02</div>
-            <h3>Admin Transfer</h3>
+            <h3>Supported End-to-End PayOut Workflow</h3>
+            <p class="port-context">Context · Admin Transfer</p>
             <div class="port-body">
               <div class="port-block">
-                <span class="port-label">Challenge</span>
-                <p>ยังไม่เข้าใจวิธีทำรายการให้สำเร็จครบ Full Loop ตั้งแต่ต้นจนจบ</p>
+                <span class="port-label">Complexity</span>
+                <p>ต้องเชื่อมโยง Workflow ตั้งแต่ Upload, Check และ Approve จนรายการสำเร็จ</p>
               </div>
               <div class="port-block">
-                <span class="port-label">How I Solved It</span>
-                <p>ศึกษา Workflow และประสานงานกับผู้ดูแลระบบ เพื่อทำความเข้าใจขั้นตอน Upload, Check, Approve และผลลัพธ์ของรายการ</p>
+                <span class="port-label">Action</span>
+                <p>ศึกษา End-to-End Flow ทดสอบรายการ และยืนยัน Business Rules กับผู้ดูแลระบบ</p>
               </div>
               <div class="port-block">
-                <span class="port-label">What I Learned</span>
-                <p>เข้าใจ End-to-End Workflow, Business Rules และ Dependency ของระบบ PayOut มากขึ้น</p>
+                <span class="port-label">Achievement</span>
+                <p>พัฒนา Backend และสร้าง Playwright Automation สำหรับตรวจสอบ Admin Transfer Flow</p>
+              </div>
+              <div class="port-block">
+                <span class="port-label">Growth</span>
+                <p>เข้าใจ Workflow และ Dependency ของระบบ PayOut มากขึ้น</p>
               </div>
             </div>
             <div class="port-meta">
-              <span class="port-status late">Delivery · External Dependency</span>
-              <span class="port-status-note">Timeline ได้รับผลกระทบจากระบบ PayOut ปิดปรับปรุง และดำเนินการต่อเมื่อระบบพร้อม</span>
+              <span class="port-status late">Delivery · Timeline Adjusted</span>
+              <span class="port-status-note">Timeline ได้รับผลกระทบจากช่วงที่ระบบ PayOut ปิดปรับปรุง และดำเนินงานต่อเมื่อระบบพร้อม</span>
             </div>
           </article>
           <article class="port-item">
             <div class="port-num">03</div>
-            <h3>Operation Logs</h3>
+            <h3>Enabled System Auditability</h3>
+            <p class="port-context">Context · Operation Logs</p>
             <div class="port-body">
               <div class="port-block">
-                <span class="port-label">Challenge</span>
-                <p>ต้องออกแบบระบบ Log กลางให้รองรับข้อมูลจากหลายระบบ</p>
+                <span class="port-label">Complexity</span>
+                <p>ต้องรองรับการบันทึก ค้นหา และตรวจสอบข้อมูลจากหลายระบบ</p>
               </div>
               <div class="port-block">
-                <span class="port-label">How I Solved It</span>
-                <p>ศึกษาโครงสร้างข้อมูล ออกแบบ API และ Frontend พร้อมทั้งทำ Unit Test</p>
+                <span class="port-label">Action</span>
+                <p>ศึกษาโครงสร้างข้อมูล พัฒนา API และ Frontend พร้อมออกแบบ Unit Test</p>
               </div>
               <div class="port-block">
-                <span class="port-label">What I Learned</span>
-                <p>เข้าใจการออกแบบ Audit Trail, Data Mapping และการเชื่อมต่อระหว่างระบบมากขึ้น</p>
+                <span class="port-label">Achievement</span>
+                <p>สร้างระบบที่ช่วยตรวจสอบประวัติการเปลี่ยนแปลงย้อนหลัง พร้อม Unit Test ประมาณ 100 Cases</p>
+              </div>
+              <div class="port-block">
+                <span class="port-label">Growth</span>
+                <p>เข้าใจ Audit Trail, Data Mapping และการเชื่อมต่อข้อมูลระหว่างระบบมากขึ้น</p>
               </div>
             </div>
             <div class="port-meta">
