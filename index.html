@@ -696,6 +696,80 @@
       line-height: 1.42;
     }
 
+    /* ── Contribution table ── */
+    .contrib-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .contrib-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .contrib-table th,
+    .contrib-table td {
+      text-align: left;
+      vertical-align: top;
+      padding: 0.55rem 0.75rem 0.55rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: clamp(0.94rem, 1.12vw, 1.05rem);
+      line-height: 1.4;
+      color: var(--ink-soft);
+    }
+
+    .contrib-table th {
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.55rem;
+    }
+
+    .contrib-table th:nth-child(1),
+    .contrib-table td:nth-child(1) { width: 18%; }
+
+    .contrib-table th:nth-child(2),
+    .contrib-table td:nth-child(2) { width: 34%; }
+
+    .contrib-table th:nth-child(3),
+    .contrib-table td:nth-child(3) { width: 48%; }
+
+    .contrib-table td:first-child {
+      font-weight: 700;
+      color: var(--accent-deep);
+      white-space: nowrap;
+    }
+
+    .contrib-table td:nth-child(2) {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .contrib-table tr.group-start td {
+      padding-top: 0.85rem;
+    }
+
+    .contrib-scope {
+      margin-top: 0.85rem;
+      padding-top: 0.7rem;
+      border-top: 2px solid var(--accent);
+    }
+
+    .contrib-scope h3 {
+      margin-bottom: 0.35rem;
+    }
+
+    .contrib-scope p {
+      font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
     @media (max-width: 960px) {
       .next-half-layout { grid-template-columns: 1fr; }
     }
@@ -1286,32 +1360,60 @@
         <h2>ขอบเขตงานที่มีส่วนร่วม</h2>
       </div>
       <div class="fill anim anim-d1">
-        <div class="panel">
-          <h3>Long-term</h3>
-          <ul class="list">
-            <li><strong>Operation Logs</strong> — พัฒนา API, Frontend และ Unit Test</li>
-            <li><strong>PayOut Admin Transfer</strong> — พัฒนา Backend และ Playwright Automation</li>
-            <li><strong>Fee Management</strong> — พัฒนา Backend, Business Logic และ Validation</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h3>Medium-term</h3>
-          <ul class="list">
-            <li><strong>Improvement Report Downloading</strong> — ปรับปรุง Settlement UI และ Export Excel</li>
-            <li><strong>Warning Transaction</strong> — พัฒนา Frontend และปรับปรุง Database</li>
-            <li><strong>ChillPay Documents Online</strong> — จัดทำและปรับปรุง Content สำหรับผู้ใช้งาน</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h3>Short-term</h3>
-          <ul class="list">
-            <li><strong>Payment Summary TXT</strong> — เพิ่ม Invoice No. (ABB) ตาม Requirement ของ Finance</li>
-            <li><strong>Merchant Report Access</strong> — รองรับการดาวน์โหลดรายงานของร้าน Suspended/Inactive</li>
-            <li><strong>PayOut API Error 3106</strong> — ตรวจสอบ Request, Log และ Fee Configuration</li>
-          </ul>
+        <div class="contrib-table-wrap">
+          <table class="contrib-table">
+            <thead>
+              <tr>
+                <th>Work Size</th>
+                <th>Project / Task</th>
+                <th>Contribution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="group-start">
+                <td rowspan="3">Long-term</td>
+                <td>Operation Logs</td>
+                <td>พัฒนา API, Frontend และ Unit Test</td>
+              </tr>
+              <tr>
+                <td>PayOut Admin Transfer</td>
+                <td>พัฒนา Backend และ Playwright Automation</td>
+              </tr>
+              <tr>
+                <td>Fee Management</td>
+                <td>พัฒนา Backend, Business Logic และ Validation</td>
+              </tr>
+              <tr class="group-start">
+                <td rowspan="3">Medium-term</td>
+                <td>Improvement Report Downloading</td>
+                <td>ปรับปรุง Settlement UI และ Export Excel</td>
+              </tr>
+              <tr>
+                <td>Warning Transaction</td>
+                <td>พัฒนา Frontend และปรับปรุง Database</td>
+              </tr>
+              <tr>
+                <td>ChillPay Documents Online</td>
+                <td>จัดทำและปรับปรุง Content สำหรับผู้ใช้งาน</td>
+              </tr>
+              <tr class="group-start">
+                <td rowspan="3">Short-term</td>
+                <td>Payment Summary TXT</td>
+                <td>เพิ่ม Invoice No. (ABB) ตาม Requirement ของ Finance</td>
+              </tr>
+              <tr>
+                <td>Merchant Report Access</td>
+                <td>รองรับการดาวน์โหลดรายงานของร้าน Suspended/Inactive</td>
+              </tr>
+              <tr>
+                <td>PayOut API Error 3106</td>
+                <td>ตรวจสอบ Request, Log และ Fee Configuration</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="panel">
+        <div class="contrib-scope">
           <h3>Contribution Scope</h3>
           <p>Backend · Frontend · API · Database · Report · Testing · Content · Support</p>
         </div>
