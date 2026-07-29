@@ -754,6 +754,25 @@
       padding-top: 0.85rem;
     }
 
+    .growth-table th:nth-child(1),
+    .growth-table td:nth-child(1) { width: 22%; }
+
+    .growth-table th:nth-child(2),
+    .growth-table td:nth-child(2) { width: 36%; }
+
+    .growth-table th:nth-child(3),
+    .growth-table td:nth-child(3) { width: 42%; }
+
+    .growth-table td:nth-child(2) {
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+
+    .growth-table td:nth-child(3) {
+      font-weight: 400;
+      color: var(--ink-soft);
+    }
+
     .contrib-scope {
       margin-top: 0.85rem;
       padding-top: 0.7rem;
@@ -1193,39 +1212,32 @@
           <div class="panel">
             <h3>Business Understanding</h3>
             <ul class="list">
-              <li>เข้าใจ Flow ของ Payment, PayOut, Fee และ Settlement มากขึ้น</li>
-              <li>เรียนรู้การแปลง Business Requirement เป็น Technical Solution</li>
+              <li>เข้าใจความสัมพันธ์ของ Payment, PayOut, Fee และ Settlement</li>
+              <li>แปลง Business Requirement เป็น Technical Solution ได้ชัดเจนขึ้น</li>
             </ul>
           </div>
           <div class="panel">
-            <h3>Technical Development</h3>
+            <h3>Technical Ownership</h3>
             <ul class="list">
-              <li>พัฒนา Backend, API, Web Portal และ Database</li>
-              <li>ออกแบบ Business Logic และ Workflow ที่มีหลายขั้นตอน</li>
-              <li>วิเคราะห์ปัญหาจาก Log, Configuration และ Dependency</li>
-              <li>ทำงานกับระบบที่เชื่อมโยงกันหลาย Service</li>
+              <li>พัฒนาและเชื่อมโยง Backend, API, Web Portal และ Database</li>
+              <li>ออกแบบ Business Logic, Workflow และ Validation สำหรับระบบที่มีหลายขั้นตอน</li>
             </ul>
           </div>
           <div class="panel">
-            <h3>Quality & Testing</h3>
+            <h3>Quality Engineering</h3>
             <ul class="list">
-              <li>ออกแบบ Unit Test สำหรับ API และ Business Logic</li>
-              <li>ใช้ Playwright ตรวจสอบ End-to-End Flow</li>
-              <li>เปลี่ยน Business Requirement เป็น Test Scenario</li>
-              <li>เข้าใจ Regression Risk และกระบวนการตรวจสอบก่อน Release</li>
+              <li>ออกแบบ Unit Test และ Playwright จาก Business Flow</li>
+              <li>มองเห็น Edge Cases และ Regression Risk ก่อน Release</li>
             </ul>
           </div>
           <div class="panel">
-            <h3>Collaboration & Problem Solving</h3>
+            <h3>Problem Solving &amp; Collaboration</h3>
             <ul class="list">
-              <li>ประสานงานกับผู้ที่มีความรู้ในระบบเมื่อพบปัญหา</li>
-              <li>แจ้งและติดตาม Dependency ที่ส่งผลต่อการส่งมอบ</li>
-              <li>สนับสนุน Requirement จาก Finance และ CS</li>
-              <li>สรุปปัญหาทางเทคนิคให้ทีมอื่นดำเนินการต่อได้</li>
+              <li>วิเคราะห์ปัญหาจาก Request, Log, Configuration และ Dependency</li>
+              <li>ประสานงานและสรุปข้อมูลให้ทีมที่เกี่ยวข้องนำไปดำเนินการต่อได้</li>
             </ul>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -1237,41 +1249,49 @@
         <h2>นำสิ่งที่เรียนรู้ไปสร้างคุณค่าอย่างไร</h2>
       </div>
       <div class="fill anim anim-d1">
-        <div class="grid-3">
-          <div class="panel">
-            <h3>สิ่งที่เรียนรู้</h3>
-            <ul class="list">
-              <li>Business Flow</li>
-              <li>Backend &amp; API</li>
-              <li>Database &amp; Report</li>
-              <li>Automated Testing</li>
-              <li>Incident Analysis</li>
-              <li>Collaboration</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>การนำไปใช้</h3>
-            <ul class="list">
-              <li>วิเคราะห์เงื่อนไขและผลกระทบก่อนพัฒนา</li>
-              <li>พัฒนา Business Logic และ Validation</li>
-              <li>ปรับข้อมูลให้รองรับการค้นหาและรายงาน</li>
-              <li>เปลี่ยน Flow สำคัญเป็น Test Scenario</li>
-              <li>ตรวจสอบ Request, Log และ Configuration</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>คุณค่าที่เกิดขึ้น</h3>
-            <ul class="list">
-              <li>ลดความคลาดเคลื่อนระหว่าง Requirement กับระบบ</li>
-              <li>เพิ่มความถูกต้องของข้อมูลและกระบวนการ</li>
-              <li>ช่วยให้ผู้ใช้งานเข้าถึงข้อมูลได้ครบถ้วนขึ้น</li>
-              <li>ลด Regression และเพิ่มความมั่นใจก่อน Release</li>
-              <li>ช่วยให้ทีมติดตามสาเหตุของปัญหาได้เร็วขึ้น</li>
-              <li>ลดเวลาในการค้นหาวิธีแก้และเดินหน้าต่อได้เร็วขึ้น</li>
-            </ul>
-          </div>
+        <div class="contrib-table-wrap">
+          <table class="contrib-table growth-table">
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>การนำไปใช้</th>
+                <th>คุณค่าที่เกิดขึ้น</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Business Analysis</td>
+                <td>วิเคราะห์เงื่อนไขและผลกระทบก่อนพัฒนา</td>
+                <td>ทำให้ Solution สอดคล้องกับ Business Requirement มากขึ้น</td>
+              </tr>
+              <tr>
+                <td>Backend &amp; API</td>
+                <td>พัฒนา Business Logic และ Validation</td>
+                <td>เพิ่มกลไกตรวจสอบความถูกต้องของข้อมูล</td>
+              </tr>
+              <tr>
+                <td>Database &amp; Report</td>
+                <td>ปรับข้อมูลให้รองรับการค้นหาและรายงาน</td>
+                <td>ช่วยให้ผู้ใช้งานได้รับข้อมูลที่จำเป็นครบถ้วน</td>
+              </tr>
+              <tr>
+                <td>Automated Testing</td>
+                <td>เปลี่ยน Critical Flow เป็น Test Scenario</td>
+                <td>เพิ่มกลไกตรวจสอบ Regression แบบทำซ้ำได้</td>
+              </tr>
+              <tr>
+                <td>Incident Analysis</td>
+                <td>ตรวจสอบ Request, Log และ Configuration</td>
+                <td>ช่วยให้ทีมติดตามสาเหตุและดำเนินการต่อได้เร็วขึ้น</td>
+              </tr>
+              <tr>
+                <td>Collaboration</td>
+                <td>ประสานงานและยืนยัน Flow กับผู้ดูแลระบบ</td>
+                <td>ลดความคลาดเคลื่อนและช่วยให้งานเดินหน้าต่อได้</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
       </div>
     </section>
 
