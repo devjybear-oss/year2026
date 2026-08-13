@@ -12,8 +12,8 @@
       --accent: #0b7a86;
       --accent-deep: #065a63;
       --accent-soft: rgba(11, 122, 134, 0.12);
-      --slide-pad: clamp(1.1rem, 2vw, 2.1rem);
-      --content-w: min(94vw, 92rem);
+      --slide-pad: clamp(1.25rem, 2.2vw, 2.35rem);
+      --content-w: min(92vw, 76rem);
       --ink: #0a3a42;
       --ink-soft: #2d5a62;
       --ink-muted: #5a7a82;
@@ -28,6 +28,19 @@
       --on-dark-muted: rgba(232, 246, 247, 0.55);
       --font-display: "Outfit", "Anuphan", sans-serif;
       --font-body: "Anuphan", system-ui, sans-serif;
+      /* Type scale — single source for balanced typography */
+      --text-xs: clamp(0.72rem, 0.78vw, 0.82rem);
+      --text-sm: clamp(0.82rem, 0.9vw, 0.94rem);
+      --text-base: clamp(0.94rem, 1.02vw, 1.06rem);
+      --text-md: clamp(1.02rem, 1.12vw, 1.16rem);
+      --text-lg: clamp(1.12rem, 1.22vw, 1.28rem);
+      --text-xl: clamp(1.28rem, 1.45vw, 1.48rem);
+      --text-2xl: clamp(1.55rem, 2vw, 2rem);
+      --text-3xl: clamp(1.85rem, 2.5vw, 2.45rem);
+      --text-display: clamp(2.75rem, 5vw, 4.75rem);
+      --leading-tight: 1.2;
+      --leading-normal: 1.45;
+      --leading-relaxed: 1.55;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -91,6 +104,8 @@
       z-index: 2;
     }
 
+    .slide.removed { display: none; }
+
     .slide > * {
       position: relative;
       z-index: 1;
@@ -119,9 +134,9 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      font-size: 0.88rem;
+      font-size: var(--text-xs);
       font-weight: 600;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 0.35rem;
@@ -147,22 +162,27 @@
 
     .cover h1, .closing h1 { color: var(--on-dark); }
 
-    h1 { font-size: clamp(3rem, 6.5vw, 6.25rem); }
-    h2 { font-size: clamp(2rem, 3.2vw, 3.15rem); margin-bottom: 0.4rem; }
+    h1 { font-size: var(--text-display); }
+    h2 {
+      font-size: var(--text-2xl);
+      margin-bottom: 0.35rem;
+      line-height: var(--leading-tight);
+    }
     h3 {
       font-family: var(--font-body);
-      font-size: clamp(1.15rem, 1.5vw, 1.5rem);
+      font-size: var(--text-lg);
       font-weight: 700;
       letter-spacing: -0.01em;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.4rem;
       color: var(--accent-deep);
+      line-height: var(--leading-tight);
     }
 
     .sub {
-      font-size: clamp(1.08rem, 1.35vw, 1.35rem);
+      font-size: var(--text-md);
       color: var(--ink-soft);
-      max-width: 72rem;
-      line-height: 1.48;
+      max-width: 58rem;
+      line-height: var(--leading-normal);
       font-weight: 400;
     }
 
@@ -173,11 +193,11 @@
     .cover-brand {
       position: relative;
       font-family: var(--font-display);
-      font-size: clamp(3.6rem, 9vw, 7.25rem);
+      font-size: clamp(3rem, 7vw, 5.5rem);
       font-weight: 800;
       letter-spacing: -0.04em;
-      line-height: 0.92;
-      margin: 0.45rem 0 1rem;
+      line-height: 0.95;
+      margin: 0.45rem 0 0.85rem;
       max-width: 12ch;
       color: #fff;
       background: linear-gradient(
@@ -218,10 +238,10 @@
     }
 
     .cover-lead {
-      font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+      font-size: var(--text-md);
       font-weight: 500;
       max-width: 30rem;
-      line-height: 1.35;
+      line-height: var(--leading-normal);
       color: var(--on-dark-soft);
     }
 
@@ -244,8 +264,8 @@
 
     .meta-item label {
       display: block;
-      font-size: 0.82rem;
-      letter-spacing: 0.11em;
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--on-dark-muted);
       margin-bottom: 0.25rem;
@@ -253,7 +273,7 @@
 
     .meta-item strong {
       font-family: var(--font-body);
-      font-size: 1.15rem;
+      font-size: var(--text-md);
       font-weight: 600;
       color: var(--on-dark);
     }
@@ -261,7 +281,11 @@
     /* ── Slide head & fill ── */
     .slide-head {
       flex: 0 0 auto;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .slide-head h2 {
+      max-width: 52rem;
     }
 
     .fill {
@@ -309,24 +333,24 @@
       align-items: start;
     }
 
-    /* ── Overview — larger type, 2-col split ── */
+    /* ── Overview — same scale as global ── */
     .slide.overview h2 {
-      font-size: clamp(2.25rem, 3.7vw, 3.5rem);
+      font-size: var(--text-2xl);
     }
 
     .slide.overview .panel h3 {
-      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
-      margin-bottom: 0.7rem;
+      font-size: var(--text-lg);
+      margin-bottom: 0.55rem;
     }
 
     .slide.overview .list {
-      gap: 0.55rem;
+      gap: 0.45rem;
     }
 
     .slide.overview .list li {
-      font-size: clamp(1.18rem, 1.55vw, 1.5rem);
-      line-height: 1.45;
-      padding-left: 1.15rem;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      padding-left: 1rem;
     }
 
     .slide.overview .list li::before {
@@ -344,6 +368,103 @@
       padding-top: 0.85rem;
     }
 
+    /* Executive summary */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .summary-item {
+      padding-top: 0.25rem;
+    }
+
+    .summary-item strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(2.7rem, 5.5vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-item strong.metric-word {
+      font-size: clamp(1.7rem, 3vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .summary-item h3 {
+      margin-bottom: 0.25rem;
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.35vw, 1.3rem);
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
+    }
+    .summary-item p {
+      max-width: 22rem;
+      font-size: var(--text-sm);
+      line-height: var(--leading-normal);
+      color: var(--ink-soft);
+    }
+
+    .summary-grid.metrics-only { margin-top: clamp(1rem, 3vh, 2.5rem); }
+
+    .summary-item:nth-child(4) { grid-column: 1 / 2; }
+
+    .summary-message {
+      margin-top: clamp(1rem, 2.2vh, 1.5rem);
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--line);
+      font-size: var(--text-md);
+      line-height: var(--leading-normal);
+      color: var(--ink);
+    }
+
+    /* Project portfolio */
+    .portfolio-columns {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: clamp(1.5rem, 3vw, 2.6rem);
+      align-items: start;
+    }
+
+    .portfolio-group {
+      border-top: 3px solid var(--accent);
+      padding-top: 0.65rem;
+    }
+
+    .portfolio-group h3 { margin-bottom: 0.55rem; }
+
+    .portfolio-row {
+      display: grid;
+      grid-template-columns: minmax(9rem, 0.9fr) 1.6fr;
+      gap: 0.2rem 0.8rem;
+      padding: 0.42rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .portfolio-row:first-of-type { border-top: 0; }
+
+    .portfolio-row strong {
+      font-size: var(--text-base);
+      line-height: var(--leading-tight);
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .portfolio-row p {
+      font-size: var(--text-sm);
+      line-height: var(--leading-normal);
+      color: var(--ink-soft);
+    }
+
+    .portfolio-group.short-term .portfolio-row { grid-template-columns: minmax(8rem, 0.8fr) 1.5fr; }
+
     /* ── Panels & blocks — thin top border only ── */
     .panel {
       border-top: 2px solid var(--accent);
@@ -360,8 +481,8 @@
 
     .panel p,
     .list li {
-      font-size: clamp(1.08rem, 1.3vw, 1.3rem);
-      line-height: 1.45;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
       color: var(--ink-soft);
     }
 
@@ -390,12 +511,12 @@
 
     .tag {
       display: inline-block;
-      font-size: clamp(0.84rem, 0.95vw, 1rem);
+      font-size: var(--text-xs);
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
 
     /* ── Portfolio ── */
@@ -431,17 +552,17 @@
 
     .port-item h3 {
       margin-bottom: 0;
-      font-size: clamp(1.12rem, 1.5vw, 1.32rem);
+      font-size: var(--text-lg);
       color: var(--ink);
       grid-column: 2;
     }
 
     .port-context {
       grid-column: 2;
-      font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+      font-size: var(--text-sm);
       font-weight: 600;
       color: var(--accent-deep);
-      margin: -0.1rem 0 0.1rem;
+      margin: -0.05rem 0 0.15rem;
     }
 
     .port-body {
@@ -453,18 +574,18 @@
 
     .port-block .port-label {
       display: block;
-      font-size: 0.72rem;
+      font-size: var(--text-xs);
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.18rem;
     }
 
     .port-block p {
-      font-size: clamp(1rem, 1.18vw, 1.15rem);
+      font-size: var(--text-base);
       color: var(--ink-soft);
-      line-height: 1.38;
+      line-height: var(--leading-normal);
       margin: 0;
     }
 
@@ -481,7 +602,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      font-size: clamp(0.84rem, 0.95vw, 1rem);
+      font-size: var(--text-xs);
       font-weight: 700;
       letter-spacing: 0.04em;
       color: var(--accent-deep);
@@ -497,7 +618,7 @@
     }
 
     .port-status-note {
-      font-size: clamp(0.95rem, 1.05vw, 1.08rem);
+      font-size: var(--text-sm);
       color: var(--ink-muted);
     }
 
@@ -548,18 +669,18 @@
 
     .sys-stat strong {
       font-family: var(--font-body);
-      font-size: clamp(1.08rem, 1.3vw, 1.3rem);
+      font-size: var(--text-base);
       color: var(--ink);
       font-weight: 700;
       letter-spacing: 0;
     }
 
     .sys-stat span {
-      font-size: clamp(0.9rem, 1vw, 1.05rem);
+      font-size: var(--text-sm);
       color: var(--ink-muted);
       display: block;
-      margin-top: 0.15rem;
-      line-height: 1.3;
+      margin-top: 0.12rem;
+      line-height: var(--leading-tight);
       font-family: var(--font-body);
     }
 
@@ -567,7 +688,7 @@
       font-family: var(--font-body);
       font-style: normal;
       font-weight: 700;
-      font-size: clamp(1.08rem, 1.25vw, 1.25rem);
+      font-size: var(--text-base);
       color: var(--accent-deep);
       white-space: nowrap;
       font-variant-numeric: tabular-nums;
@@ -575,8 +696,8 @@
     }
 
     .outcome-list .list li {
-      font-size: clamp(1.12rem, 1.4vw, 1.4rem);
-      line-height: 1.45;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
     }
 
     /* ── Incident rows ── */
@@ -598,7 +719,7 @@
     .case-row h3 {
       margin: 0;
       color: var(--ink);
-      font-size: clamp(1.15rem, 1.45vw, 1.45rem);
+      font-size: var(--text-lg);
     }
 
     /* ── KPI rows ── */
@@ -619,21 +740,21 @@
 
     .kpi-row strong {
       font-family: var(--font-body);
-      font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+      font-size: var(--text-base);
       color: var(--ink);
-      line-height: 1.3;
+      line-height: var(--leading-tight);
       font-weight: 700;
       letter-spacing: 0;
     }
 
     .kpi-target {
       display: block;
-      margin-top: 0.15rem;
-      font-family: "Anuphan", sans-serif;
-      font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+      margin-top: 0.12rem;
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
       font-weight: 500;
       color: var(--ink-muted);
-      line-height: 1.3;
+      line-height: var(--leading-normal);
     }
 
     .kpi-pct {
@@ -660,9 +781,9 @@
     }
 
     .kpi-note {
-      font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+      font-size: var(--text-sm);
       color: var(--ink-muted);
-      line-height: 1.3;
+      line-height: var(--leading-normal);
     }
 
     .next-half-layout {
@@ -687,21 +808,21 @@
     }
 
     .next-half-layout .kpi-note {
-      font-size: 0.78rem;
+      font-size: var(--text-sm);
     }
 
     .next-half-layout .kpi-target {
-      font-size: 0.72rem;
+      font-size: var(--text-sm);
     }
 
     .value-panel .list {
-      gap: 0.55rem;
-      margin-top: 0.35rem;
+      gap: 0.45rem;
+      margin-top: 0.3rem;
     }
 
     .value-panel .list li {
-      font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-      line-height: 1.42;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
     }
 
     /* ── Contribution table ── */
@@ -720,22 +841,22 @@
     .contrib-table td {
       text-align: left;
       vertical-align: top;
-      padding: 0.55rem 0.75rem 0.55rem 0;
+      padding: 0.5rem 0.65rem 0.5rem 0;
       border-bottom: 1px solid var(--line);
-      font-size: clamp(1.05rem, 1.28vw, 1.28rem);
-      line-height: 1.4;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
       color: var(--ink-soft);
     }
 
     .contrib-table th {
       font-family: var(--font-body);
-      font-size: clamp(0.84rem, 0.95vw, 0.98rem);
+      font-size: var(--text-xs);
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
       border-bottom: 2px solid var(--accent);
-      padding-bottom: 0.55rem;
+      padding-bottom: 0.5rem;
     }
 
     .contrib-table th:nth-child(1),
@@ -792,9 +913,9 @@
     }
 
     .contrib-scope p {
-      font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+      font-size: var(--text-base);
       color: var(--ink-soft);
-      line-height: 1.45;
+      line-height: var(--leading-normal);
     }
 
     @media (max-width: 960px) {
@@ -967,8 +1088,8 @@
     .case h3 { margin-bottom: 0.1rem; color: var(--ink); }
     .case .row,
     .case-row .row {
-      font-size: clamp(0.94rem, 1.1vw, 1.04rem);
-      line-height: 1.42;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
       color: var(--ink-soft);
       margin: 0;
     }
@@ -977,10 +1098,10 @@
     .case-row .row b {
       display: block;
       color: var(--accent);
-      font-size: 0.76rem;
+      font-size: var(--text-xs);
       letter-spacing: 0.07em;
       text-transform: uppercase;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.12rem;
     }
 
     /* ── Skills ── */
@@ -1021,8 +1142,8 @@
 
     .foot-panel p {
       color: var(--ink-soft);
-      font-size: clamp(0.98rem, 1.15vw, 1.08rem);
-      line-height: 1.48;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
     }
 
     /* ── Watermark ── */
@@ -1128,10 +1249,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.6rem var(--slide-pad);
+      padding: 0.55rem var(--slide-pad);
       pointer-events: none;
       color: var(--ink-muted);
-      font-size: 0.74rem;
+      font-size: var(--text-xs);
       font-weight: 500;
     }
 
@@ -1163,8 +1284,83 @@
     }
 
     @media (max-height: 760px) {
-      .list li, .panel p, .port-item p, .kpi p { font-size: 1rem; }
-      h2 { font-size: clamp(1.7rem, 2.9vw, 2.25rem); }
+      :root {
+        --text-base: 0.9rem;
+        --text-md: 0.98rem;
+        --text-lg: 1.05rem;
+        --text-2xl: 1.45rem;
+      }
+      .slide { gap: 0.5rem; }
+      .fill { gap: 0.5rem; }
+    }
+
+    .project-focus .port-item {
+      grid-template-columns: auto 1fr;
+      row-gap: 0.55rem;
+      border-top-color: var(--accent);
+      padding-top: 0.85rem;
+    }
+
+    .project-focus .port-item h3 {
+      font-size: var(--text-xl);
+      color: var(--accent-deep);
+    }
+
+    .project-focus .port-body {
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(0.75rem, 1.5vh, 1.1rem) clamp(1.2rem, 2.5vw, 2rem);
+    }
+
+    .project-focus .port-block {
+      border-top: 1px solid var(--line);
+      padding-top: 0.45rem;
+    }
+
+    .project-focus .port-block p {
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+    }
+
+    .key-projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.2rem, 2.5vw, 2.2rem);
+      align-items: start;
+    }
+
+    .key-project {
+      border-top: 3px solid var(--accent);
+      padding-top: 0.65rem;
+    }
+
+    .key-project h3 {
+      color: var(--ink);
+      margin-bottom: 0.65rem;
+      font-size: var(--text-lg);
+    }
+
+    .key-project dl { margin: 0; }
+    .key-project dt {
+      margin-top: 0.55rem;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .key-project dd {
+      margin: 0.15rem 0 0;
+      font-size: clamp(0.78rem, 0.9vw, 0.92rem);
+      line-height: var(--leading-normal);
+      color: var(--ink-soft);
+    }
+
+    .key-project .port-status { margin-top: 0.75rem; }
+
+    @media (max-width: 900px) {
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .project-focus .port-body { grid-template-columns: 1fr; }
     }
 
     @media (min-width: 1440px) and (min-height: 800px) {
@@ -1181,6 +1377,1002 @@
         transition: none !important;
       }
     }
+
+    /* ── Presentation-ready minimal theme ── */
+    :root {
+      --accent: #08747c;
+      --accent-deep: #075a60;
+      --accent-soft: rgba(8, 116, 124, 0.08);
+      --ink: #17282c;
+      --ink-soft: #445a5f;
+      --ink-muted: #738489;
+      --line: rgba(23, 40, 44, 0.12);
+      --bg-light-top: #fbfcfc;
+      --bg-light-bot: #f7f9f9;
+      --content-w: min(90vw, 78rem);
+    }
+
+    .slide {
+      background: #fbfcfc;
+      padding-left: var(--slide-pad);
+      transform: translateY(6px);
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    }
+
+    .slide::after { display: none; }
+
+    .slide.cover,
+    .slide.closing {
+      background: #123e44;
+    }
+
+    .cover-brand {
+      background: none;
+      color: #fff;
+      -webkit-text-fill-color: currentColor;
+      filter: none;
+    }
+
+    .cover-brand .year {
+      background: none;
+      color: #8dd2d6;
+      -webkit-text-fill-color: currentColor;
+    }
+
+    .slide.cover.active .cover-brand::after,
+    .slide.closing.active .cover-brand::after { display: none; }
+
+    .eyebrow::before { width: 1rem; height: 1px; }
+    .slide-head { padding-bottom: 0.7rem; border-bottom: 1px solid var(--line); }
+    .cover .slide-head { border-bottom: 0; }
+
+    .summary-item strong { color: #17282c; }
+    .summary-item h3 { color: var(--accent-deep); letter-spacing: 0.02em; }
+    .summary-message { border-top-color: var(--accent); }
+
+    .panel,
+    .portfolio-group,
+    .key-project,
+    .foot-panel { border-top-width: 1px; }
+
+    .portfolio-row { padding: 0.5rem 0; }
+    .port-status {
+      border: 0;
+      border-left: 3px solid var(--accent);
+      background: transparent;
+      padding: 0.12rem 0 0.12rem 0.5rem;
+    }
+
+    .watermark {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: rgba(23, 40, 44, 0.045);
+    }
+
+    .progress { height: 2px; background: var(--accent); transition: width 0.2s ease; }
+    .chrome { padding-top: 0.35rem; padding-bottom: 0.35rem; }
+
+    .slide.active .anim,
+    .slide.active .panel,
+    .slide.active .port-item,
+    .slide.active .kpi,
+    .slide.active .case,
+    .slide.active .skill-block,
+    .slide.active .sys {
+      animation-duration: 0.28s;
+      animation-delay: 0s !important;
+    }
+
+    /* ── Consistent title and content positioning ── */
+    .slide:not(.cover):not(.closing) {
+      padding-top: clamp(1.55rem, 3.5vh, 2.8rem);
+      padding-bottom: clamp(2rem, 4vh, 3.2rem);
+      gap: clamp(0.8rem, 1.7vh, 1.2rem);
+    }
+
+    .slide:not(.cover):not(.closing) .slide-head {
+      min-height: clamp(6.2rem, 15vh, 8.4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: clamp(0.65rem, 1.4vh, 0.95rem);
+      margin-bottom: 0;
+    }
+
+    .slide-head .eyebrow { margin-bottom: 0.38rem; }
+    .slide-head h2 {
+      max-width: 64rem;
+      margin-bottom: 0;
+      text-wrap: balance;
+    }
+
+    .slide-head .sub {
+      max-width: 68rem;
+      margin-top: 0.38rem;
+      text-wrap: pretty;
+    }
+
+    .slide:not(.cover):not(.closing) .fill {
+      flex: 1 1 auto;
+      min-height: 0;
+      justify-content: center;
+    }
+
+    .slide[data-title="Executive Summary"] .fill,
+    .slide[data-title="Project Portfolio"] .fill,
+    .slide[data-title="Skills & Growth"] .fill {
+      justify-content: flex-start;
+    }
+
+    .slide[data-title="Executive Summary"] .summary-grid {
+      width: 100%;
+      padding-top: clamp(0.5rem, 1.5vh, 1rem);
+      row-gap: clamp(1.5rem, 3.5vh, 2.5rem);
+    }
+
+    .slide[data-title="Executive Summary"] .summary-message {
+      margin-top: auto;
+    }
+
+    .slide[data-title="Expanded Ownership"] .grid-2 {
+      gap: clamp(2rem, 4vw, 4rem);
+    }
+
+    .slide[data-title="Expanded Ownership"] .grid-3 {
+      padding-top: 0.15rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .slide[data-title="Project Portfolio"] .slide-head,
+    .slide[data-title="Skills & Growth"] .slide-head {
+      min-height: clamp(7rem, 17vh, 9.2rem);
+    }
+
+    .slide[data-title="Project Portfolio"] .portfolio-columns {
+      gap: clamp(2.2rem, 4vw, 4.5rem);
+    }
+
+    .slide[data-title="Business Impact & Trust"] .grid-2,
+    .slide[data-title="Self-Reflection"] .grid-2 {
+      gap: clamp(2.4rem, 5vw, 5rem);
+    }
+
+    .slide[data-title="Key Contributions"] .fill { justify-content: center; }
+    .slide[data-title="Key Contributions"] .key-projects-grid {
+      gap: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .slide[data-title="Looking Ahead"] .grid-2 {
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.4rem, 2.6vw, 2.4rem);
+    }
+
+    .slide[data-title="Looking Ahead"] .panel h3 {
+      min-height: 3.2em;
+    }
+
+    @media (max-width: 960px) {
+      .slide:not(.cover):not(.closing) .slide-head { min-height: auto; }
+      .slide[data-title="Looking Ahead"] .grid-2 { grid-template-columns: 1fr; }
+      .slide[data-title="Looking Ahead"] .panel h3 { min-height: 0; }
+    }
+
+    /* ── White portfolio layout inspired by the reference ── */
+    :root { --rail-w: clamp(11.5rem, 16vw, 15rem); }
+
+    .profile-rail {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 40;
+      width: var(--rail-w);
+      padding: clamp(1.6rem, 4vh, 3rem) clamp(1.1rem, 1.8vw, 1.8rem);
+      display: flex;
+      flex-direction: column;
+      background: #f4f7f7;
+      border-right: 1px solid var(--line);
+      color: var(--ink);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .profile-mark {
+      width: 3.2rem;
+      height: 3.2rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .profile-rail h2 {
+      font-size: var(--text-xl);
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .profile-role {
+      margin-top: 0.25rem;
+      font-size: var(--text-sm);
+      color: var(--ink-muted);
+    }
+
+    .profile-period {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .profile-period span,
+    .rail-label {
+      display: block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin-bottom: 0.3rem;
+    }
+
+    .profile-period strong { font-size: var(--text-sm); color: var(--ink); }
+
+    .rail-focus {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .rail-focus p {
+      font-size: var(--text-sm);
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    .slide:not(.cover):not(.closing) {
+      padding-left: calc(var(--rail-w) + clamp(1.8rem, 3vw, 3.4rem));
+      padding-right: clamp(1.8rem, 3vw, 3.4rem);
+    }
+
+    .slide:not(.cover):not(.closing) > * {
+      max-width: none;
+    }
+
+    body:has(.slide.cover.active) .profile-rail,
+    body:has(.slide.closing.active) .profile-rail {
+      opacity: 0;
+      transform: translateX(-100%);
+      pointer-events: none;
+    }
+
+    body:not(:has(.slide.cover.active)):not(:has(.slide.closing.active)) .chrome {
+      left: var(--rail-w);
+    }
+
+    .slide-head {
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .summary-grid { column-gap: clamp(1.5rem, 3vw, 3rem); }
+    .summary-item { border-top: 1px solid var(--line); padding-top: 0.75rem; }
+    .summary-item strong { color: var(--accent-deep); }
+    .slide[data-title="Executive Summary"] .summary-grid {
+      align-items: stretch;
+      grid-auto-rows: clamp(9.5rem, 18vh, 10.75rem);
+    }
+    .slide[data-title="Executive Summary"] .summary-item {
+      height: 100%;
+      min-height: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .slide[data-title="Executive Summary"] .summary-item strong {
+      margin-bottom: 0.45rem;
+    }
+    .slide[data-title="Executive Summary"] .summary-item h3 {
+      margin-bottom: 0.18rem;
+    }
+
+    @media (max-width: 960px) {
+      .profile-rail { display: none; }
+      .slide:not(.cover):not(.closing) {
+        padding-left: var(--slide-pad);
+        padding-right: var(--slide-pad);
+      }
+      body:not(:has(.slide.cover.active)):not(:has(.slide.closing.active)) .chrome { left: 0; }
+    }
+
+    /* ── Navy + yellow presentation theme ── */
+    :root {
+      --navy: #06284d;
+      --yellow: #ffc400;
+      --paper: #f8f8f6;
+      --accent: var(--yellow);
+      --accent-deep: #9a7200;
+      --accent-soft: rgba(255, 196, 0, 0.16);
+      --ink: var(--navy);
+      --ink-soft: #29435f;
+      --ink-muted: #6a7a8c;
+      --line: rgba(6, 40, 77, 0.22);
+      --content-w: min(88vw, 82rem);
+    }
+
+    .profile-rail { display: none !important; }
+
+    .slide,
+    .slide:not(.cover):not(.closing) {
+      background: var(--paper);
+      padding-left: clamp(2.6rem, 6vw, 6.5rem);
+      padding-right: clamp(2.6rem, 6vw, 6.5rem);
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: clamp(0.45rem, 1vw, 0.8rem);
+      border: 1px solid rgba(6, 40, 77, 0.18);
+      border-radius: 1rem;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .slide:not(.cover):not(.closing)::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 9%;
+      bottom: 9%;
+      left: 0;
+      width: clamp(1.8rem, 4vw, 3.8rem);
+      border: 2px solid var(--navy);
+      border-left: 0;
+      border-radius: 0 1.4rem 1.4rem 0;
+      background: transparent;
+      opacity: 1;
+      z-index: 0;
+    }
+
+    .slide:not(.cover):not(.closing)::selection { background: var(--yellow); }
+
+    .slide.cover,
+    .slide.closing {
+      background: var(--paper);
+      color: var(--navy);
+    }
+
+    .slide.cover::after,
+    .slide.closing::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+      right: 0;
+      left: auto;
+      width: clamp(3rem, 6vw, 6rem);
+      border-radius: 1.6rem 0 0 1.6rem;
+      background: var(--navy);
+      opacity: 1;
+    }
+
+    .cover h1, .closing h1,
+    .cover-brand,
+    .cover-brand .year {
+      color: var(--navy);
+      -webkit-text-fill-color: currentColor;
+    }
+
+    .cover .sub, .closing .sub { color: var(--ink-soft); }
+    .cover .eyebrow, .closing .eyebrow { color: var(--navy); }
+    .meta-row { border-top-color: var(--yellow); }
+    .meta-item label { color: var(--accent-deep); }
+    .meta-item strong { color: var(--navy); }
+
+    .slide-head {
+      border-bottom: 0;
+      align-items: flex-start;
+    }
+
+    .slide-head .eyebrow {
+      display: inline-flex;
+      width: auto;
+      padding: 0.25rem 0.85rem;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .slide-head .eyebrow::before { display: none; }
+    .slide-head h2 {
+      font-size: clamp(2rem, 3.5vw, 3.3rem);
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-head .sub {
+      display: inline-block;
+      width: auto;
+      padding: 0.28rem 1rem;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--navy);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    h3 { color: var(--navy); }
+    .panel,
+    .portfolio-group,
+    .key-project,
+    .skill-block {
+      border-top: 0;
+      border: 2px solid var(--navy);
+      border-radius: 1.15rem;
+      padding: 1rem 1.15rem;
+      background: #fff;
+    }
+
+    .portfolio-row { border-top-color: rgba(6, 40, 77, 0.14); }
+    .portfolio-group h3,
+    .key-project h3,
+    .skill-block h3 {
+      display: inline-block;
+      padding: 0.28rem 0.8rem;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--navy);
+    }
+
+    .summary-item {
+      border-top: 0;
+      border-bottom: 3px solid var(--yellow);
+      padding: 0.6rem 0 0.75rem;
+    }
+    .summary-item strong { color: var(--navy); }
+    .summary-item h3 { color: var(--navy); }
+    .summary-message {
+      padding: 0.65rem 1rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--navy);
+    }
+
+    .port-status {
+      border-left-color: var(--yellow);
+      color: var(--navy);
+    }
+
+    .watermark { color: rgba(6, 40, 77, 0.05); }
+    .progress { background: var(--yellow); }
+    .chrome,
+    body:not(:has(.slide.cover.active)):not(:has(.slide.closing.active)) .chrome { left: 0; color: var(--navy); }
+
+    @media (max-width: 960px) {
+      .slide,
+      .slide:not(.cover):not(.closing) {
+        padding-left: var(--slide-pad);
+        padding-right: var(--slide-pad);
+      }
+      .slide:not(.cover):not(.closing)::after { display: none; }
+    }
+
+    /* ── Final layout alignment for navy/yellow theme ── */
+    .slide:not(.cover):not(.closing) {
+      padding-top: clamp(1.4rem, 3vh, 2.2rem);
+      padding-bottom: clamp(2rem, 4.5vh, 3.4rem);
+      padding-left: clamp(4.5rem, 8vw, 8.2rem);
+      padding-right: clamp(3.2rem, 6vw, 6.2rem);
+      gap: clamp(0.65rem, 1.3vh, 0.95rem);
+    }
+
+    .slide:not(.cover):not(.closing) .slide-head {
+      min-height: 0;
+      justify-content: flex-start;
+      padding: 0;
+      margin: 0;
+      gap: 0.32rem;
+    }
+
+    .slide-head .eyebrow { order: 1; margin: 0; }
+    .slide-head h2 { order: 2; margin: 0; line-height: 1.03; }
+    .slide-head .sub { order: 3; margin: 0.15rem 0 0; }
+
+    .slide:not(.cover):not(.closing) .fill {
+      justify-content: flex-start;
+      padding-top: clamp(0.45rem, 1.2vh, 0.9rem);
+    }
+
+    .slide[data-title="Executive Summary"] .summary-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.1rem, 2.5vh, 1.8rem) clamp(1.6rem, 3vw, 3rem);
+      padding-top: 0.25rem;
+    }
+
+    .slide[data-title="Executive Summary"] .summary-item {
+      min-height: clamp(5.6rem, 12vh, 7.2rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .slide[data-title="Executive Summary"] .summary-message {
+      margin-top: clamp(0.8rem, 2vh, 1.4rem);
+      align-self: flex-start;
+      max-width: 64rem;
+    }
+
+    .slide[data-title="Project Portfolio"] .portfolio-columns {
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: clamp(1rem, 2vw, 1.8rem);
+      align-items: stretch;
+    }
+
+    .slide[data-title="Project Portfolio"] .portfolio-group {
+      height: 100%;
+      padding: clamp(0.75rem, 1.4vw, 1rem);
+    }
+
+    .slide[data-title="Project Portfolio"] .portfolio-row {
+      grid-template-columns: minmax(8.5rem, 0.8fr) minmax(0, 1.55fr);
+      padding: 0.34rem 0;
+    }
+
+    .slide[data-title="Project Portfolio"] .portfolio-row strong,
+    .slide[data-title="Project Portfolio"] .portfolio-row p {
+      line-height: 1.3;
+    }
+
+    .slide[data-title="Key Contributions"] .key-projects-grid,
+    .slide[data-title="Skills & Growth"] .grid-3,
+    .slide[data-title="Looking Ahead"] .grid-2 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1rem, 2vw, 1.8rem);
+      align-items: stretch;
+    }
+
+    .slide[data-title="Key Contributions"] .key-project,
+    .slide[data-title="Skills & Growth"] .skill-block,
+    .slide[data-title="Looking Ahead"] .panel {
+      height: 100%;
+    }
+
+    .slide[data-title="Key Contributions"] .key-project h3,
+    .slide[data-title="Skills & Growth"] .skill-block h3 {
+      margin-bottom: 0.55rem;
+    }
+
+    .slide[data-title="Looking Ahead"] .panel h3 {
+      min-height: 0;
+      margin-bottom: 0.65rem;
+    }
+
+    .slide[data-title="Looking Ahead"] .kpi-note { margin-top: auto !important; }
+
+    @media (max-width: 960px) {
+      .slide:not(.cover):not(.closing) {
+        padding-left: var(--slide-pad);
+        padding-right: var(--slide-pad);
+      }
+      .slide[data-title="Executive Summary"] .summary-grid,
+      .slide[data-title="Project Portfolio"] .portfolio-columns,
+      .slide[data-title="Key Contributions"] .key-projects-grid,
+      .slide[data-title="Skills & Growth"] .grid-3,
+      .slide[data-title="Looking Ahead"] .grid-2 { grid-template-columns: 1fr; }
+      .slide[data-title="Executive Summary"] .summary-item { min-height: 0; }
+    }
+
+    /* ── Corporate soft-blue theme ── */
+    :root {
+      --blue: #5872c8;
+      --blue-deep: #2d3950;
+      --blue-soft: #edf1ff;
+      --lavender: #dedaf2;
+      --paper: #ffffff;
+      --accent: var(--blue);
+      --accent-deep: var(--blue);
+      --accent-soft: rgba(88, 114, 200, 0.1);
+      --ink: var(--blue-deep);
+      --ink-soft: #455166;
+      --ink-muted: #758096;
+      --line: rgba(45, 57, 80, 0.2);
+    }
+
+    .slide,
+    .slide:not(.cover):not(.closing),
+    .slide.cover,
+    .slide.closing {
+      background:
+        radial-gradient(circle at 88% 8%, rgba(175, 194, 239, 0.24), transparent 24%),
+        radial-gradient(circle at 6% 82%, rgba(203, 211, 244, 0.22), transparent 22%),
+        var(--paper);
+      color: var(--ink);
+      padding-left: clamp(3rem, 5.2vw, 5.4rem);
+      padding-right: clamp(3rem, 5.2vw, 5.4rem);
+    }
+
+    .slide::before,
+    .slide:not(.cover):not(.closing)::after,
+    .slide.cover::after,
+    .slide.closing::after { display: none; }
+
+    .slide:not(.cover):not(.closing) .slide-head {
+      padding-top: clamp(1.6rem, 3vh, 2.2rem);
+      padding-bottom: clamp(0.75rem, 1.5vh, 1rem);
+      border-bottom: 2px solid rgba(88, 114, 200, 0.65);
+      position: relative;
+    }
+
+
+    .slide-head .eyebrow {
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--blue-deep);
+      font-size: var(--text-xs);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .slide-head h2 {
+      color: var(--blue);
+      font-size: clamp(2.15rem, 4vw, 3.65rem);
+      text-transform: none;
+      letter-spacing: -0.035em;
+      line-height: 1.04;
+      margin-top: clamp(0.65rem, 1.5vh, 1.15rem);
+    }
+
+    .slide-head .sub {
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--ink-soft);
+      font-weight: 400;
+      margin-top: 0.4rem;
+      max-width: 62rem;
+    }
+
+    .slide:not(.cover):not(.closing) .fill {
+      padding-top: clamp(0.8rem, 2vh, 1.45rem);
+    }
+
+    .cover-brand,
+    .cover-brand .year,
+    .cover h1,
+    .closing h1 { color: var(--blue-deep); }
+    .cover-brand .year { color: var(--blue); }
+    .cover .sub, .closing .sub { color: var(--ink-soft); }
+    .cover .eyebrow, .closing .eyebrow { color: var(--blue); }
+    .meta-row { border-top-color: rgba(88, 114, 200, 0.5); }
+    .meta-item label { color: var(--blue); }
+    .meta-item strong { color: var(--blue-deep); }
+
+    .summary-item {
+      padding: 0.9rem 1rem;
+      border: 0;
+      border-radius: 1.15rem;
+      background: linear-gradient(135deg, rgba(222, 226, 250, 0.95), rgba(247, 247, 250, 0.95));
+    }
+    .summary-item strong,
+    .summary-item h3 { color: var(--blue); }
+    .summary-message {
+      padding: 0.65rem 1rem;
+      border: 1px solid rgba(88, 114, 200, 0.3);
+      border-radius: 0.85rem;
+      background: rgba(237, 241, 255, 0.7);
+      color: var(--ink);
+    }
+
+    .panel,
+    .portfolio-group,
+    .key-project,
+    .skill-block {
+      border: 1.5px solid rgba(88, 114, 200, 0.3);
+      border-radius: 1.15rem;
+      background: rgba(247, 248, 253, 0.88);
+      box-shadow: none;
+    }
+
+    .portfolio-group h3,
+    .key-project h3,
+    .skill-block h3 {
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--blue);
+    }
+
+    .portfolio-row { border-top-color: rgba(88, 114, 200, 0.22); }
+    .port-status {
+      border-left-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .kpi-note,
+    .principle {
+      color: var(--ink-soft);
+    }
+
+    .watermark { color: rgba(88, 114, 200, 0.07); }
+    .progress { background: linear-gradient(90deg, #6f4bd8, var(--blue)); }
+    .chrome { color: var(--ink-muted); }
+
+    .list li::before { background: var(--blue); border-radius: 50%; }
+
+    @media (max-width: 960px) {
+      .slide,
+      .slide:not(.cover):not(.closing),
+      .slide.cover,
+      .slide.closing {
+        padding-left: var(--slide-pad);
+        padding-right: var(--slide-pad);
+      }
+    }
+
+    /* ── Final theme: clean teal status-report system ── */
+    :root {
+      --accent: #34988f;
+      --accent-deep: #267d76;
+      --accent-soft: #e6f1ef;
+      --ink: #20242d;
+      --ink-soft: #626a73;
+      --ink-muted: #7f8790;
+      --line: #ccd0cf;
+      --paper: #ffffff;
+    }
+
+    body { background: #eef0f2; }
+
+    .slide,
+    .slide:not(.cover):not(.closing),
+    .slide.cover,
+    .slide.closing {
+      background: var(--paper);
+      color: var(--ink);
+      padding: clamp(2rem, 4.2vh, 3.15rem) clamp(3.1rem, 5.2vw, 5.3rem) clamp(3.2rem, 6vh, 4.5rem);
+    }
+
+    .slide::before,
+    .slide:not(.cover):not(.closing)::after,
+    .slide.cover::after,
+    .slide.closing::after { display: none; }
+
+    .slide:not(.cover):not(.closing) .slide-head {
+      padding: 0 0 clamp(0.55rem, 1.15vh, 0.85rem);
+      border: 0;
+    }
+
+    .slide-head .eyebrow,
+    .cover > .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2rem;
+      padding: 0.35rem 1.15rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-size: clamp(0.68rem, 0.78vw, 0.82rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .slide-head h2 {
+      margin-top: clamp(0.65rem, 1.3vh, 0.95rem);
+      color: var(--ink);
+      font-size: clamp(2.25rem, 4.25vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .slide-head .sub {
+      margin-top: 0.55rem;
+      max-width: 68rem;
+      color: var(--ink-soft);
+      font-size: clamp(0.84rem, 1.05vw, 1.08rem);
+      font-weight: 400;
+    }
+
+    .slide:not(.cover):not(.closing) .fill {
+      padding-top: clamp(0.45rem, 1.2vh, 0.8rem);
+    }
+
+    .watermark {
+      top: clamp(2.05rem, 4.35vh, 3.2rem);
+      right: clamp(3.1rem, 5.2vw, 5.3rem);
+      color: var(--ink);
+      font-size: clamp(0.7rem, 0.82vw, 0.86rem);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      opacity: 1;
+      transform: none;
+    }
+
+    .slide:not(.cover):not(.closing) .slide-head::before,
+    .cover::before {
+      content: none;
+      display: none;
+    }
+
+    .panel,
+    .portfolio-group,
+    .key-project,
+    .skill-block,
+    .summary-item {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: #fff;
+      box-shadow: none;
+    }
+
+    .summary-item {
+      position: relative;
+      overflow: hidden;
+      padding: 1rem 1.15rem;
+    }
+    .summary-item::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0.28rem;
+      background: var(--accent);
+    }
+    .summary-item strong,
+    .summary-item h3,
+    .portfolio-group h3,
+    .key-project h3,
+    .skill-block h3 { color: var(--ink); }
+    .summary-item strong { color: var(--accent-deep); }
+    .slide[data-title="Executive Summary"] .summary-grid {
+      align-items: stretch;
+      grid-auto-rows: clamp(9.5rem, 18vh, 10.75rem);
+    }
+    .slide[data-title="Executive Summary"] .summary-item {
+      height: 100%;
+      min-height: 0;
+      box-sizing: border-box;
+      justify-content: center;
+    }
+    .summary-message {
+      padding: 0.75rem 1.1rem;
+      border: 0;
+      border-radius: 0.75rem;
+      background: var(--accent-soft);
+      color: var(--ink);
+    }
+
+    .portfolio-group h3,
+    .key-project h3,
+    .skill-block h3 {
+      padding-bottom: 0.55rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .portfolio-row { border-top-color: #e2e4e3; }
+    .portfolio-row strong,
+    .key-project dt { color: var(--accent-deep); }
+    .port-status {
+      border-left-color: var(--accent);
+      color: var(--accent-deep);
+      background: var(--accent-soft);
+    }
+    .list li::before { background: var(--accent); }
+    .kpi-note,
+    .principle { background: var(--accent-soft); color: var(--ink-soft); }
+
+    .cover {
+      justify-content: flex-start;
+      align-items: stretch;
+      text-align: left;
+    }
+    .cover-main {
+      margin: auto 0;
+      max-width: 57rem;
+      padding: clamp(1.2rem, 3vh, 2.4rem) 0;
+    }
+    .cover-brand,
+    .cover-brand .year {
+      color: var(--ink);
+      font-size: clamp(3.7rem, 7.8vw, 7.2rem);
+      line-height: 0.88;
+      letter-spacing: -0.065em;
+    }
+    .cover-brand .year { color: var(--accent); }
+    .cover .sub { color: var(--ink-soft); font-size: clamp(1rem, 1.4vw, 1.35rem); }
+    .meta-row {
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+    }
+    .meta-item label { color: var(--ink-muted); }
+    .meta-item strong { color: var(--ink); }
+
+    .chrome {
+      left: clamp(3.1rem, 5.2vw, 5.3rem);
+      right: clamp(3.1rem, 5.2vw, 5.3rem);
+      bottom: clamp(1.3rem, 2.5vh, 2rem);
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: clamp(0.65rem, 0.75vw, 0.78rem);
+    }
+    .progress { height: 3px; background: var(--accent); }
+
+    .portfolio-three {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(0.75rem, 1.35vw, 1.15rem);
+      align-items: stretch;
+    }
+    .portfolio-three .portfolio-group { padding: 0.75rem 0.9rem; }
+    .portfolio-three .portfolio-row {
+      display: block;
+      padding: 0.42rem 0;
+    }
+    .portfolio-three .portfolio-row strong {
+      display: block;
+      margin-bottom: 0.1rem;
+      font-size: clamp(0.72rem, 0.86vw, 0.9rem);
+    }
+    .portfolio-three .portfolio-row p {
+      font-size: clamp(0.61rem, 0.72vw, 0.75rem);
+      line-height: 1.28;
+    }
+    .learning-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(0.9rem, 1.6vw, 1.35rem);
+    }
+    .learning-grid .skill-block { height: 100%; }
+    .learning-grid .lesson-no {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+      font-weight: 800;
+    }
+    .learning-proof {
+      margin-top: 0.7rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: clamp(0.68rem, 0.82vw, 0.86rem);
+    }
+    .value-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(1rem, 2vw, 1.8rem);
+      align-items: stretch;
+    }
+    .value-grid .panel { padding: clamp(1rem, 1.8vw, 1.45rem); }
+    .value-grid h3 { color: var(--accent-deep); }
+    .value-statement {
+      margin-top: 0.85rem;
+      padding: 0.85rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    @media (max-width: 960px) {
+      .slide,
+      .slide:not(.cover):not(.closing),
+      .slide.cover,
+      .slide.closing { padding-left: var(--slide-pad); padding-right: var(--slide-pad); }
+      .watermark { right: var(--slide-pad); }
+      .chrome { left: var(--slide-pad); right: var(--slide-pad); }
+      .portfolio-three,
+      .learning-grid,
+      .value-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -1190,13 +2382,12 @@
 
     <!-- 1 Cover -->
     <section class="slide cover active" data-title="Cover">
-      <div class="watermark">01</div>
-      <p class="eyebrow anim">ChillPay · Performance Contribution Review</p>
+      <div class="watermark">01 / 08</div>
+      <p class="eyebrow anim">Performance Review</p>
       <div class="cover-main">
-        <p class="cover-lead anim anim-d1">Ownership · Contribution · Quality · Business Value</p>
-        <h1 class="cover-brand anim anim-d2">Performance<br />Review <span class="year">2026</span></h1>
+        <h1 class="cover-brand anim anim-d2">Mid-Year<br />Review <span class="year">2026</span></h1>
         <p class="sub anim anim-d4" style="margin-top: 0.9rem; max-width: 38rem;">
-          สรุปผลงาน ขอบเขตความรับผิดชอบ และคุณค่าที่ส่งมอบในครึ่งปีแรก
+          ผลงาน ความรับผิดชอบที่เติบโตขึ้น และคุณค่าที่ส่งมอบในครึ่งปีแรก
         </p>
       </div>
       <div class="meta-row anim anim-d4">
@@ -1215,287 +2406,223 @@
       </div>
     </section>
 
-    <!-- 2 Contribution Summary -->
-    <section class="slide overview" data-title="Contribution Summary">
-      <div class="watermark">02</div>
+    <!-- 2 Executive Summary -->
+    <section class="slide" data-title="Executive Summary">
+      <div class="watermark">02 / 08</div>
       <div class="slide-head anim">
-        <p class="eyebrow">Contribution Summary</p>
-        <h2>ขอบเขตความรับผิดชอบที่ครอบคลุมมากขึ้น</h2>
-        <p class="sub">รับผิดชอบตั้งแต่การทำความเข้าใจ Business Requirement ไปจนถึงการพัฒนา ทดสอบ และสนับสนุนการใช้งานจริง</p>
+        <p class="eyebrow">Mid-Year Snapshot</p>
+        <h2>Executive Summary</h2>
+        <p class="sub">ภาพรวมผลงาน คุณภาพ และการสนับสนุนระบบในครึ่งปีแรก</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="summary-grid">
+          <article class="summary-item">
+            <strong>7</strong>
+            <h3>Projects Contributed</h3>
+          </article>
+          <article class="summary-item">
+            <strong>4</strong>
+            <h3>Features / Improvements Delivered</h3>
+          </article>
+          <article class="summary-item">
+            <strong class="metric-word">Automated<br />Testing</strong>
+            <h3>Quality Coverage</h3>
+            <p>ครอบคลุม API, Business Logic และ Critical Flow</p>
+          </article>
+          <article class="summary-item">
+            <strong>4</strong>
+            <h3>Independent, On-time Deliveries</h3>
+          </article>
+          <article class="summary-item">
+            <strong class="metric-word">Stakeholder<br />Support</strong>
+            <h3>Operational Support</h3>
+            <p>สนับสนุน Finance และ CS จากปัญหาการใช้งานจริง</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Expanded Ownership -->
+    <section class="slide removed" data-title="Expanded Ownership">
+      <div class="watermark">03</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Expanded Ownership</p>
+        <h2>ขอบเขตความรับผิดชอบที่ขยายขึ้น</h2>
+        <p class="sub">ไม่ใช่แค่เขียนโค้ดตามที่ได้รับมอบหมาย แต่เป็นเจ้าของงานตั้งแต่ต้นจนจบ</p>
       </div>
       <div class="fill anim anim-d1">
         <div class="grid-2">
           <div class="panel">
-            <h3>Business Analysis</h3>
+            <h3>ก่อนหน้านี้</h3>
             <ul class="list">
-              <li>วิเคราะห์ความสัมพันธ์ของ Payment, PayOut, Fee และ Settlement ก่อนพัฒนา</li>
-              <li>แปลง Business Requirement เป็น Technical Solution ที่สอดคล้องกับการใช้งานจริง</li>
+              <li>พัฒนาตาม Spec ที่ได้รับมอบหมาย ขอบเขตจำกัดเฉพาะ Feature ที่ทำ</li>
+              <li>ทดสอบเฉพาะงานของตัวเอง ยังไม่ได้ดูแล Automated Test ของระบบ</li>
             </ul>
           </div>
           <div class="panel">
-            <h3>Technical Ownership</h3>
+            <h3>ตอนนี้</h3>
             <ul class="list">
-              <li>รับผิดชอบงานที่เชื่อมโยง Backend, API, Web Portal และ Database</li>
-              <li>พัฒนา Business Logic, Workflow และ Validation สำหรับระบบที่มีหลายขั้นตอน</li>
+              <li>วิเคราะห์ Business Requirement และออกแบบ Solution เองตั้งแต่ต้นจนจบ</li>
+              <li>ดูแลคุณภาพระบบด้วย Automated Test และเป็นจุดติดต่อหลักเมื่อเกิด Incident กับ Finance/CS</li>
             </ul>
           </div>
-          <div class="panel">
-            <h3>Quality Engineering</h3>
-            <ul class="list">
-              <li>เปลี่ยน Business Flow และ Critical Flow ให้เป็น Unit Test และ Playwright ที่รันซ้ำได้</li>
-            </ul>
+        </div>
+        <div class="grid-3" style="margin-top: clamp(1rem, 2.2vh, 1.5rem);">
+          <div class="kpi">
+            <strong>PayOut Fee Management</strong>
+            <p>เป็นเจ้าของ Business Logic การคำนวณค่าธรรมเนียมที่เชื่อมโยง Transaction และ Report ทั้งระบบ</p>
           </div>
-          <div class="panel">
-            <h3>Problem Solving &amp; Collaboration</h3>
-            <ul class="list">
-              <li>วิเคราะห์ Incident จาก Request, Log, Configuration และ Dependency</li>
-              <li>สรุปสาเหตุและข้อมูลประกอบให้ทีมที่เกี่ยวข้องดำเนินการต่อได้รวดเร็วขึ้น</li>
-            </ul>
+          <div class="kpi">
+            <strong>Admin Transfer</strong>
+            <p>ดูแล End-to-End Flow ตั้งแต่ Upload ถึง Approve พร้อมวาง Automated Test ให้ทีมใช้ต่อได้</p>
+          </div>
+          <div class="kpi">
+            <strong>Operation Logs</strong>
+            <p>ออกแบบระบบค้นหาข้อมูลย้อนหลังเองตั้งแต่ Data Model ถึง API และ Frontend</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 3 Contribution in Action -->
-    <section class="slide" data-title="Contribution in Action">
-      <div class="watermark">03</div>
+    <!-- 3 Project Portfolio -->
+    <section class="slide" data-title="Project Portfolio">
+      <div class="watermark">03 / 08</div>
       <div class="slide-head anim">
-        <p class="eyebrow">Contribution in Action</p>
-        <h2>ความรับผิดชอบที่เปลี่ยนเป็นคุณค่าต่อระบบและทีม</h2>
+        <p class="eyebrow">Work Portfolio</p>
+        <h2>Delivery, Improvement &amp; Support Work</h2>
+        <p class="sub">รวบรวมงานที่ทำจริง แยกตามลักษณะการมีส่วนร่วมระยะสั้น กลาง และยาว</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="contrib-table-wrap">
-          <table class="contrib-table growth-table">
-            <thead>
-              <tr>
-                <th>Area</th>
-                <th>Delivered</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Business Solution</td>
-                <td>วิเคราะห์ Requirement, Business Rule และผลกระทบก่อนพัฒนา</td>
-                <td>ช่วยให้ Solution สอดคล้องกับ Flow และเงื่อนไขการใช้งานจริง</td>
-              </tr>
-              <tr>
-                <td>Technical Delivery</td>
-                <td>พัฒนา Backend, Frontend, API, Database, Report และ Validation</td>
-                <td>ส่งมอบงานที่เชื่อมโยงหลายส่วนของระบบได้ครบตามขอบเขต</td>
-              </tr>
-              <tr>
-                <td>Quality Engineering</td>
-                <td>เปลี่ยน Business Flow และ Critical Flow เป็น Automated Test</td>
-                <td>เพิ่มกลไกตรวจสอบ Regression ที่นำกลับมารันซ้ำได้</td>
-              </tr>
-              <tr>
-                <td>Operational Support</td>
-                <td>วิเคราะห์ Request, Log, Configuration และประสานงานกับผู้เกี่ยวข้อง</td>
-                <td>ช่วยให้ทีมติดตามสาเหตุและดำเนินการต่อได้รวดเร็วขึ้น</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="portfolio-three">
+          <div class="portfolio-group">
+            <h3>Long-term · Core Projects</h3>
+            <article class="portfolio-row">
+              <strong>ChillPay Documents Online</strong>
+              <p>พัฒนาระบบเอกสารออนไลน์ · <b>On Hold</b></p>
+            </article>
+            <article class="portfolio-row">
+              <strong>PayOut Fee Management</strong>
+              <p>วิเคราะห์ Fee, พัฒนา Logic และ Validation ที่เชื่อม Transaction กับ Report</p>
+            </article>
+            <article class="portfolio-row">
+              <strong>PayOut for Back-office</strong>
+              <p>Backend และ Workflow Testing ตั้งแต่ Upload, Check ถึง Approve</p>
+            </article>
+            <article class="portfolio-row">
+              <strong>ChillPay Operation Logs</strong>
+              <p>API, Frontend และ Unit Tests สำหรับค้นหาข้อมูลย้อนหลัง</p>
+            </article>
+          </div>
+
+          <div class="portfolio-group">
+            <h3>Mid-term · Improvements</h3>
+            <article class="portfolio-row">
+              <strong>Warning Transaction</strong>
+              <p>เพิ่ม Pending Status ใน List, Detail, Excel และอัปเดต Database</p>
+            </article>
+            <article class="portfolio-row">
+              <strong>Improvement Report Downloading</strong>
+              <p>รับผิดชอบ UI และ Logic บน Settlement Report · <b>Project Discontinued</b></p>
+            </article>
+            <article class="portfolio-row">
+              <strong>Unit Test Coverage</strong>
+              <p>เขียน Unit Test สำหรับ Online Direct Debit – BAY, api-recurring-service และ Process Payment Service v.4</p>
+            </article>
+            <article class="portfolio-row">
+              <strong>Process Payment Service</strong>
+              <p>ช่วย Support การทดสอบ Process Payment V6</p>
+            </article>
+          </div>
+
+          <div class="portfolio-group">
+            <h3>Short-term · Support Cases</h3>
+            <article class="portfolio-row">
+              <strong>Payment Summary TXT</strong>
+              <p>เพิ่ม Invoice No. (ABB) เพื่อให้ Finance ได้ข้อมูลครบถ้วน</p>
+            </article>
+            <article class="portfolio-row">
+              <strong>Merchant Report Access</strong>
+              <p>รองรับดาวน์โหลดรายงานร้าน Suspended/Inactive โดยไม่ต้องเปลี่ยนสถานะร้าน</p>
+            </article>
+            <article class="portfolio-row">
+              <strong>PayOut API Error 3106</strong>
+              <p>ตรวจ Request, Log และ Fee Configuration เพื่อให้ CS ดำเนินการต่อได้ถูกต้อง</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 4 Key Achievements -->
-    <section class="slide" data-title="Key Achievements">
-      <div class="watermark">04</div>
+    <!-- 4 Key Contributions -->
+    <section class="slide" data-title="Key Contributions">
+      <div class="watermark">04 / 08</div>
       <div class="slide-head anim">
-        <p class="eyebrow">Key Achievements &amp; Impact</p>
-        <h2>ผลงานสำคัญและคุณค่าที่ส่งมอบ</h2>
+        <p class="eyebrow">Delivered Impact</p>
+        <h2>Key Contributions</h2>
+        <p class="sub">3 ผลงานหลัก พร้อมผลลัพธ์ ความท้าทาย และทักษะที่เติบโตขึ้น</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="port-stack">
-          <article class="port-item">
-            <div class="port-num">01</div>
-            <h3>Improved Financial Accuracy</h3>
-            <p class="port-context">Context · PayOut Fee Management</p>
-            <div class="port-body">
-              <div class="port-block">
-                <span class="port-label">Business Need</span>
-                <p>ต้องทำความเข้าใจการคำนวณ Summary Report และความสัมพันธ์ของ Bank Transaction Fee</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">My Ownership</span>
-                <p>เปรียบเทียบข้อมูล ตรวจสอบเงื่อนไข และทำงานร่วมกับผู้ดูแลระบบเพื่อยืนยัน Business Flow</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">Result</span>
-                <p>พัฒนา Business Logic และ Validation ให้รองรับเงื่อนไข Fee พร้อมส่งมอบตามแผน</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">Impact</span>
-                <p>เพิ่มความถูกต้องของเงื่อนไข Fee ที่เชื่อมโยงกับ Transaction และ Summary Report</p>
-              </div>
-            </div>
-            <div class="port-meta">
-              <span class="port-status">Delivery · On Time</span>
-            </div>
+        <div class="key-projects-grid">
+          <article class="key-project">
+            <h3>PayOut Fee Management</h3>
+            <dl>
+              <dt>Result / Outcome</dt>
+              <dd>พัฒนาฟีเจอร์ PayOut Fee Management ให้รองรับการคำนวณและแสดง Fee ที่เชื่อมโยงกับ Transaction และ Summary Report ได้ถูกต้องตาม Business Flow ของระบบ PayOut</dd>
+              <dt>Challenge</dt>
+              <dd>ต้องตรวจสอบสูตรคำนวณและความถูกต้องของข้อมูลจากหลายส่วนร่วมกับผู้ดูแลระบบ เพื่อให้ Fee ที่แสดงใน Transaction และ Report สอดคล้องกัน</dd>
+              <dt>Skills Growth</dt>
+              <dd>ออกแบบและพัฒนา UI ให้รองรับการแสดง Fee ตามเงื่อนไขจริง เรียนรู้การตรวจสอบข้อมูลและการเชื่อมโยงระหว่าง Transaction กับ Summary Report พร้อมเข้าใจ Business ของค่าธรรมเนียม PayOut มากขึ้น</dd>
+            </dl>
+            <span class="port-status">Delivery · On Time</span>
           </article>
-          <article class="port-item">
-            <div class="port-num">02</div>
-            <h3>Supported End-to-End PayOut Workflow</h3>
-            <p class="port-context">Context · Admin Transfer</p>
-            <div class="port-body">
-              <div class="port-block">
-                <span class="port-label">Business Need</span>
-                <p>ต้องเชื่อมโยง Workflow ตั้งแต่ Upload, Check และ Approve จนรายการสำเร็จ</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">My Ownership</span>
-                <p>ศึกษา End-to-End Flow ทดสอบรายการ และยืนยัน Business Rules กับผู้ดูแลระบบ</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">Result</span>
-                <p>พัฒนา Backend และสร้าง Playwright Automation สำหรับตรวจสอบ Admin Transfer Flow</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">Impact</span>
-                <p>ทำให้ PayOut Workflow มีชุดทดสอบที่รันซ้ำได้ ครอบคลุมตั้งแต่ Upload จนถึง Approve</p>
-              </div>
-            </div>
-            <div class="port-meta">
-              <span class="port-status">Delivery · Managed External Dependency</span>
-              <span class="port-status-note">ดำเนินงานต่อทันทีหลังระบบ PayOut กลับมาพร้อมใช้งาน</span>
-            </div>
+          <article class="key-project">
+            <h3>Admin Transfer</h3>
+            <dl>
+              <dt>Result / Outcome</dt>
+              <dd>พัฒนาและจัดทำขอบเขตฟีเจอร์ Admin Transfer สำหรับ Back-office ให้ทีมการเงินสั่งโอนผ่าน PayOut ได้เป็นระบบ ครอบคลุมการตั้งค่า Enable และจำนวนผู้อนุมัติระดับ Merchant, Flow อัปโหลด Excel → Validate → Check/Decline → Approve/Reject → ส่งต่อ PayOut รวมถึง Dashboard, Detail, Approval History และ Export</dd>
+              <dt>Challenge</dt>
+              <dd>Requirement เปลี่ยนบ่อย ต้องคุม Scope, Multi-approver และความเสี่ยงโอนซ้ำ พร้อมประสานหลายทีมให้สรุป Flow ได้ตรงกัน</dd>
+              <dt>Skills Growth</dt>
+              <dd>ออกแบบและพัฒนา UI ให้รองรับการใช้งานจริงของทีมการเงิน เรียนรู้การ Integration ระหว่าง Web Back-office กับ PayOut API และการจัดการ JSON Response ทั้งกรณีสำเร็จและผิดพลาด พร้อมเข้าใจ Domain ของระบบ PayOut มากขึ้น เช่น PayOut Merchant, PayOut Receiver, Balance</dd>
+            </dl>
+            <span class="port-status">Delivery · On Time</span>
           </article>
-          <article class="port-item">
-            <div class="port-num">03</div>
-            <h3>Enabled System Auditability</h3>
-            <p class="port-context">Context · Operation Logs</p>
-            <div class="port-body">
-              <div class="port-block">
-                <span class="port-label">Business Need</span>
-                <p>ต้องรองรับการบันทึก ค้นหา และตรวจสอบข้อมูลจากหลายระบบ</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">My Ownership</span>
-                <p>ศึกษาโครงสร้างข้อมูล พัฒนา API และ Frontend พร้อมออกแบบ Unit Test</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">Result</span>
-                <p>สร้างระบบที่ช่วยตรวจสอบประวัติการเปลี่ยนแปลงย้อนหลัง พร้อม Unit Test</p>
-              </div>
-              <div class="port-block">
-                <span class="port-label">Impact</span>
-                <p>ช่วยให้ทีมตรวจสอบประวัติการเปลี่ยนแปลงและติดตามข้อมูลย้อนหลังจากหลายระบบได้</p>
-              </div>
-            </div>
-            <div class="port-meta">
-              <span class="port-status">Delivery · On Time</span>
-            </div>
+          <article class="key-project">
+            <h3>Operation Logs</h3>
+            <dl>
+              <dt>Result / Outcome</dt>
+              <dd>พัฒนาระบบบันทึกประวัติการเปลี่ยนแปลงข้อมูลของ ChillPay แยก Frontend และ Operation Logs API โดย Frontend ส่ง Log ผ่าน API หลัง Business Action สำเร็จ และ Admin สามารถค้นหา/ดูรายละเอียดก่อน–หลังแก้ไขได้</dd>
+              <dt>Challenge</dt>
+              <dd>ออกแบบระบบและพัฒนา API ของโปรเจกต์ใหม่ตั้งแต่ต้น ตั้งแต่โครงสร้างข้อมูล ไปจนถึงวิธีที่ Frontend และระบบอื่นเรียกใช้งานอย่างปลอดภัยและสม่ำเสมอ</dd>
+              <dt>Skills Growth</dt>
+              <dd>System design, การวางโครงสร้าง Audit Log ให้ใช้ร่วมกันได้หลายระบบ, Audit Logging, Validation และ Technical Documentation</dd>
+            </dl>
+            <span class="port-status">Delivery · On Time</span>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 5 Scope of Ownership -->
-    <section class="slide" data-title="Scope of Ownership">
-      <div class="watermark">05</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">Scope of Ownership</p>
-        <h2>ความรับผิดชอบที่ครอบคลุมตลอดการส่งมอบ</h2>
-        <p class="sub">ไม่ได้จำกัดอยู่เพียงการพัฒนา แต่ครอบคลุมการวิเคราะห์ คุณภาพ และการสนับสนุนการใช้งานจริง</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="contrib-table-wrap">
-          <table class="contrib-table">
-            <thead>
-              <tr>
-                <th>Scope</th>
-                <th>Responsibility</th>
-                <th>Value Delivered</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="group-start">
-                <td>Business &amp; Solution</td>
-                <td>วิเคราะห์ Requirement, Business Rule และผลกระทบก่อนพัฒนา</td>
-                <td>ช่วยให้แนวทางแก้ไขสอดคล้องกับ Flow และเงื่อนไขการใช้งานจริง</td>
-              </tr>
-              <tr>
-                <td>Technical Delivery</td>
-                <td>พัฒนา Backend, Frontend, API, Database, Report และ Validation</td>
-                <td>ส่งมอบงานที่เชื่อมโยงหลายส่วนของระบบได้ครบตามขอบเขต</td>
-              </tr>
-              <tr>
-                <td>Quality Engineering</td>
-                <td>ออกแบบ Unit Test และ Playwright จาก Business Flow และ Critical Flow</td>
-                <td>เพิ่มกลไกตรวจสอบ Regression ที่นำกลับมารันซ้ำได้อย่างเป็นระบบ</td>
-              </tr>
-              <tr>
-                <td>Operational Support</td>
-                <td>วิเคราะห์ Request, Log, Configuration และ Dependency พร้อมสรุปข้อมูล</td>
-                <td>ช่วยให้ทีมที่เกี่ยวข้องติดตามสาเหตุและดำเนินการต่อได้รวดเร็วขึ้น</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="contrib-scope">
-          <h3>End-to-End Contribution</h3>
-          <p>Requirement Analysis · Implementation · Validation · Automated Testing · Incident Support</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6 Quality Through Automation -->
+    <!-- 5 Quality Through Automation -->
     <section class="slide" data-title="Quality Through Automation">
-      <div class="watermark">06</div>
+      <div class="watermark">05 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow">Quality Through Automation</p>
-        <h2>ยกระดับคุณภาพด้วย Automated Testing</h2>
+        <h2>Elevating Quality Through Automated Testing</h2>
         <p class="sub">สร้างกลไกตรวจสอบ API, Business Logic และ Critical Flow ที่นำกลับมารันซ้ำได้</p>
       </div>
       <div class="fill anim anim-d1">
         <div class="quality-layout">
           <div class="panel">
-            <h3>Unit Test ~720 Test Cases</h3>
-            <div class="sys-stats">
-              <div class="sys-stat">
-                <div>
-                  <strong>BAY Online Direct Debit API</strong>
-                </div>
-                <em>~90 cases</em>
+            <h3>Automated Test Coverage</h3>
+            <div class="grid-2" style="margin-top: 0.6rem; gap: 1.1rem;">
+              <div class="kpi">
+                <strong>~720 Test Cases</strong>
+                <p>Unit Test ครอบคลุม BAY Direct Debit API, Recurring API, Operation Logs และ Process Payment Services V4</p>
               </div>
-              <div class="sys-stat">
-                <div>
-                  <strong>ChillPay Recurring API</strong>
-                </div>
-                <em>~240 cases</em>
-              </div>
-              <div class="sys-stat">
-                <div>
-                  <strong>Operation Logs</strong>
-                </div>
-                <em>~100 cases</em>
-              </div>
-              <div class="sys-stat">
-                <div>
-                  <strong>Process Payment Services V4</strong>
-                  <span>นับเฉพาะ v1 · v3 · v6 · v9 · v11 · v13</span>
-                </div>
-                <em>~290 cases</em>
-              </div>
-            </div>
-            <p class="tag" style="margin-top: 1rem;">Playwright Automation · ครอบคลุม 54 Spec Files</p>
-            <div class="sys-stats">
-              <div class="sys-stat">
-                <div>
-                  <strong>Admin Transfer</strong>
-                  <span>Upload · Check/Approve · Display · Permission · Full Loop</span>
-                </div>
-                <em>~247 cases</em>
-              </div>
-              <div class="sys-stat">
-                <div>
-                  <strong>PayOut related + Integration</strong>
-                  <span>Merchant · Transaction · Balance · Summary · ฯลฯ</span>
-                </div>
-                <em>~391 cases</em>
+              <div class="kpi">
+                <strong>~638 Test Cases</strong>
+                <p>Playwright Automation 54 Spec Files ครอบคลุม Admin Transfer และ PayOut + Integration</p>
               </div>
             </div>
           </div>
@@ -1505,128 +2632,115 @@
               Created · ~1,358 Automated Test Cases
             </p>
             <ul class="list" style="margin-top: 0.6rem;">
-              <li>ตรวจสอบ API, Business Logic และ Critical Flow ได้อย่างเป็นระบบ</li>
-              <li>ลดความเสี่ยงจาก Regression เมื่อระบบเปลี่ยนแปลง</li>
-              <li>ลดภาระการทดสอบซ้ำด้วยมือ</li>
-              <li>เพิ่มความมั่นใจก่อน Release</li>
-              <li>ทำให้ Test Scenario สามารถนำกลับมารันซ้ำได้</li>
+              <li>ตรวจสอบ API และ Business Logic ได้อย่างเป็นระบบ ลดความเสี่ยงจาก Regression</li>
+              <li>ลดภาระการทดสอบซ้ำด้วยมือ เพิ่มความมั่นใจก่อน Release</li>
+              <li>เก็บเป็น Test Scenario ที่นำกลับมารันซ้ำได้</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 7 Incident & Business Support -->
-    <section class="slide" data-title="Incident & Business Support">
+    <!-- 6 Lessons Learned -->
+    <section class="slide" data-title="Lessons Learned">
+      <div class="watermark">06 / 08</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">First-Half Learning</p>
+        <h2>Lessons from the First Half</h2>
+        <p class="sub">บทเรียนจากการวิเคราะห์ Business Flow ออกแบบคุณภาพงาน และการนำเครื่องมือใหม่มาเพิ่มประสิทธิภาพการทำงาน</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="learning-grid">
+          <div class="skill-block">
+            <span class="lesson-no">01</span>
+            <h3>Understand Business Flow Before Building</h3>
+            <ul class="list">
+              <li>การพัฒนาฟีเจอร์ในระบบ PayOut ไม่สามารถมองแค่หน้าจอหรือ API ทีละส่วนได้ ต้องเข้าใจ Business Flow ทั้งเส้นก่อนลงมือ เช่น Requirement, Fee, Transaction, Settlement และ Report เชื่อมกันอย่างไร</li>
+              <li>ถ้ายังไม่ชัดเรื่องเงื่อนไขธุรกิจหรือลำดับขั้นตอน งานที่ทำไปมักต้องแก้ย้อนหลัง การยืนยันเงื่อนไขกับผู้ดูแลระบบหรือทีมที่เกี่ยวข้องก่อนพัฒนา จึงช่วยลดความคลาดเคลื่อน และทำให้การออกแบบ UI / Logic สอดคล้องการใช้งานจริงมากขึ้น</li>
+            </ul>
+            <p class="learning-proof"><b>หลักฐานจากงาน:</b> PayOut Fee Management และ Admin Transfer</p>
+          </div>
+          <div class="skill-block">
+            <span class="lesson-no">02</span>
+            <h3>Design Quality Around Risk and Critical Flow</h3>
+            <ul class="list">
+              <li>Automated Tests ควรครอบคลุม API, Business Logic และเส้นทางที่กระทบการใช้งานจริง</li>
+              <li>การเตรียม Test Data, Role และ Dependency ล่วงหน้าทำให้ทดสอบ End-to-End ได้มีประสิทธิภาพขึ้น</li>
+            </ul>
+            <p class="learning-proof"><b>หลักฐานจากงาน:</b> BAY, Recurring, Payment Service และ Operation Logs</p>
+          </div>
+          <div class="skill-block">
+            <span class="lesson-no">03</span>
+            <h3>Adopt New Tools to Boost Real Efficiency</h3>
+            <ul class="list">
+              <li>เข้าร่วมอบรม "AI Companion: Learn, Build, and Grow as a Professional" เพื่อเข้าใจแนวทางนำ AI มาช่วยงานอย่างเป็นระบบ ไม่ใช่แค่ลองใช้ผิวเผิน</li>
+              <li>นำแนวคิด AI-Assisted Workflow มาปรับใช้จริงในงาน Testing และ Documentation ช่วยลดเวลาทำงานซ้ำๆ ทำให้มีเวลาโฟกัสกับการวิเคราะห์ Business Logic ที่ซับซ้อนมากขึ้น</li>
+            </ul>
+            <p class="learning-proof"><b>หลักฐานจากงาน:</b> อบรม AI Companion (AIS) และการนำไปใช้จริงในงาน Testing/Documentation ช่วงครึ่งปีแรก</p>
+          </div>
+        </div>      </div>
+    </section>
+
+    <!-- 7 Self-Reflection -->
+    <section class="slide removed" data-title="Self-Reflection">
       <div class="watermark">07</div>
       <div class="slide-head anim">
-        <p class="eyebrow">Incident & Business Support</p>
-        <h2>แก้ปัญหาที่ส่งผลต่อการใช้งานจริง</h2>
+        <p class="eyebrow">Self-Reflection · Lessons Learned</p>
+        <h2>สิ่งที่ทำได้ดี และสิ่งที่เรียนรู้เพื่อพัฒนาต่อ</h2>
+        <p class="sub">ทบทวนตัวเองอย่างตรงไปตรงมา เพื่อนำไปปรับปรุงวิธีทำงานในครึ่งปีหลัง</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="case-rows">
-          <article class="case-row">
-            <h3>Payment Summary TXT</h3>
-            <p class="row"><b>Contribution</b>เพิ่ม Invoice No. (ABB)</p>
-            <p class="row"><b>Value</b>เพื่อให้ทีม Finance ได้รับข้อมูลสำหรับใช้งานครบถ้วน</p>
-          </article>
-          <article class="case-row">
-            <h3>Merchant Report Access</h3>
-            <p class="row"><b>Contribution</b>ปรับเงื่อนไขให้ร้าน Suspended/Inactive ดาวน์โหลดรายงาน PayOut ได้</p>
-            <p class="row"><b>Value</b>ช่วยให้ Merchant เข้าถึงข้อมูลรายงานได้ตามสถานะจริง</p>
-          </article>
-          <article class="case-row">
-            <h3>PayOut API Error 3106</h3>
-            <p class="row"><b>Contribution</b>ตรวจสอบ Request, Log และ Fee Configuration พร้อมสรุปข้อมูลให้ทีม CS</p>
-            <p class="row"><b>Value</b>ทำให้ทีม CS ดำเนินการต่อได้ถูกต้องและรวดเร็วขึ้น</p>
-          </article>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>สิ่งที่ทำได้ดี</h3>
+            <ul class="list">
+              <li>วางแผนตรวจสอบ Edge Case และ Critical Flow ตั้งแต่ก่อนเริ่มพัฒนา ช่วยลด Regression หลัง Release</li>
+              <li>ยืนยันเงื่อนไขทางธุรกิจกับผู้เกี่ยวข้องก่อนลงมือ ลดการแก้งานย้อนหลังในโครงการที่มีความซับซ้อน เช่น PayOut Fee Management</li>
+              <li>ขยายความรับผิดชอบจากการพัฒนา ไปสู่การออกแบบ Test และสนับสนุนการใช้งานจริงได้อย่างต่อเนื่อง</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>สิ่งที่เรียนรู้ &amp; จะปรับปรุง</h3>
+            <ul class="list">
+              <li>งานที่มี Dependency ข้ามระบบควรประเมิน Risk และแจ้ง Blocker ให้เร็วขึ้นกว่าที่ผ่านมา เพื่อลดผลกระทบต่อ Timeline</li>
+              <li>เคสที่ต้องพึ่งพา Test Data หรือ Role เฉพาะ (เช่น Multi-approver) ควรวางแผนเตรียมข้อมูลทดสอบล่วงหน้าให้ครอบคลุมกว่านี้</li>
+              <li>ยังสามารถลงลึก End-to-End Flow ได้เป็นอิสระมากขึ้น โดยไม่ต้องพึ่งพาการยืนยันจากผู้ดูแลระบบทุกจุด</li>
+            </ul>
+          </div>
         </div>
+        <p class="principle" style="margin-top: 0.9rem;">Mindset ต่อไป: มองปัญหาให้ครบทั้ง Flow ตั้งแต่ต้น กล้าตัดสินใจในขอบเขตที่รับผิดชอบ และแบ่งปันสิ่งที่เรียนรู้ให้ทีมต่อได้เร็วขึ้น</p>
       </div>
     </section>
 
-    <!-- 8 Performance Evidence -->
-    <section class="slide" data-title="Performance Evidence">
-      <div class="watermark">08</div>
+    <!-- 7 Looking Ahead -->
+    <section class="slide" data-title="Looking Ahead">
+      <div class="watermark">07 / 08</div>
       <div class="slide-head anim">
-        <p class="eyebrow">Performance Evidence</p>
-        <h2>หลักฐานของผลงานและความพร้อมรับผิดชอบมากขึ้น</h2>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="kpi-rows">
-          <div class="kpi-row">
-            <div>
-              <strong>ส่งงานตรงเวลาและมีคุณภาพ</strong>
-              <span class="kpi-target">ผลงาน: ส่งมอบงานหลักตามแผน พร้อมติดตามและประสานงานเมื่อพบ Dependency</span>
-            </div>
-            <div class="kpi-pct" style="opacity: 0;">&nbsp;</div>
-            <div>
-              <p class="kpi-note">การต่อยอด: วิเคราะห์ Risk และแจ้ง Blocker พร้อมข้อมูลประกอบให้เร็วขึ้น</p>
-            </div>
-          </div>
-          <div class="kpi-row">
-            <div>
-              <strong>Automated Testing</strong>
-              <span class="kpi-target">ผลงาน: จัดทำ Automated Test ประมาณ 1,358 Cases ครอบคลุม API, Business Logic และ Critical Flow</span>
-            </div>
-            <div class="kpi-pct" style="opacity: 0;">&nbsp;</div>
-            <div>
-              <p class="kpi-note">การต่อยอด: เพิ่ม Test ใน Critical Flow และตรวจสอบ Code Coverage</p>
-            </div>
-          </div>
-          <div class="kpi-row">
-            <div>
-              <strong>Payment &amp; PayOut Business Ownership</strong>
-              <span class="kpi-target">ผลงาน: นำความเข้าใจ Fee, PayOut, Settlement และ Incident มาใช้วิเคราะห์ Requirement และปัญหาจากการใช้งานจริง</span>
-            </div>
-            <div class="kpi-pct" style="opacity: 0;">&nbsp;</div>
-            <div>
-              <p class="kpi-note">การต่อยอด: รับผิดชอบการวิเคราะห์ End-to-End Flow ได้ครบและเป็นอิสระมากขึ้น</p>
-            </div>
-          </div>
-          <div class="kpi-row">
-            <div>
-              <strong>Collaboration &amp; Escalation</strong>
-              <span class="kpi-target">ผลงาน: ประสานงานและสรุปข้อมูลเมื่อพบ Blocker และ Incident</span>
-            </div>
-            <div class="kpi-pct" style="opacity: 0;">&nbsp;</div>
-            <div>
-              <p class="kpi-note">การต่อยอด: แจ้ง Risk พร้อมข้อมูลประกอบและแนวทางดำเนินการให้เร็วขึ้น</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9 Continued Contribution -->
-    <section class="slide" data-title="Continued Contribution">
-      <div class="watermark">09</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">Continued Contribution</p>
-        <h2>ต่อยอดผลงานสู่ความรับผิดชอบที่สูงขึ้น</h2>
+        <p class="eyebrow">Next-Half Plan</p>
+        <h2>From Lessons to Results</h2>
+        <p class="sub">3 เป้าหมายที่ตั้งใจทำจริง พร้อมแนวทางดำเนินการและคุณค่าที่คาดหวัง</p>
       </div>
       <div class="fill anim anim-d1">
         <div class="grid-2">
           <div class="panel">
             <h3>Deeper Business Ownership</h3>
             <ul class="list">
-              <li>รับผิดชอบ Payment และ PayOut Flow ได้ลึกและครบขึ้น</li>
-              <li>เชื่อมโยง Transaction, Fee, Settlement และ Report ในการวิเคราะห์งาน</li>
-              <li>นำ Business Context มาใช้ตัดสินใจและแก้ปัญหาได้รวดเร็วขึ้น</li>
+              <li>วิเคราะห์ Requirement และ Business Flow ของ Payment/PayOut ได้ลึกขึ้น ตั้งแต่ต้นจนจบ โดยพึ่งพาการยืนยันจากผู้อื่นน้อยลง</li>
+              <li>ตรวจสอบและรับผิดชอบ Incident ที่ซับซ้อนขึ้น ด้วยการวิเคราะห์ Root Cause และผลกระทบเชิงธุรกิจได้ด้วยตนเอง</li>
             </ul>
             <p class="kpi-note" style="margin-top: 0.65rem;">
-              Value: วิเคราะห์ Requirement และ Incident ได้ตรงจุด พร้อมรับผิดชอบงานที่ซับซ้อนขึ้น
+              <span class="port-status">Value</span> วิเคราะห์ Requirement และ Incident และรับผิดชอบงานที่ซับซ้อนขึ้น
             </p>
           </div>
 
           <div class="panel">
-            <h3>Stronger Engineering Quality</h3>
+            <h3>Quality Expansion</h3>
             <ul class="list">
-              <li>ขยาย Automated Test ใน Critical Flow ที่มีความเสี่ยงสูง</li>
-              <li>ตรวจสอบ Code Coverage และคุณภาพของ Test Scenario</li>
-              <li>มีส่วนร่วมใน Code Review และการป้องกัน Regression ก่อน Release</li>
+              <li>เลือก Flow ที่มีความเสี่ยงสูงจาก Payment และ PayOut มาทำ Test เพิ่ม</li>
+              <li>ทบทวน Test Scenario และ Code Coverage ก่อน Release</li>
             </ul>
             <p class="kpi-note" style="margin-top: 0.65rem;">
-              Value: เพิ่มกลไกตรวจสอบ Regression และช่วยตรวจพบความเสี่ยงก่อนขึ้น Production
+              <span class="port-status">Value</span> เพิ่มการตรวจสอบ Regression ก่อนขึ้น Production
             </p>
           </div>
 
@@ -1638,10 +2752,42 @@
               <li>ถ่ายทอด Business และ Technical Context ให้ทีมรับช่วงงานได้</li>
             </ul>
             <p class="kpi-note" style="margin-top: 0.65rem;">
-              Value: ช่วยให้ทีมรับช่วงงานและแก้ไขปัญหาได้โดยลดการพึ่งพาบุคคลใดบุคคลหนึ่ง
+              <span class="port-status">Value</span> ช่วยทีมรับช่วงงานและแก้ปัญหาได้โดยลดการพึ่งพาบุคคลใดบุคคลหนึ่ง
             </p>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Value & Readiness -->
+    <section class="slide" data-title="Value & Readiness">
+      <div class="watermark">08 / 08</div>
+      <div class="slide-head anim">
+        <p class="eyebrow">Value &amp; Readiness</p>
+        <h2>Ready to Deliver Value at a Higher Level</h2>
+        <p class="sub">ผลงานครึ่งปีแรกสะท้อนทั้งการส่งมอบ คุณภาพ ความต่อเนื่องของระบบ และการสนับสนุนทีมธุรกิจ</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="value-grid">
+          <div class="panel">
+            <h3>Value Added to the Company</h3>
+            <ul class="list">
+              <li><b>Delivery:</b> ส่งมอบงานหลักอย่างเป็นอิสระและตรงเวลา 4 งาน</li>
+              <li><b>Quality:</b> สร้าง Automated Tests ครอบคลุม API, Business Logic และ Critical Flow</li>
+              <li><b>Operational Continuity:</b> ช่วย Finance และ CS ดำเนินงานต่อจาก Incident และข้อจำกัดของระบบ</li>
+              <li><b>Knowledge:</b> เชื่อม Business Context กับ Technical Solution และพร้อมถ่ายทอดเป็นเอกสารให้ทีม</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Readiness for the Next Level</h3>
+            <ul class="list">
+              <li>รับผิดชอบ Payment/PayOut Flow ได้ตั้งแต่ Requirement ถึงการสนับสนุนหลังส่งมอบ</li>
+              <li>ประเมิน Risk และ Dependency ก่อนเริ่มงานได้เป็นระบบมากขึ้น</li>
+              <li>ทำงานข้ามทีมกับผู้ดูแลระบบ Finance และ CS เพื่อให้เกิดผลลัพธ์ทางธุรกิจ</li>
+              <li>มีแผนครึ่งปีหลังที่ต่อยอด Ownership, Quality และ Knowledge Sharing อย่างชัดเจน</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -1649,11 +2795,11 @@
 
   <div class="chrome">
     <span id="slideTitle">Cover</span>
-    <span id="slideCounter">01 / 09</span>
+    <span id="slideCounter">01 / 08</span>
   </div>
 
   <script>
-    const slides = [...document.querySelectorAll(".slide")];
+    const slides = [...document.querySelectorAll(".slide:not(.removed)")];
     const progress = document.getElementById("progress");
     const counter = document.getElementById("slideCounter");
     const titleEl = document.getElementById("slideTitle");
