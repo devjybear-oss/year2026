@@ -985,7 +985,7 @@
     }
 
     .kpi p {
-      font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+      font-size: var(--text-sm);
       color: var(--ink-soft);
       line-height: 1.42;
     }
@@ -2319,10 +2319,10 @@
     .portfolio-three .portfolio-row strong {
       display: block;
       margin-bottom: 0.1rem;
-      font-size: clamp(0.72rem, 0.86vw, 0.9rem);
+      font-size: var(--text-base);
     }
     .portfolio-three .portfolio-row p {
-      font-size: clamp(0.61rem, 0.72vw, 0.75rem);
+      font-size: var(--text-sm);
       line-height: 1.28;
     }
     .learning-grid {
@@ -2343,7 +2343,7 @@
       padding-top: 0.65rem;
       border-top: 1px solid var(--line);
       color: var(--ink-soft);
-      font-size: clamp(0.68rem, 0.82vw, 0.86rem);
+      font-size: var(--text-sm);
     }
     .value-grid {
       display: grid;
@@ -2653,7 +2653,7 @@
         <div class="learning-grid">
           <div class="skill-block">
             <span class="lesson-no">01</span>
-            <h3>Understand Business Flow Before Building</h3>
+            <h3>เข้าใจ Business Flow ก่อนลงมือพัฒนา</h3>
             <ul class="list">
               <li>การพัฒนาฟีเจอร์ในระบบ PayOut ไม่สามารถมองแค่หน้าจอหรือ API ทีละส่วนได้ ต้องเข้าใจ Business Flow ทั้งเส้นก่อนลงมือ เช่น Requirement, Fee, Transaction, Settlement และ Report เชื่อมกันอย่างไร</li>
               <li>ถ้ายังไม่ชัดเรื่องเงื่อนไขธุรกิจหรือลำดับขั้นตอน งานที่ทำไปมักต้องแก้ย้อนหลัง การยืนยันเงื่อนไขกับผู้ดูแลระบบหรือทีมที่เกี่ยวข้องก่อนพัฒนา จึงช่วยลดความคลาดเคลื่อน และทำให้การออกแบบ UI / Logic สอดคล้องการใช้งานจริงมากขึ้น</li>
@@ -2662,7 +2662,7 @@
           </div>
           <div class="skill-block">
             <span class="lesson-no">02</span>
-            <h3>Design Quality Around Risk and Critical Flow</h3>
+            <h3>คุณภาพต้องออกแบบจาก Risk และ Critical Flow</h3>
             <ul class="list">
               <li>Automated Tests ควรครอบคลุม API, Business Logic และเส้นทางที่กระทบการใช้งานจริง</li>
               <li>การเตรียม Test Data, Role และ Dependency ล่วงหน้าทำให้ทดสอบ End-to-End ได้มีประสิทธิภาพขึ้น</li>
@@ -2671,7 +2671,7 @@
           </div>
           <div class="skill-block">
             <span class="lesson-no">03</span>
-            <h3>Adopt New Tools to Boost Real Efficiency</h3>
+            <h3>เปิดรับเครื่องมือใหม่เพื่อเพิ่มประสิทธิภาพการทำงานจริง</h3>
             <ul class="list">
               <li>เข้าร่วมอบรม "AI Companion: Learn, Build, and Grow as a Professional" เพื่อเข้าใจแนวทางนำ AI มาช่วยงานอย่างเป็นระบบ ไม่ใช่แค่ลองใช้ผิวเผิน</li>
               <li>นำแนวคิด AI-Assisted Workflow มาปรับใช้จริงในงาน Testing และ Documentation ช่วยลดเวลาทำงานซ้ำๆ ทำให้มีเวลาโฟกัสกับการวิเคราะห์ Business Logic ที่ซับซ้อนมากขึ้น</li>
@@ -2780,7 +2780,7 @@
             </ul>
           </div>
           <div class="panel">
-            <h3>Readiness for the Next Level</h3>
+            <h3>ความพร้อมสำหรับระดับถัดไป</h3>
             <ul class="list">
               <li>รับผิดชอบ Payment/PayOut Flow ได้ตั้งแต่ Requirement ถึงการสนับสนุนหลังส่งมอบ</li>
               <li>ประเมิน Risk และ Dependency ก่อนเริ่มงานได้เป็นระบบมากขึ้น</li>
