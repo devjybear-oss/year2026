@@ -28,15 +28,15 @@
       --on-dark-muted: rgba(232, 246, 247, 0.55);
       --font-display: "Outfit", "Anuphan", sans-serif;
       --font-body: "Anuphan", system-ui, sans-serif;
-      /* Type scale — single source for balanced typography */
-      --text-xs: clamp(0.72rem, 0.78vw, 0.82rem);
-      --text-sm: clamp(0.82rem, 0.9vw, 0.94rem);
-      --text-base: clamp(0.94rem, 1.02vw, 1.06rem);
-      --text-md: clamp(1.02rem, 1.12vw, 1.16rem);
-      --text-lg: clamp(1.12rem, 1.22vw, 1.28rem);
-      --text-xl: clamp(1.28rem, 1.45vw, 1.48rem);
-      --text-2xl: clamp(1.55rem, 2vw, 2rem);
-      --text-3xl: clamp(1.85rem, 2.5vw, 2.45rem);
+      /* Type scale — single source for balanced typography (enlarged) */
+      --text-xs: clamp(0.78rem, 0.85vw, 0.88rem);
+      --text-sm: clamp(0.9rem, 0.98vw, 1.02rem);
+      --text-base: clamp(1.04rem, 1.12vw, 1.18rem);
+      --text-md: clamp(1.14rem, 1.24vw, 1.3rem);
+      --text-lg: clamp(1.26rem, 1.36vw, 1.44rem);
+      --text-xl: clamp(1.42rem, 1.6vw, 1.64rem);
+      --text-2xl: clamp(1.7rem, 2.2vw, 2.2rem);
+      --text-3xl: clamp(2rem, 2.7vw, 2.65rem);
       --text-display: clamp(2.75rem, 5vw, 4.75rem);
       --leading-tight: 1.2;
       --leading-normal: 1.45;
@@ -1289,10 +1289,10 @@
 
     @media (max-height: 760px) {
       :root {
-        --text-base: 0.9rem;
-        --text-md: 0.98rem;
-        --text-lg: 1.05rem;
-        --text-2xl: 1.45rem;
+        --text-base: 1rem;
+        --text-md: 1.08rem;
+        --text-lg: 1.16rem;
+        --text-2xl: 1.6rem;
       }
       .slide { gap: 0.5rem; }
       .fill { gap: 0.5rem; }
@@ -2173,7 +2173,7 @@
     .slide-head h2 {
       margin-top: clamp(0.65rem, 1.3vh, 0.95rem);
       color: var(--ink);
-      font-size: clamp(2.25rem, 4.25vw, 4rem);
+      font-size: clamp(2.45rem, 4.6vw, 4.3rem);
       line-height: 0.98;
       letter-spacing: -0.05em;
     }
@@ -2182,7 +2182,7 @@
       margin-top: 0.55rem;
       max-width: 68rem;
       color: var(--ink-soft);
-      font-size: clamp(0.84rem, 1.05vw, 1.08rem);
+      font-size: clamp(0.96rem, 1.2vw, 1.22rem);
       font-weight: 400;
     }
 
@@ -2329,25 +2329,179 @@
       font-size: var(--text-sm);
       line-height: 1.28;
     }
+    .learning-lead {
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--ink-soft);
+      max-width: 62rem;
+      margin-bottom: 0.3rem;
+    }
     .learning-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: clamp(0.9rem, 1.6vw, 1.35rem);
     }
-    .learning-grid .skill-block { height: 100%; }
+    .learning-grid .skill-block {
+      height: 100%;
+      padding: clamp(0.85rem, 1.3vw, 1.15rem) clamp(0.95rem, 1.5vw, 1.3rem);
+    }
+    .learning-grid .skill-block h3 {
+      font-size: var(--text-base);
+      margin-bottom: 0.5rem;
+    }
+    .learning-subhead {
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin: -0.15rem 0 0.5rem;
+    }
+    .learning-grid .skill-block .list {
+      gap: 0.45rem;
+    }
+    .learning-grid .skill-block .list li {
+      font-size: var(--text-sm);
+      line-height: 1.35;
+    }
     .learning-grid .lesson-no {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
       color: var(--accent);
-      font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+      font-size: clamp(1.3rem, 1.9vw, 1.85rem);
       font-weight: 800;
     }
     .learning-proof {
-      margin-top: 0.7rem;
-      padding-top: 0.65rem;
+      margin-top: 0.65rem;
+      padding-top: 0.55rem;
       border-top: 1px solid var(--line);
       color: var(--ink-soft);
+      font-size: var(--text-xs);
+    }
+    .good-strip {
+      margin-top: clamp(0.8rem, 1.6vh, 1.15rem);
+      padding: clamp(0.75rem, 1.2vw, 1rem) clamp(1rem, 1.6vw, 1.3rem);
+    }
+    .good-strip h3 {
+      font-size: var(--text-base);
+      color: var(--accent-deep);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .good-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1rem, 1.8vw, 1.6rem);
+    }
+    .good-cols p {
+      margin: 0;
+      font-size: var(--text-xs);
+      line-height: 1.35;
+      color: var(--ink-soft);
+    }
+    .progress-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(0.9rem, 1.6vw, 1.3rem);
+    }
+    .progress-grid .skill-block {
+      height: 100%;
+      padding: clamp(1rem, 1.6vw, 1.4rem) clamp(1rem, 1.5vw, 1.25rem);
+    }
+    .progress-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.7rem;
+    }
+    .progress-text {
+      margin: 0;
       font-size: var(--text-sm);
+      line-height: var(--leading-normal);
+      color: var(--ink-soft);
+    }
+    .progress-text strong {
+      color: var(--ink);
+    }
+    .progress-grid-5 {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    .progress-subhead {
+      margin: 0.5rem 0 0.35rem;
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+    }
+    .progress-stats {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin: 0;
+      padding: 0;
+    }
+    .progress-stats li {
+      font-size: var(--text-xs);
+      line-height: 1.35;
+      color: var(--ink-soft);
+    }
+    .progress-stats li strong {
+      color: var(--ink);
+    }
+    @media (max-width: 960px) {
+      .progress-grid { grid-template-columns: 1fr; }
+    }
+    .test-coverage-panel {
+      margin-top: clamp(0.9rem, 1.8vh, 1.3rem);
+      margin-bottom: clamp(0.9rem, 1.8vh, 1.3rem);
+      padding: clamp(1rem, 1.6vw, 1.4rem) clamp(1.3rem, 2vw, 1.7rem);
+    }
+    .test-coverage-panel h3 {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+    }
+    .test-coverage-cols {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(1.6rem, 3vw, 2.6rem);
+    }
+    .test-coverage-col {
+      padding-left: clamp(1.3rem, 2.2vw, 1.8rem);
+      border-left: 1px solid var(--line);
+    }
+    .test-coverage-col:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .tc-heading {
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--ink);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .tc-desc {
+      margin: 0;
+      font-size: var(--text-sm);
+      line-height: var(--leading-normal);
+      color: var(--ink-soft);
+    }
+    @media (max-width: 960px) {
+      .test-coverage-cols { grid-template-columns: 1fr; }
+      .test-coverage-col:not(:first-child) { padding-left: 0; border-left: 0; margin-top: 1rem; }
     }
     .value-grid {
       display: grid;
@@ -2377,6 +2531,229 @@
       .learning-grid,
       .value-grid { grid-template-columns: 1fr; }
     }
+
+    /* ── Restructure 2026-08: 7-slide deck ── */
+
+    /* Work portfolio, categorized (Business Core / Internal / Support) */
+    .portfolio-categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.2rem, 2.4vw, 1.8rem);
+      margin-top: clamp(1.4rem, 3vh, 2.2rem);
+      align-items: stretch;
+    }
+
+    .category-col {
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: #fff;
+      padding: clamp(1.1rem, 1.7vw, 1.5rem) clamp(1.2rem, 1.9vw, 1.6rem);
+    }
+
+    .category-title {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      font-size: var(--text-lg);
+      color: var(--ink);
+      margin-bottom: 0;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .category-title .category-sub {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: var(--text-sm);
+      color: var(--ink-muted);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .category-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      margin-top: 0.3rem;
+    }
+
+    .category-list li {
+      padding: 0.6rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .category-list li:first-child {
+      border-top: 0;
+      padding-top: 0.15rem;
+    }
+
+    .category-list li strong {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      font-size: var(--text-base);
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .category-list li.flagship strong {
+      font-weight: 700;
+      color: var(--accent-deep);
+    }
+
+    .category-list li p {
+      margin: 0;
+      font-size: var(--text-sm);
+      line-height: var(--leading-normal);
+      color: var(--ink-soft);
+    }
+
+    .flag-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+    }
+
+    /* Single-project detail page */
+    .project-hero {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow.project-hero {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      padding: 0.4rem 1rem;
+    }
+
+    .project-detail-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(2.2rem, 4.5vw, 4.5rem);
+      align-items: start;
+    }
+
+    .project-block + .project-block {
+      margin-top: clamp(1.5rem, 2.8vh, 2.2rem);
+    }
+
+    .project-detail-grid h3 {
+      font-size: var(--text-lg);
+      color: var(--accent-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-detail-grid p {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      color: var(--ink-soft);
+    }
+
+    .project-side {
+      border-left: 3px solid var(--accent);
+      padding-left: clamp(1.3rem, 2.2vw, 2rem);
+    }
+
+    .project-side .port-status {
+      margin-top: 1.1rem;
+      font-size: var(--text-md);
+      padding: 0.32rem 0.75rem;
+    }
+
+    .project-side .port-status-note {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: var(--text-sm);
+    }
+
+    /* Single-project detail page — card style */
+    .project-card {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+      background: #fff;
+      padding: clamp(1.3rem, 2.2vw, 1.9rem) clamp(2rem, 3.2vw, 3rem);
+    }
+
+    .slide[data-title="PayOut Fee Management"] .fill,
+    .slide[data-title="Admin Transfer"] .fill,
+    .slide[data-title="Operation Logs"] .fill {
+      justify-content: center;
+    }
+
+    .project-card-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--ink);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .project-card-section + .project-card-section {
+      margin-top: 0.8rem;
+    }
+
+    .project-card-section h4 {
+      font-size: var(--text-sm);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin-bottom: 0.35rem;
+    }
+
+    .project-card-section p {
+      margin: 0;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--ink-soft);
+    }
+
+    .project-card .port-status {
+      margin-top: 1.2rem;
+    }
+
+    .project-card .port-status-note {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: var(--text-sm);
+    }
+
+    /* Learning & Results stat strip */
+    .results-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.2rem, 2.5vw, 2rem);
+      padding-bottom: clamp(1.2rem, 2.4vh, 1.8rem);
+      margin-bottom: clamp(1.2rem, 2.4vh, 1.8rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    @media (max-width: 960px) {
+      .portfolio-categories,
+      .project-detail-grid,
+      .results-strip { grid-template-columns: 1fr; }
+      .project-side {
+        border-left: none;
+        border-top: 3px solid var(--accent);
+        padding-left: 0;
+        padding-top: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2386,7 +2763,7 @@
 
     <!-- 1 Cover -->
     <section class="slide cover active" data-title="Cover">
-      <div class="watermark">01 / 09</div>
+      <div class="watermark">01 / 08</div>
       <p class="eyebrow anim">Performance Review</p>
       <div class="cover-main">
         <h1 class="cover-brand anim anim-d2">Mid-Year<br />Review <span class="year">2026</span></h1>
@@ -2410,13 +2787,13 @@
       </div>
     </section>
 
-    <!-- 2 Executive Summary -->
+    <!-- 2 Executive Summary + Work Portfolio -->
     <section class="slide" data-title="Executive Summary">
-      <div class="watermark">02 / 09</div>
+      <div class="watermark">02 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow">Mid-Year Snapshot</p>
         <h2>Executive Summary</h2>
-        <p class="sub">ภาพรวมผลงาน คุณภาพ และการสนับสนุนระบบในครึ่งปีแรก</p>
+        <p class="sub">ภาพรวมผลงานและคุณภาพในครึ่งปีแรก</p>
       </div>
       <div class="fill anim anim-d1">
         <div class="summary-grid">
@@ -2448,351 +2825,222 @@
       </div>
     </section>
 
-    <!-- 3 Expanded Ownership -->
-    <section class="slide removed" data-title="Expanded Ownership">
-      <div class="watermark">03</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">Expanded Ownership</p>
-        <h2>ขอบเขตความรับผิดชอบที่ขยายขึ้น</h2>
-        <p class="sub">ไม่ใช่แค่เขียนโค้ดตามที่ได้รับมอบหมาย แต่เป็นเจ้าของงานตั้งแต่ต้นจนจบ</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="grid-2">
-          <div class="panel">
-            <h3>ก่อนหน้านี้</h3>
-            <ul class="list">
-              <li>พัฒนาตาม Spec ที่ได้รับมอบหมาย ขอบเขตจำกัดเฉพาะ Feature ที่ทำ</li>
-              <li>ทดสอบเฉพาะงานของตัวเอง ยังไม่ได้ดูแล Automated Test ของระบบ</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>ตอนนี้</h3>
-            <ul class="list">
-              <li>วิเคราะห์ Business Requirement และออกแบบ Solution เองตั้งแต่ต้นจนจบ</li>
-              <li>ดูแลคุณภาพระบบด้วย Automated Test และเป็นจุดติดต่อหลักเมื่อเกิด Incident กับ Finance/CS</li>
-            </ul>
-          </div>
-        </div>
-        <div class="grid-3" style="margin-top: clamp(1rem, 2.2vh, 1.5rem);">
-          <div class="kpi">
-            <strong>PayOut Fee Management</strong>
-            <p>เป็นเจ้าของ Business Logic การคำนวณค่าธรรมเนียมที่เชื่อมโยง Transaction และ Report ทั้งระบบ</p>
-          </div>
-          <div class="kpi">
-            <strong>Admin Transfer</strong>
-            <p>ดูแล End-to-End Flow ตั้งแต่ Upload ถึง Approve พร้อมวาง Automated Test ให้ทีมใช้ต่อได้</p>
-          </div>
-          <div class="kpi">
-            <strong>Operation Logs</strong>
-            <p>ออกแบบระบบค้นหาข้อมูลย้อนหลังเองตั้งแต่ Data Model ถึง API และ Frontend</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3 Project Portfolio -->
-    <section class="slide" data-title="Project Portfolio">
-      <div class="watermark">03 / 09</div>
+    <!-- Work Portfolio, categorized -->
+    <section class="slide" data-title="Work Portfolio">
+      <div class="watermark">03 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow">Work Portfolio</p>
         <h2>Delivery, Improvement &amp; Support Work</h2>
-        <p class="sub">รวบรวมงานที่ทำจริง แยกตามลักษณะการมีส่วนร่วมระยะสั้น กลาง และยาว</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="portfolio-three">
-          <div class="portfolio-group">
-            <h3>Long-term · Core Projects</h3>
-            <article class="portfolio-row">
-              <strong>ChillPay Documents Online</strong>
-              <p>พัฒนาระบบเอกสารออนไลน์ · <b>On Hold</b></p>
-            </article>
-            <article class="portfolio-row">
-              <strong>PayOut Fee Management</strong>
-              <p>วิเคราะห์ Fee, พัฒนา Logic และ Validation ที่เชื่อม Transaction กับ Report</p>
-            </article>
-            <article class="portfolio-row">
-              <strong>PayOut for Back-office</strong>
-              <p>Backend และ Workflow Testing ตั้งแต่ Upload, Check ถึง Approve</p>
-            </article>
-            <article class="portfolio-row">
-              <strong>ChillPay Operation Logs</strong>
-              <p>API, Frontend และ Unit Tests สำหรับค้นหาข้อมูลย้อนหลัง</p>
-            </article>
+        <div class="portfolio-categories">
+          <div class="category-col">
+            <h3 class="category-title">Business Core <span class="category-sub">Payment / PayOut</span></h3>
+            <ul class="category-list">
+              <li class="flagship">
+                <strong>PayOut Fee Management <span class="flag-tag">Flagship</span></strong>
+              </li>
+              <li class="flagship">
+                <strong>Admin Transfer <span class="flag-tag">Flagship</span></strong>
+              </li>
+              <li>
+                <strong>Warning Transaction</strong>
+              </li>
+              <li>
+                <strong>Improvement Report Downloading</strong>
+              </li>
+            </ul>
           </div>
-
-          <div class="portfolio-group">
-            <h3>Mid-term · Improvements</h3>
-            <article class="portfolio-row">
-              <strong>Warning Transaction</strong>
-              <p>เพิ่ม Pending Status ใน List, Detail, Excel และอัปเดต Database · <b>Delivery · On Time</b></p>
-            </article>
-            <article class="portfolio-row">
-              <strong>Improvement Report Downloading</strong>
-              <p>รับผิดชอบ UI และ Logic บน Settlement Report · <b>Project Discontinued</b></p>
-            </article>
-            <article class="portfolio-row">
-              <strong>Unit Test Coverage</strong>
-              <p>เขียน Unit Test สำหรับ Online Direct Debit – BAY, api-recurring-service และ Process Payment Service v.4</p>
-            </article>
-            <article class="portfolio-row">
-              <strong>Process Payment Service</strong>
-              <p>ช่วย Support การทดสอบ Process Payment V6</p>
-            </article>
+          <div class="category-col">
+            <h3 class="category-title">Internal <span class="category-sub">Operation / Tools</span></h3>
+            <ul class="category-list">
+              <li class="flagship">
+                <strong>Operation Logs <span class="flag-tag">Flagship</span></strong>
+              </li>
+              <li>
+                <strong>ChillPay Documents Online</strong>
+              </li>
+              <li>
+                <strong>Unit Test Coverage</strong>
+              </li>
+            </ul>
           </div>
-
-          <div class="portfolio-group">
-            <h3>Short-term · Support Cases</h3>
-            <article class="portfolio-row">
-              <strong>Payment Summary TXT</strong>
-              <p>เพิ่ม Invoice No. (ABB) เพื่อให้ Finance ได้ข้อมูลครบถ้วน</p>
-            </article>
-            <article class="portfolio-row">
-              <strong>Merchant Report Access</strong>
-              <p>รองรับดาวน์โหลดรายงานร้าน Suspended/Inactive โดยไม่ต้องเปลี่ยนสถานะร้าน</p>
-            </article>
-            <article class="portfolio-row">
-              <strong>PayOut API Error 3106</strong>
-              <p>ตรวจ Request, Log และ Fee Configuration เพื่อให้ CS ดำเนินการต่อได้ถูกต้อง</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4 Key Contributions -->
-    <section class="slide" data-title="Key Contributions">
-      <div class="watermark">04 / 09</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">Delivered Impact</p>
-        <h2>Key Contributions</h2>
-        <p class="sub">3 ผลงานหลัก พร้อมผลลัพธ์ ความท้าทาย และทักษะที่เติบโตขึ้น</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="key-projects-grid">
-          <article class="key-project">
-            <h3>PayOut Fee Management</h3>
-            <dl>
-              <dt>Result / Outcome</dt>
-              <dd>พัฒนาฟีเจอร์ PayOut Fee Management ให้รองรับการคำนวณและแสดง Fee ที่เชื่อมโยงกับ Transaction และ Summary Report ได้ถูกต้องตาม Business Flow ของระบบ PayOut</dd>
-              <dt>Challenge</dt>
-              <dd>ต้องตรวจสอบสูตรคำนวณและความถูกต้องของข้อมูลจากหลายส่วนร่วมกับผู้ดูแลระบบ เพื่อให้ Fee ที่แสดงใน Transaction และ Report สอดคล้องกัน</dd>
-              <dt>Skills Growth</dt>
-              <dd>ออกแบบและพัฒนา UI ให้รองรับการแสดง Fee ตามเงื่อนไขจริง เรียนรู้การตรวจสอบข้อมูลและการเชื่อมโยงระหว่าง Transaction กับ Summary Report พร้อมเข้าใจ Business ของค่าธรรมเนียม PayOut มากขึ้น</dd>
-            </dl>
-            <span class="port-status">Delivery · On Time</span>
-          </article>
-          <article class="key-project">
-            <h3>Admin Transfer</h3>
-            <dl>
-              <dt>Result / Outcome</dt>
-              <dd>พัฒนาและจัดทำขอบเขตฟีเจอร์ Admin Transfer สำหรับ Back-office ให้ทีมการเงินสั่งโอนผ่าน PayOut ได้เป็นระบบ ครอบคลุมการตั้งค่า Enable และจำนวนผู้อนุมัติระดับ Merchant, Flow อัปโหลด Excel → Validate → Check/Decline → Approve/Reject → ส่งต่อ PayOut รวมถึง Dashboard, Detail, Approval History และ Export</dd>
-              <dt>Challenge</dt>
-              <dd>Requirement เปลี่ยนบ่อย ต้องคุม Scope, Multi-approver และความเสี่ยงโอนซ้ำ พร้อมประสานหลายทีมให้สรุป Flow ได้ตรงกัน นอกจากนี้ระบบ PayOut ถูกปิดใช้งานระหว่างทาง ทำให้ทดสอบ End-to-End ต่อไม่ได้ตามแผน ส่งผลให้ส่งมอบล่าช้ากว่ากำหนด</dd>
-              <dt>Skills Growth</dt>
-              <dd>ออกแบบและพัฒนา UI ให้รองรับการใช้งานจริงของทีมการเงิน เรียนรู้การ Integration ระหว่าง Web Back-office กับ PayOut API และการจัดการ JSON Response ทั้งกรณีสำเร็จและผิดพลาด พร้อมเข้าใจ Domain ของระบบ PayOut มากขึ้น เช่น PayOut Merchant, PayOut Receiver, Balance</dd>
-            </dl>
-            <span class="port-status late">Delivery · Late</span>
-            <span class="port-status-note">ล่าช้าเนื่องจาก PayOut ถูกปิดระบบระหว่างทดสอบ ไม่ใช่จากฝั่งงานพัฒนา</span>
-          </article>
-          <article class="key-project">
-            <h3>Operation Logs</h3>
-            <dl>
-              <dt>Result / Outcome</dt>
-              <dd>พัฒนาระบบบันทึกประวัติการเปลี่ยนแปลงข้อมูลของ ChillPay แยก Frontend และ Operation Logs API โดย Frontend ส่ง Log ผ่าน API หลัง Business Action สำเร็จ และ Admin สามารถค้นหา/ดูรายละเอียดก่อน–หลังแก้ไขได้</dd>
-              <dt>Challenge</dt>
-              <dd>ออกแบบระบบและพัฒนา API ของโปรเจกต์ใหม่ตั้งแต่ต้น ตั้งแต่โครงสร้างข้อมูล ไปจนถึงวิธีที่ Frontend และระบบอื่นเรียกใช้งานอย่างปลอดภัยและสม่ำเสมอ</dd>
-              <dt>Skills Growth</dt>
-              <dd>System design, การวางโครงสร้าง Audit Log ให้ใช้ร่วมกันได้หลายระบบ, Audit Logging, Validation และ Technical Documentation</dd>
-            </dl>
-            <span class="port-status">Delivery · On Time</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5 Quality Through Automation -->
-    <section class="slide" data-title="Quality Through Automation">
-      <div class="watermark">05 / 09</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">Quality Through Automation</p>
-        <h2>Elevating Quality Through Automated Testing</h2>
-        <p class="sub">สร้างกลไกตรวจสอบ API, Business Logic และ Critical Flow ที่นำกลับมารันซ้ำได้</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="quality-layout">
-          <div class="panel">
-            <h3>Automated Test Coverage</h3>
-            <div class="grid-2" style="margin-top: 0.6rem; gap: 1.1rem;">
-              <div class="kpi">
-                <strong>720 Test Cases</strong>
-                <p>Unit Test ครอบคลุม BAY Direct Debit API, Recurring API, Operation Logs และ Process Payment Services V4</p>
-              </div>
-              <div class="kpi">
-                <strong>638 Test Cases</strong>
-                <p>Playwright Automation 54 Spec Files ครอบคลุม Admin Transfer และ PayOut + Integration</p>
-              </div>
-            </div>
-          </div>
-          <div class="panel outcome-list">
-            <h3>Value Delivered</h3>
-            <p class="tag" style="margin-top: 0.35rem; text-align: left; width: 100%;">
-              Created · 1,358 Automated Test Cases
-            </p>
-            <ul class="list" style="margin-top: 0.6rem;">
-              <li>ตรวจสอบ API และ Business Logic ได้อย่างเป็นระบบ ลดความเสี่ยงจาก Regression</li>
-              <li>ลดภาระการทดสอบซ้ำด้วยมือ เพิ่มความมั่นใจก่อน Release</li>
-              <li>เก็บเป็น Test Scenario ที่นำกลับมารันซ้ำได้</li>
+          <div class="category-col">
+            <h3 class="category-title">Support <span class="category-sub">Incident / Cases</span></h3>
+            <ul class="category-list">
+              <li>
+                <strong>Payment Summary TXT</strong>
+              </li>
+              <li>
+                <strong>Merchant Report Access</strong>
+              </li>
+              <li>
+                <strong>PayOut API Error 3106</strong>
+              </li>
+              <li>
+                <strong>Process Payment Service</strong>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6 Lessons Learned -->
-    <section class="slide" data-title="Lessons Learned">
-      <div class="watermark">06 / 09</div>
+    <!-- 4 Project: PayOut Fee Management -->
+    <section class="slide" data-title="PayOut Fee Management">
+      <div class="watermark">04 / 08</div>
+      <div class="slide-head anim">
+        <p class="eyebrow project-hero">Business Core <span class="flag-tag">Flagship Project</span></p>
+        <h2>PayOut Fee Management</h2>
+        <p class="sub">วิเคราะห์ Fee พัฒนา Logic และ Validation ที่เชื่อมโยง Transaction กับ Report ทั้งระบบ</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="project-card">
+          <h3 class="project-card-title">PayOut Fee Management</h3>
+          <div class="project-card-section">
+            <h4>Result / Outcome</h4>
+            <p>พัฒนาฟีเจอร์ PayOut Fee Management เพื่อรองรับการคำนวณค่าธรรมเนียม พร้อมออกแบบ Layout ที่สามารถแยกได้ชัดเจนว่า Fee นั้นเรียกเก็บจากฝั่ง Receiver หรือ Merchant</p>
+          </div>
+          <div class="project-card-section">
+            <h4>Challenge</h4>
+            <p>เงื่อนไขการคิด Fee มีรายละเอียดและมุมมองที่แตกต่างกันไปในแต่ละ Transaction จึงต้องออกแบบ Logic ให้ครอบคลุมทุกกรณี โดยไม่กระทบความถูกต้องของ Report</p>
+          </div>
+          <div class="project-card-section">
+            <h4>Skills Growth</h4>
+            <p>สิ่งที่ได้จากโปรเจคนี้คือเริ่มออกแบบ UI เองตั้งแต่แรก เพื่อให้รองรับกับเงื่อนไขและความซับซ้อนของโปรเจค พร้อมเข้าใจ Business ของค่าธรรมเนียม PayOut มากขึ้น</p>
+          </div>
+          <span class="port-status">Delivery · On Time</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Project: Admin Transfer -->
+    <section class="slide" data-title="Admin Transfer">
+      <div class="watermark">05 / 08</div>
+      <div class="slide-head anim">
+        <p class="eyebrow project-hero">Business Core <span class="flag-tag">Flagship Project</span></p>
+        <h2>Admin Transfer</h2>
+        <p class="sub">ฟีเจอร์สำหรับ Back-office ให้ทีมการเงินสั่งโอนผ่าน PayOut ได้เป็นระบบ ครบ Flow ตั้งแต่ Upload ถึง Approve</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="project-card">
+          <h3 class="project-card-title">Admin Transfer</h3>
+          <div class="project-card-section">
+            <h4>Result / Outcome</h4>
+            <p>พัฒนาและจัดทำขอบเขตฟีเจอร์ Admin Transfer สำหรับ Back-office ให้ทีมการเงินสั่งโอนผ่าน PayOut ได้เป็นระบบ ครอบคลุมการตั้งค่า Enable และจำนวนผู้อนุมัติระดับ Merchant, Flow อัปโหลด Excel → Validate → Check/Decline → Approve/Reject → ส่งต่อ PayOut รวมถึง Dashboard, Detail, Approval History และ Export</p>
+          </div>
+          <div class="project-card-section">
+            <h4>Challenge</h4>
+            <p>Requirement เปลี่ยนบ่อย ต้องคุม Scope, Multi-approver และความเสี่ยงโอนซ้ำ พร้อมประสานหลายทีมให้สรุป Flow ได้ตรงกัน นอกจากนี้ระบบ PayOut ถูกปิดใช้งานระหว่างทาง ทำให้ทดสอบ End-to-End ต่อไม่ได้ตามแผน ส่งผลให้ส่งมอบล่าช้ากว่ากำหนด</p>
+          </div>
+          <div class="project-card-section">
+            <h4>Skills Growth</h4>
+            <p>ออกแบบและพัฒนา UI ให้รองรับการใช้งานจริงของทีมการเงิน เรียนรู้การ Integration ระหว่าง Web Back-office กับ PayOut API และการจัดการ JSON Response ทั้งกรณีสำเร็จและผิดพลาด พร้อมเข้าใจ Domain ของระบบ PayOut มากขึ้น เช่น PayOut Merchant, PayOut Receiver, Balance</p>
+          </div>
+          <span class="port-status late">Delivery · Late</span>
+          <span class="port-status-note">ล่าช้าเนื่องจาก PayOut ถูกปิดระบบระหว่างทดสอบ ไม่ใช่จากฝั่งงานพัฒนา</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Project: Operation Logs -->
+    <section class="slide" data-title="Operation Logs">
+      <div class="watermark">06 / 08</div>
+      <div class="slide-head anim">
+        <p class="eyebrow project-hero">Internal <span class="flag-tag">Flagship Project</span></p>
+        <h2>Operation Logs</h2>
+        <p class="sub">ออกแบบระบบบันทึกประวัติการเปลี่ยนแปลงข้อมูลของ ChillPay ตั้งแต่ต้นจนจบ</p>
+      </div>
+      <div class="fill anim anim-d1">
+        <div class="project-card">
+          <h3 class="project-card-title">Operation Logs</h3>
+          <div class="project-card-section">
+            <h4>Result / Outcome</h4>
+            <p>พัฒนาระบบบันทึกประวัติการเปลี่ยนแปลงข้อมูลของ ChillPay แยก Frontend และ Operation Logs API โดย Frontend ส่ง Log ผ่าน API หลัง Business Action สำเร็จ และ Admin สามารถค้นหา/ดูรายละเอียดก่อน–หลังแก้ไขได้</p>
+          </div>
+          <div class="project-card-section">
+            <h4>Challenge</h4>
+            <p>ออกแบบระบบและพัฒนา API ของโปรเจกต์ใหม่ตั้งแต่ต้น ตั้งแต่โครงสร้างข้อมูล ไปจนถึงวิธีที่ Frontend และระบบอื่นเรียกใช้งานอย่างปลอดภัยและสม่ำเสมอ</p>
+          </div>
+          <div class="project-card-section">
+            <h4>Skills Growth</h4>
+            <p>System design, การวางโครงสร้าง Audit Log ให้ใช้ร่วมกันได้หลายระบบ, Audit Logging, Validation และ Technical Documentation</p>
+          </div>
+          <span class="port-status">Delivery · On Time</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Learning & Results -->
+    <section class="slide" data-title="Learning & Results">
+      <div class="watermark">07 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow">First-Half Learning</p>
-        <h2>Lessons from the First Half</h2>
-        <p class="sub">บทเรียนจากการวิเคราะห์ Business Flow ออกแบบคุณภาพงาน และการนำเครื่องมือใหม่มาเพิ่มประสิทธิภาพการทำงาน</p>
+        <h2>สิ่งที่ได้เรียนรู้ในครึ่งปีแรก</h2>
+        <p class="sub">เข้าใจ Business และ Payment Flow มากขึ้น พร้อมเริ่มนำ AI มาใช้จริงในงานประจำวัน</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="learning-grid">
+        <p class="learning-lead">ความก้าวหน้าในครึ่งปีแรก ตั้งแต่ความเข้าใจธุรกิจ การทำงานกับ Requirement คุณภาพงาน ไปจนถึงการนำ AI มาใช้จริง</p>
+        <div class="panel test-coverage-panel">
+          <h3>Automated Test Coverage</h3>
+          <div class="test-coverage-cols">
+            <div class="test-coverage-col">
+              <p class="tc-heading">720 Test Cases</p>
+              <p class="tc-desc">Unit Test ครอบคลุม BAY Direct Debit API, Recurring API, Operation Logs และ Process Payment Services V4</p>
+            </div>
+            <div class="test-coverage-col">
+              <p class="tc-heading">638 Test Scripts</p>
+              <p class="tc-desc">Playwright Automation 54 Spec Files ครอบคลุม Admin Transfer และ PayOut + Integration</p>
+            </div>
+          </div>
+        </div>
+        <div class="progress-grid">
           <div class="skill-block">
-            <span class="lesson-no">01</span>
-            <h3>เข้าใจ Business Flow ก่อนลงมือพัฒนา</h3>
-            <ul class="list">
-              <li>การพัฒนาฟีเจอร์ในระบบ PayOut ไม่สามารถมองแค่หน้าจอหรือ API ทีละส่วนได้ ต้องเข้าใจ Business Flow ทั้งเส้นก่อนลงมือ เช่น Requirement, Fee, Transaction, Settlement และ Report เชื่อมกันอย่างไร</li>
-              <li>ถ้ายังไม่ชัดเรื่องเงื่อนไขธุรกิจหรือลำดับขั้นตอน งานที่ทำไปมักต้องแก้ย้อนหลัง การยืนยันเงื่อนไขกับผู้ดูแลระบบหรือทีมที่เกี่ยวข้องก่อนพัฒนา จึงช่วยลดความคลาดเคลื่อน และทำให้การออกแบบ UI / Logic สอดคล้องการใช้งานจริงมากขึ้น</li>
-            </ul>
-            <p class="learning-proof"><b>หลักฐานจากงาน:</b> PayOut Fee Management และ Admin Transfer</p>
+            <p class="progress-tag">Business Knowledge</p>
+            <p class="progress-text">เข้าใจภาพรวมทางธุรกิจมากขึ้น โดยเฉพาะ Flow ที่เกี่ยวข้องกับ Payment, Fee และกระบวนการทำงานของแต่ละโปรเจค</p>
           </div>
           <div class="skill-block">
-            <span class="lesson-no">02</span>
-            <h3>คุณภาพต้องออกแบบจาก Risk และ Critical Flow</h3>
-            <ul class="list">
-              <li>Automated Tests ควรครอบคลุม API, Business Logic และเส้นทางที่กระทบการใช้งานจริง</li>
-              <li>การเตรียม Test Data, Role และ Dependency ล่วงหน้าทำให้ทดสอบ End-to-End ได้มีประสิทธิภาพขึ้น</li>
-            </ul>
-            <p class="learning-proof"><b>หลักฐานจากงาน:</b> BAY, Recurring, Payment Service และ Operation Logs</p>
+            <p class="progress-tag">Requirement &amp; Communication</p>
+            <p class="progress-text">พัฒนาความสามารถด้านการเก็บและสรุป Requirement ทำให้สามารถสื่อสารและยืนยันความต้องการร่วมกับทีมได้ชัดเจนขึ้น ลดความคลาดเคลื่อนระหว่างการพัฒนา</p>
           </div>
           <div class="skill-block">
-            <span class="lesson-no">03</span>
-            <h3>เปิดรับเครื่องมือใหม่เพื่อเพิ่มประสิทธิภาพการทำงานจริง</h3>
-            <ul class="list">
-              <li>เข้าร่วมอบรม "AI Companion: Learn, Build, and Grow as a Professional" เพื่อเข้าใจแนวทางนำ AI มาช่วยงานอย่างเป็นระบบ ไม่ใช่แค่ลองใช้ผิวเผิน</li>
-              <li>นำแนวคิด AI-Assisted Workflow มาปรับใช้จริงในงาน Testing และ Documentation ช่วยลดเวลาทำงานซ้ำๆ ทำให้มีเวลาโฟกัสกับการวิเคราะห์ Business Logic ที่ซับซ้อนมากขึ้น</li>
-            </ul>
-            <p class="learning-proof"><b>หลักฐานจากงาน:</b> อบรม AI Companion (AIS) และการนำไปใช้จริงในงาน Testing/Documentation ช่วงครึ่งปีแรก</p>
+            <p class="progress-tag">Technical Growth</p>
+            <p class="progress-text">เสริมทักษะด้านการออกแบบและพัฒนาระบบ ทั้งในส่วนของ UI, API และโครงสร้างงาน ทำให้เข้าใจการทำงานแบบ End-to-End มากขึ้น</p>
           </div>
-        </div>      </div>
-    </section>
-
-    <!-- 7 Self-Reflection -->
-    <section class="slide" data-title="Self-Reflection">
-      <div class="watermark">07 / 09</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">Self-Reflection · Lessons Learned</p>
-        <h2>สิ่งที่ทำได้ดี และสิ่งที่เรียนรู้เพื่อพัฒนาต่อ</h2>
-        <p class="sub">ทบทวนตัวเองอย่างตรงไปตรงมา เพื่อนำไปปรับปรุงวิธีทำงานในครึ่งปีหลัง</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="grid-2">
-          <div class="panel">
-            <h3>สิ่งที่ทำได้ดี</h3>
-            <ul class="list">
-              <li>ยืนยันเงื่อนไขทางธุรกิจและตรวจสอบความถูกต้องของข้อมูลร่วมกับผู้เกี่ยวข้องตั้งแต่ก่อนเริ่มพัฒนาอย่างสม่ำเสมอ ไม่ใช่ครั้งคราว ช่วยลดการแก้งานย้อนหลังในโครงการที่ซับซ้อน</li>
-              <li>ควบคุม Scope และความเสี่ยงของงานที่มีความซับซ้อนสูง (Requirement เปลี่ยนบ่อย ต้องประสานหลายทีม) ให้ยังส่งมอบผลลัพธ์ที่ใช้งานได้จริง แม้บางครั้งกระทบ Timeline จากปัจจัยภายนอก</li>
-              <li>วางกลไกตรวจสอบคุณภาพเชิงระบบผ่าน Automated Test กว่า 1,300 เคส ครอบคลุมทั้ง API, Business Logic และ Critical Flow ของทั้งทีม ไม่ใช่แค่ทดสอบเฉพาะจุดที่ตัวเองพัฒนา</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>สิ่งที่เรียนรู้ &amp; จะปรับปรุง</h3>
-            <ul class="list">
-              <li>เคส Support ที่เกิดจากปัญหาเฉพาะหน้า (เช่น PayOut API Error 3106) ควรสรุปเป็น Known Issue หรือ Runbook หลังจบเคส เพื่อให้ CS แก้ปัญหาลักษณะเดียวกันได้เองในครั้งถัดไป</li>
-              <li>เมื่อรับผิดชอบ Feature ที่เชื่อมหลายระบบ (เช่น PayOut Merchant, PayOut Receiver, Balance ใน Admin Transfer) ควรทำความเข้าใจ Domain เหล่านี้ให้ลึกตั้งแต่ต้น เพื่อลดรอบถามย้อนกลับระหว่างพัฒนา</li>
-              <li>ผลลัพธ์จาก Automated Test ควรมีการรายงานสรุป (Test Report) ให้ทีมที่ไม่ใช่สาย Dev เข้าใจง่าย เพื่อสร้างความมั่นใจก่อน Release ให้กับทั้งทีม ไม่ใช่แค่ทีมพัฒนา</li>
-            </ul>
+          <div class="skill-block">
+            <p class="progress-tag">AI Adoption</p>
+            <p class="progress-text">เริ่มนำ Automation และ AI มาประยุกต์ใช้กับงานจริง เพื่อเพิ่มประสิทธิภาพ ลดงาน Manual และช่วยยกระดับคุณภาพของงานที่ส่งมอบ</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8 Looking Ahead -->
-    <section class="slide" data-title="Looking Ahead">
-      <div class="watermark">08 / 09</div>
+    <!-- 8 Future Goals -->
+    <section class="slide" data-title="Future Goals">
+      <div class="watermark">08 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow">Next-Half Plan</p>
-        <h2>From Lessons to Results</h2>
-        <p class="sub">3 เป้าหมายที่ตั้งใจทำจริง พร้อมแนวทางดำเนินการและคุณค่าที่คาดหวัง</p>
+        <h2>เป้าหมาย &amp; แผนครึ่งปีหลัง 2026</h2>
+        <p class="sub">เป้าหมายที่อยากต่อยอดในครึ่งปีหลัง ต่อเนื่องจากสิ่งที่ได้เรียนรู้มา</p>
       </div>
       <div class="fill anim anim-d1">
-        <div class="grid-2">
-          <div class="panel">
-            <h3>Deeper Business Ownership</h3>
-            <ul class="list">
-              <li>วิเคราะห์ Requirement และ Business Flow ของ Payment/PayOut ได้ลึกขึ้น ตั้งแต่ต้นจนจบ โดยพึ่งพาการยืนยันจากผู้อื่นน้อยลง</li>
-              <li>ตรวจสอบและรับผิดชอบ Incident ที่ซับซ้อนขึ้น ด้วยการวิเคราะห์ Root Cause และผลกระทบเชิงธุรกิจได้ด้วยตนเอง</li>
-            </ul>
-            <p class="kpi-note" style="margin-top: 0.65rem;">
-              <span class="port-status">Value</span> วิเคราะห์ Requirement และ Incident และรับผิดชอบงานที่ซับซ้อนขึ้น
-            </p>
+        <p class="learning-lead">4 ทิศทางที่อยากผลักดันต่อ ทั้งความเข้าใจธุรกิจ Automation &amp; AI, Knowledge Sharing และ UX</p>
+        <div class="progress-grid">
+          <div class="skill-block">
+            <p class="progress-tag">Business Depth</p>
+            <p class="progress-text">ต่อยอดความเข้าใจด้านธุรกิจให้ลึกขึ้น โดยเฉพาะในส่วนของ Payment และงานที่เกี่ยวข้องกับ Core Process</p>
           </div>
-
-          <div class="panel">
-            <h3>Quality Expansion</h3>
-            <ul class="list">
-              <li>เลือก Flow ที่มีความเสี่ยงสูงจาก Payment และ PayOut มาทำ Test เพิ่ม</li>
-              <li>ทบทวน Test Scenario และ Code Coverage ก่อน Release</li>
-            </ul>
-            <p class="kpi-note" style="margin-top: 0.65rem;">
-              <span class="port-status">Value</span> เพิ่มการตรวจสอบ Regression ก่อนขึ้น Production
-            </p>
+          <div class="skill-block">
+            <p class="progress-tag">Automation &amp; AI</p>
+            <p class="progress-text">ขยายการนำ Automation และ AI มาใช้ในโปรเจคหลักอย่างต่อเนื่อง เพื่อเพิ่มความครอบคลุมของการทดสอบ ลดภาระงาน Manual และเพิ่ม Productivity ในการทำงาน</p>
           </div>
-
-          <div class="panel">
-            <h3>Knowledge Sharing</h3>
-            <ul class="list">
-              <li>จัดทำ System Flow และ Troubleshooting Guide จากระบบที่รับผิดชอบ</li>
-              <li>สรุป Common Error และแนวทางตรวจสอบที่นำกลับมาใช้ได้</li>
-              <li>ถ่ายทอด Business และ Technical Context ให้ทีมรับช่วงงานได้</li>
-            </ul>
-            <p class="kpi-note" style="margin-top: 0.65rem;">
-              <span class="port-status">Value</span> ช่วยทีมรับช่วงงานและแก้ปัญหาได้โดยลดการพึ่งพาบุคคลใดบุคคลหนึ่ง
-            </p>
+          <div class="skill-block">
+            <p class="progress-tag">Knowledge Sharing</p>
+            <p class="progress-text">รวบรวมเคส Support ที่เกิดซ้ำ เช่น PayOut API Error 3106 ให้เป็น Known Issue / Runbook กลาง เพื่อให้ทีม CS และทีมรับ Incident แก้ปัญหาลักษณะเดียวกันได้เองในครั้งถัดไป</p>
           </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 9 Value & Readiness -->
-    <section class="slide" data-title="Value & Readiness">
-      <div class="watermark">09 / 09</div>
-      <div class="slide-head anim">
-        <p class="eyebrow">Value &amp; Readiness</p>
-        <h2>Ready to Deliver Value at a Higher Level</h2>
-        <p class="sub">ผลงานครึ่งปีแรกสะท้อนทั้งการส่งมอบ คุณภาพ ความต่อเนื่องของระบบ และการสนับสนุนทีมธุรกิจ</p>
-      </div>
-      <div class="fill anim anim-d1">
-        <div class="value-grid">
-          <div class="panel">
-            <h3>Value Added to the Company</h3>
-            <ul class="list">
-              <li><b>Delivery:</b> ส่งมอบงานหลักอย่างเป็นอิสระ 4 งาน ตรงเวลา 3 งาน (อีก 1 งานล่าช้าจาก PayOut ถูกปิดระบบระหว่างทดสอบ ไม่ใช่จากฝั่งงานพัฒนา)</li>
-              <li><b>Quality:</b> สร้าง Automated Tests ครอบคลุม API, Business Logic และ Critical Flow</li>
-              <li><b>Operational Continuity:</b> ช่วย Finance และ CS ดำเนินงานต่อจาก Incident และข้อจำกัดของระบบ</li>
-              <li><b>Knowledge:</b> เชื่อม Business Context กับ Technical Solution และพร้อมถ่ายทอดเป็นเอกสารให้ทีม</li>
-            </ul>
-          </div>
-          <div class="panel">
-            <h3>ความพร้อมสำหรับระดับถัดไป</h3>
-            <ul class="list">
-              <li>รับผิดชอบ Payment/PayOut Flow ได้ตั้งแต่ Requirement ถึงการสนับสนุนหลังส่งมอบ</li>
-              <li>ประเมิน Risk และ Dependency ก่อนเริ่มงานได้เป็นระบบมากขึ้น</li>
-              <li>ทำงานข้ามทีมกับผู้ดูแลระบบ Finance และ CS เพื่อให้เกิดผลลัพธ์ทางธุรกิจ</li>
-              <li>มีแผนครึ่งปีหลังที่ต่อยอด Ownership, Quality และ Knowledge Sharing อย่างชัดเจน</li>
-            </ul>
+          <div class="skill-block">
+            <p class="progress-tag">UX Improvement</p>
+            <p class="progress-text">พัฒนาการออกแบบ Flow และ UX ให้ใช้งานง่ายขึ้น โดยมุ่งลดความซับซ้อนและเพิ่มประสิทธิภาพของการใช้งาน</p>
           </div>
         </div>
       </div>
@@ -2801,7 +3049,7 @@
 
   <div class="chrome">
     <span id="slideTitle">Cover</span>
-    <span id="slideCounter">01 / 09</span>
+    <span id="slideCounter">01 / 08</span>
   </div>
 
   <script>
