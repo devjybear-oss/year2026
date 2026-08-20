@@ -3,44 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Performance Contribution Review 2026 — Software Developer</title>
+  <title>Mid-Year Review 2026 — Software Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    /* ==========================================================
+       Mid-Year Review 2026 — Software Developer
+       Theme: clean teal status-report (single theme, no overrides)
+       ========================================================== */
+
     :root {
-      --accent: #0b7a86;
-      --accent-deep: #065a63;
-      --accent-soft: rgba(11, 122, 134, 0.12);
-      --slide-pad: clamp(1.25rem, 2.2vw, 2.35rem);
-      --content-w: min(92vw, 76rem);
-      --ink: #0a3a42;
-      --ink-soft: #2d5a62;
-      --ink-muted: #5a7a82;
-      --line: rgba(6, 90, 99, 0.14);
-      --bg-light-top: #f3fafb;
-      --bg-light-bot: #e5f3f5;
-      --bg-dark-top: #041418;
-      --bg-dark-mid: #0a3a42;
-      --bg-dark-bot: #065a63;
-      --on-dark: #e8f6f7;
-      --on-dark-soft: rgba(232, 246, 247, 0.78);
-      --on-dark-muted: rgba(232, 246, 247, 0.55);
-      --font-display: "Outfit", "Anuphan", sans-serif;
-      --font-body: "Anuphan", system-ui, sans-serif;
-      /* Type scale — single source for balanced typography (enlarged) */
+      /* Palette */
+      --accent: #34988f;
+      --accent-deep: #267d76;
+      --accent-soft: #e6f1ef;
+      --ink: #20242d;
+      --ink-soft: #626a73;
+      --ink-muted: #7f8790;
+      --line: #ccd0cf;
+      --paper: #ffffff;
+      --shell: #eef0f2;
+      --late: #8a4b12;
+
+      /* Fonts — Thai fallbacks kept local-safe in case the CDN is blocked */
+      --font-display: "Outfit", "Anuphan", "Noto Sans Thai", "Sarabun", Thonburi, system-ui, sans-serif;
+      --font-body: "Anuphan", "Noto Sans Thai", "Sarabun", Thonburi, system-ui, sans-serif;
+
+      /* Type scale */
       --text-xs: clamp(0.78rem, 0.85vw, 0.88rem);
       --text-sm: clamp(0.9rem, 0.98vw, 1.02rem);
       --text-base: clamp(1.04rem, 1.12vw, 1.18rem);
       --text-md: clamp(1.14rem, 1.24vw, 1.3rem);
       --text-lg: clamp(1.26rem, 1.36vw, 1.44rem);
-      --text-xl: clamp(1.42rem, 1.6vw, 1.64rem);
-      --text-2xl: clamp(1.7rem, 2.2vw, 2.2rem);
-      --text-3xl: clamp(2rem, 2.7vw, 2.65rem);
-      --text-display: clamp(2.75rem, 5vw, 4.75rem);
       --leading-tight: 1.2;
       --leading-normal: 1.45;
-      --leading-relaxed: 1.55;
+
+      /* Rhythm */
+      --slide-pad-x: clamp(3.1rem, 5.2vw, 5.3rem);
+      --slide-pad-t: clamp(2rem, 4.2vh, 3.15rem);
+      /* Bottom padding keeps content clear of the fixed chrome bar */
+      --slide-pad-b: clamp(3.9rem, 7.2vh, 4.8rem);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,20 +51,15 @@
     html, body {
       height: 100%;
       overflow: hidden;
-      background: var(--bg-dark-top);
+      background: var(--shell);
       color: var(--ink);
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
     }
 
-    .deck {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
+    .deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
 
-    /* ── Slides ── */
+    /* ── Slide shell ── */
     .slide {
       position: absolute;
       inset: 0;
@@ -69,31 +67,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      gap: clamp(0.65rem, 1.4vh, 1rem);
-      padding: var(--slide-pad);
-      padding-left: calc(var(--slide-pad) + 0.55rem);
-      padding-bottom: calc(var(--slide-pad) + 1.25rem);
+      gap: clamp(0.65rem, 1.3vh, 0.95rem);
+      padding: var(--slide-pad-t) var(--slide-pad-x) var(--slide-pad-b);
+      background: var(--paper);
+      color: var(--ink);
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transform: translateY(14px);
-      transition: opacity 0.42s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.42s;
-      background: linear-gradient(165deg, var(--bg-light-top) 0%, var(--bg-light-bot) 100%);
-      color: var(--ink);
+      transform: translateY(6px);
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
       overflow: hidden;
-    }
-
-    .slide::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 10%;
-      bottom: 10%;
-      width: 3px;
-      background: linear-gradient(180deg, transparent, var(--accent) 25%, var(--accent-deep) 75%, transparent);
-      opacity: 0.7;
-      pointer-events: none;
-      z-index: 0;
     }
 
     .slide.active {
@@ -104,2061 +87,39 @@
       z-index: 2;
     }
 
-    .slide.removed { display: none; }
+    .slide > * { position: relative; z-index: 1; width: 100%; }
+    /* Pills must hug their text instead of stretching to the slide width */
+    .slide > .eyebrow { width: auto; align-self: flex-start; }
 
-    .slide > * {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: var(--content-w);
+    /* ── Slide numbering ── */
+    .slide .watermark {
+      position: absolute;
+      width: auto;
+      z-index: 3;
+      top: var(--slide-pad-t);
+      right: var(--slide-pad-x);
+      font-family: var(--font-display);
+      font-size: clamp(0.7rem, 0.82vw, 0.86rem);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      pointer-events: none;
+      user-select: none;
     }
 
-    .slide .watermark { width: auto; max-width: none; }
-
-    /* Cover & Closing — deep teal dark */
-    .slide.cover,
-    .slide.closing {
-      background: linear-gradient(160deg, var(--bg-dark-top) 0%, var(--bg-dark-mid) 48%, var(--bg-dark-bot) 100%);
-      color: var(--on-dark);
-      padding-left: var(--slide-pad);
+    /* ── Head ── */
+    .slide-head {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-bottom: clamp(0.55rem, 1.15vh, 0.85rem);
     }
 
-    .slide.cover::after,
-    .slide.closing::after {
-      background: linear-gradient(180deg, transparent, rgba(232, 246, 247, 0.35), transparent);
-      opacity: 0.4;
-    }
-
-    /* ── Typography ── */
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      font-size: var(--text-xs);
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.35rem;
-    }
-
-    .cover .eyebrow,
-    .closing .eyebrow { color: var(--on-dark-muted); }
-
-    .eyebrow::before {
-      content: "";
-      width: 1.4rem;
-      height: 2px;
-      background: currentColor;
-    }
-
-    h1, h2, .display {
-      font-family: var(--font-display);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      line-height: 1.12;
-      color: var(--ink);
-    }
-
-    .cover h1, .closing h1 { color: var(--on-dark); }
-
-    h1 { font-size: var(--text-display); }
-    h2 {
-      font-size: var(--text-2xl);
-      margin-bottom: 0.35rem;
-      line-height: var(--leading-tight);
-    }
-    h3 {
-      font-family: var(--font-body);
-      font-size: var(--text-lg);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.4rem;
-      color: var(--accent-deep);
-      line-height: var(--leading-tight);
-    }
-
-    .sub {
-      font-size: var(--text-md);
-      color: var(--ink-soft);
-      max-width: 58rem;
-      line-height: var(--leading-normal);
-      font-weight: 400;
-    }
-
-    .cover .sub,
-    .closing .sub { color: var(--on-dark-soft); }
-
-    /* ── Cover / Closing layout ── */
-    .cover-brand {
-      position: relative;
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 0.95;
-      margin: 0.45rem 0 0.85rem;
-      max-width: 12ch;
-      color: #fff;
-      background: linear-gradient(
-        165deg,
-        #ffffff 0%,
-        #e8f6f7 42%,
-        #9fd4da 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.35));
-    }
-
-    .cover-brand .year {
-      display: inline-block;
-      margin-top: 0.12em;
-      font-size: 0.72em;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      background: linear-gradient(90deg, #7ec8d0 0%, #c8eef1 55%, #ffffff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .slide.cover.active .cover-brand::after,
-    .slide.closing.active .cover-brand::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -0.45rem;
-      width: min(9rem, 48%);
-      height: 4px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, #2cb5c2, rgba(44, 181, 194, 0.15));
-      animation: growX 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
-    }
-
-    .cover-lead {
-      font-size: var(--text-md);
-      font-weight: 500;
-      max-width: 30rem;
-      line-height: var(--leading-normal);
-      color: var(--on-dark-soft);
-    }
-
-    .cover-main {
-      margin-top: auto;
-      margin-bottom: auto;
-      padding: 1.75rem 0;
-    }
-
-    .closing .cover-brand { max-width: none; font-size: clamp(2.8rem, 8.5vw, 6.5rem); }
-
-    .meta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.1rem 2.25rem;
-      margin-top: auto;
-      padding-top: 1.35rem;
-      border-top: 1px solid rgba(232, 246, 247, 0.16);
-    }
-
-    .meta-item label {
-      display: block;
-      font-size: var(--text-xs);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--on-dark-muted);
-      margin-bottom: 0.25rem;
-    }
-
-    .meta-item strong {
-      font-family: var(--font-body);
-      font-size: var(--text-md);
-      font-weight: 600;
-      color: var(--on-dark);
-    }
-
-    /* ── Slide head & fill ── */
-    .slide-head {
-      flex: 0 0 auto;
-      margin-bottom: 0.25rem;
-    }
-
-    .slide-head h2 {
-      max-width: 52rem;
-    }
-
-    .fill {
-      flex: 0 1 auto;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: clamp(0.65rem, 1.3vh, 0.95rem);
-    }
-
-    /* ── Grids ── */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(1.1rem, 2.4vw, 2rem);
-      align-items: start;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1rem, 2vw, 1.6rem);
-      align-items: start;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(1rem, 2vw, 1.6rem) clamp(1.2rem, 2.5vw, 2rem);
-      align-items: start;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.9rem 1.75rem;
-      align-items: start;
-    }
-
-    .sys-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(0.9rem, 1.6vw, 1.3rem);
-      align-items: start;
-    }
-
-    /* ── Overview — same scale as global ── */
-    .slide.overview h2 {
-      font-size: var(--text-2xl);
-    }
-
-    .slide.overview .panel h3 {
-      font-size: var(--text-lg);
-      margin-bottom: 0.55rem;
-    }
-
-    .slide.overview .list {
-      gap: 0.45rem;
-    }
-
-    .slide.overview .list li {
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-      padding-left: 1rem;
-    }
-
-    .slide.overview .list li::before {
-      width: 0.38rem;
-      height: 0.38rem;
-      top: 0.62em;
-    }
-
-    .overview-split {
-      gap: clamp(1.5rem, 3.5vw, 3rem);
-      align-items: start;
-    }
-
-    .overview-split .panel {
-      padding-top: 0.85rem;
-    }
-
-    /* Executive summary */
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 5vw, 5rem);
-      align-items: start;
-    }
-
-    .summary-item {
-      padding-top: 0.25rem;
-    }
-
-    .summary-item strong {
-      display: block;
-      font-family: var(--font-display);
-      font-size: clamp(2.7rem, 5.5vw, 5.2rem);
-      line-height: 0.95;
-      letter-spacing: -0.045em;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-
-    .summary-item strong.metric-word {
-      font-size: clamp(1.7rem, 3vw, 2.8rem);
-      line-height: 1;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-    }
-
-    .summary-item h3 {
-      margin-bottom: 0.25rem;
-      color: var(--accent);
-      font-family: var(--font-display);
-      font-size: clamp(1rem, 1.35vw, 1.3rem);
-      letter-spacing: 0.035em;
-      text-transform: uppercase;
-    }
-    .summary-item p {
-      max-width: 22rem;
-      font-size: var(--text-sm);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
-    }
-
-    .summary-grid.metrics-only { margin-top: clamp(1rem, 3vh, 2.5rem); }
-
-    .summary-item:nth-child(4) { grid-column: 1 / 2; }
-
-    .summary-message {
-      margin-top: clamp(1rem, 2.2vh, 1.5rem);
-      padding-top: 0.9rem;
-      border-top: 1px solid var(--line);
-      font-size: var(--text-md);
-      line-height: var(--leading-normal);
-      color: var(--ink);
-    }
-
-    /* Project portfolio */
-    .portfolio-columns {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: clamp(1.5rem, 3vw, 2.6rem);
-      align-items: start;
-    }
-
-    .portfolio-group {
-      border-top: 3px solid var(--accent);
-      padding-top: 0.65rem;
-    }
-
-    .portfolio-group h3 { margin-bottom: 0.55rem; }
-
-    .portfolio-row {
-      display: grid;
-      grid-template-columns: minmax(9rem, 0.9fr) 1.6fr;
-      gap: 0.2rem 0.8rem;
-      padding: 0.42rem 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .portfolio-row:first-of-type { border-top: 0; }
-
-    .portfolio-row strong {
-      font-size: var(--text-base);
-      line-height: var(--leading-tight);
-      color: var(--ink);
-      font-weight: 700;
-    }
-
-    .portfolio-row p {
-      font-size: var(--text-sm);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
-    }
-
-    .portfolio-group.short-term .portfolio-row { grid-template-columns: minmax(8rem, 0.8fr) 1.5fr; }
-
-    /* ── Panels & blocks — thin top border only ── */
-    .panel {
-      border-top: 2px solid var(--accent);
-      padding: 0.65rem 0 0;
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-    }
-
-    .panel .list {
-      gap: 0.35rem;
-      margin-top: 0.05rem;
-    }
-
-    .panel p,
-    .list li {
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
-    }
-
-    .list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .list li {
-      position: relative;
-      padding-left: 1rem;
-    }
-
-    .list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.55em;
-      width: 0.32rem;
-      height: 0.32rem;
-      background: var(--accent);
-      border-radius: 1px;
-    }
-
-    .tag {
-      display: inline-block;
-      font-size: var(--text-xs);
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.35rem;
-    }
-
-    /* ── Portfolio ── */
-    .port-stack {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(0.85rem, 1.8vh, 1.25rem);
-    }
-
-    .port-item {
-      border-top: 2px solid var(--line);
-      padding: 0.7rem 0 0.2rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      column-gap: 1rem;
-      row-gap: 0.35rem;
-      background: transparent;
-      transition: border-color 0.22s ease;
-    }
-
-    .port-item:hover {
-      border-top-color: var(--accent);
-    }
-
-    .port-num {
-      font-family: var(--font-display);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--accent);
-      grid-row: 1 / span 3;
-      padding-top: 0.15rem;
-    }
-
-    .port-item h3 {
-      margin-bottom: 0;
-      font-size: var(--text-lg);
-      color: var(--ink);
-      grid-column: 2;
-    }
-
-    .port-context {
-      grid-column: 2;
-      font-size: var(--text-sm);
-      font-weight: 600;
-      color: var(--accent-deep);
-      margin: -0.05rem 0 0.15rem;
-    }
-
-    .port-body {
-      grid-column: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem 1.35rem;
-    }
-
-    .port-block .port-label {
-      display: block;
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.18rem;
-    }
-
-    .port-block p {
-      font-size: var(--text-base);
-      color: var(--ink-soft);
-      line-height: var(--leading-normal);
-      margin: 0;
-    }
-
-    .port-meta {
-      grid-column: 2;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem 0.75rem;
-      align-items: center;
-      margin-top: 0.15rem;
-    }
-
-    .port-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--accent-deep);
-      padding: 0.2rem 0.55rem;
-      border: 1px solid rgba(11, 122, 134, 0.28);
-      background: var(--accent-soft);
-    }
-
-    .port-status.late {
-      color: #8a4b12;
-      border-color: rgba(138, 75, 18, 0.28);
-      background: rgba(138, 75, 18, 0.08);
-    }
-
-    .port-status-note {
-      font-size: var(--text-sm);
-      color: var(--ink-muted);
-    }
-
-    @media (max-width: 960px) {
-      .port-body { grid-template-columns: 1fr; }
-      .port-item { grid-template-columns: 1fr; }
-      .port-num { grid-row: auto; }
-    }
-
-    /* ── Quality outcomes ── */
-    .quality-layout {
-      display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: clamp(1.2rem, 3vw, 2.5rem);
-      align-items: stretch;
-    }
-
-    .quality-layout > .panel {
-      height: 100%;
-    }
-
-    .sys-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.35rem;
-    }
-
-    .sys-chip {
-      font-size: clamp(0.92rem, 1.1vw, 1.02rem);
-      color: var(--ink);
-      padding: 0.45rem 0.7rem;
-      border-top: 2px solid var(--accent);
-      background: rgba(11, 122, 134, 0.04);
-    }
-
-    .sys-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-      margin-top: 0.55rem;
-    }
-
-    .sys-stat {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 0.5rem 1rem;
-      align-items: baseline;
-      padding: 0.45rem 0 0.2rem;
-      border-top: 1px solid var(--line);
-    }
-
-    .sys-stat strong {
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--ink);
-      font-weight: 700;
-      letter-spacing: 0;
-    }
-
-    .sys-stat span {
-      font-size: var(--text-sm);
-      color: var(--ink-muted);
-      display: block;
-      margin-top: 0.12rem;
-      line-height: var(--leading-tight);
-      font-family: var(--font-body);
-    }
-
-    .sys-stat em {
-      font-family: var(--font-body);
-      font-style: normal;
-      font-weight: 700;
-      font-size: var(--text-base);
-      color: var(--accent-deep);
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0;
-    }
-
-    .outcome-list .list li {
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-    }
-
-    /* ── Incident rows ── */
-    .case-rows {
-      display: flex;
-      flex-direction: column;
-      gap: clamp(0.85rem, 1.8vh, 1.2rem);
-    }
-
-    .case-row {
-      display: grid;
-      grid-template-columns: minmax(10rem, 14rem) 1fr 1fr;
-      gap: 0.85rem 1.25rem;
-      padding: 0.75rem 0 0.15rem;
-      border-top: 2px solid var(--line);
-      align-items: start;
-    }
-
-    .case-row h3 {
-      margin: 0;
-      color: var(--ink);
-      font-size: var(--text-lg);
-    }
-
-    /* ── KPI rows ── */
-    .kpi-rows {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-
-    .kpi-row {
-      display: grid;
-      grid-template-columns: minmax(11rem, 1.15fr) 4.5rem 1fr;
-      gap: 0.45rem 0.85rem;
-      align-items: center;
-      padding: 0.4rem 0 0.25rem;
-      border-top: 1px solid var(--line);
-    }
-
-    .kpi-row strong {
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--ink);
-      line-height: var(--leading-tight);
-      font-weight: 700;
-      letter-spacing: 0;
-    }
-
-    .kpi-target {
-      display: block;
-      margin-top: 0.12rem;
-      font-family: var(--font-body);
-      font-size: var(--text-sm);
-      font-weight: 500;
-      color: var(--ink-muted);
-      line-height: var(--leading-normal);
-    }
-
-    .kpi-pct {
-      font-family: var(--font-body);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--accent-deep);
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0;
-    }
-
-    .kpi-bar {
-      height: 0.38rem;
-      background: rgba(11, 122, 134, 0.12);
-      overflow: hidden;
-      margin-bottom: 0.25rem;
-    }
-
-    .kpi-bar > span {
-      display: block;
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-deep));
-    }
-
-    .kpi-note {
-      font-size: var(--text-sm);
-      color: var(--ink-muted);
-      line-height: var(--leading-normal);
-    }
-
-    .next-half-layout {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: clamp(1.1rem, 2.5vw, 2rem);
-      align-items: start;
-    }
-
-    .next-half-layout .kpi-rows {
-      gap: 0.35rem;
-    }
-
-    .next-half-layout .kpi-row {
-      grid-template-columns: minmax(9rem, 1.1fr) 3.6rem 1fr;
-      gap: 0.35rem 0.65rem;
-      padding: 0.32rem 0 0.2rem;
-    }
-
-    .next-half-layout .kpi-pct {
-      font-size: 1rem;
-    }
-
-    .next-half-layout .kpi-note {
-      font-size: var(--text-sm);
-    }
-
-    .next-half-layout .kpi-target {
-      font-size: var(--text-sm);
-    }
-
-    .value-panel .list {
-      gap: 0.45rem;
-      margin-top: 0.3rem;
-    }
-
-    .value-panel .list li {
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-    }
-
-    /* ── Contribution table ── */
-    .contrib-table-wrap {
-      width: 100%;
-      overflow-x: auto;
-    }
-
-    .contrib-table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-
-    .contrib-table th,
-    .contrib-table td {
-      text-align: left;
-      vertical-align: top;
-      padding: 0.5rem 0.65rem 0.5rem 0;
-      border-bottom: 1px solid var(--line);
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
-    }
-
-    .contrib-table th {
-      font-family: var(--font-body);
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 0.5rem;
-    }
-
-    .contrib-table th:nth-child(1),
-    .contrib-table td:nth-child(1) { width: 18%; }
-
-    .contrib-table th:nth-child(2),
-    .contrib-table td:nth-child(2) { width: 34%; }
-
-    .contrib-table th:nth-child(3),
-    .contrib-table td:nth-child(3) { width: 48%; }
-
-    .contrib-table td:first-child {
-      font-weight: 700;
-      color: var(--accent-deep);
-      white-space: nowrap;
-    }
-
-    .contrib-table td:nth-child(2) {
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .contrib-table tr.group-start td {
-      padding-top: 0.85rem;
-    }
-
-    .growth-table th:nth-child(1),
-    .growth-table td:nth-child(1) { width: 22%; }
-
-    .growth-table th:nth-child(2),
-    .growth-table td:nth-child(2) { width: 36%; }
-
-    .growth-table th:nth-child(3),
-    .growth-table td:nth-child(3) { width: 42%; }
-
-    .growth-table td:nth-child(2) {
-      font-weight: 500;
-      color: var(--ink-soft);
-    }
-
-    .growth-table td:nth-child(3) {
-      font-weight: 400;
-      color: var(--ink-soft);
-    }
-
-    .contrib-scope {
-      margin-top: 0.85rem;
-      padding-top: 0.7rem;
-      border-top: 2px solid var(--accent);
-    }
-
-    .contrib-scope h3 {
-      margin-bottom: 0.35rem;
-    }
-
-    .contrib-scope p {
-      font-size: var(--text-base);
-      color: var(--ink-soft);
-      line-height: var(--leading-normal);
-    }
-
-    @media (max-width: 960px) {
-      .next-half-layout { grid-template-columns: 1fr; }
-    }
-
-    /* ── Flow bar ── */
-    .flow-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.6rem 1rem;
-      padding: 0.65rem 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      flex: 0 0 auto;
-    }
-
-    .flow {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.35rem;
-      margin: 0;
-    }
-
-    .flow span {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 0.4rem 0.75rem;
-      background: var(--accent);
-      color: #f3fafb;
-    }
-
-    .flow i {
-      font-style: normal;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .flow-note {
-      font-size: clamp(0.92rem, 1.05vw, 1rem);
-      color: var(--ink-soft);
-      line-height: 1.4;
-      max-width: 26rem;
-    }
-
-    /* ── KPI / Impact ── */
-    .kpi {
-      border-top: 2px solid var(--accent);
-      padding: 0.65rem 0 0.1rem;
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-    }
-
-    .kpi strong {
-      display: block;
-      font-family: var(--font-display);
-      font-size: clamp(1rem, 1.22vw, 1.12rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.3rem;
-      color: var(--ink);
-    }
-
-    .kpi p {
-      font-size: var(--text-sm);
-      color: var(--ink-soft);
-      line-height: 1.42;
-    }
-
-    .impact-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.9rem 1.1rem;
-      margin-top: 0.25rem;
-    }
-
-    .challenge-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(1rem, 2vw, 1.6rem);
-      margin-top: 0.15rem;
-      padding-top: 0.55rem;
-      border-top: 1px solid var(--line);
-    }
-
-    .challenge-pair .panel p {
-      margin: 0;
-    }
-
-    /* ── QA block ── */
-    .qa-block {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-
-    .qa {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.85rem 1.1rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    .qa li {
-      list-style: none;
-      font-size: clamp(0.94rem, 1.1vw, 1.04rem);
-      color: var(--ink-soft);
-      line-height: 1.4;
-      padding: 0.1rem 0 0.1rem 0.8rem;
-      border-left: 2px solid var(--accent);
-      background: transparent;
-    }
-
-    /* ── Principle banner ── */
-    .principle {
-      margin: 0;
-      padding: 0.65rem 0.95rem;
-      background: var(--accent-soft);
-      border-left: 3px solid var(--accent);
-      color: var(--accent-deep);
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: clamp(0.98rem, 1.15vw, 1.08rem);
-      letter-spacing: -0.01em;
-      width: 100%;
-    }
-
-    /* ── Scope list ── */
-    .scope-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.38rem 1rem;
-      list-style: none;
-    }
-
-    .scope-list li {
-      font-size: clamp(0.96rem, 1.1vw, 1.04rem);
-      color: var(--ink-soft);
-      padding-left: 0.85rem;
-      position: relative;
-      line-height: 1.4;
-    }
-
-    .scope-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.5em;
-      width: 0.3rem;
-      height: 0.3rem;
-      background: var(--accent);
-    }
-
-    /* ── Cases ── */
-    .case {
-      border-top: 2px solid var(--line);
-      padding: 0.7rem 0 0.1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      background: transparent;
-    }
-
-    .case h3 { margin-bottom: 0.1rem; color: var(--ink); }
-    .case .row,
-    .case-row .row {
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
-      margin: 0;
-    }
-
-    .case .row b,
-    .case-row .row b {
-      display: block;
-      color: var(--accent);
-      font-size: var(--text-xs);
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      margin-bottom: 0.12rem;
-    }
-
-    /* ── Skills ── */
-    .skill-block {
-      border-top: 2px solid var(--line);
-      padding: 0.65rem 0 0.1rem;
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-    }
-
-    .skill-block h3 {
-      font-size: 1rem;
-      color: var(--accent-deep);
-      margin-bottom: 0.35rem;
-    }
-
-    .skill-block .list { gap: 0.3rem; }
-
-    /* ── System blocks ── */
-    .sys {
-      border-top: 2px solid var(--line);
-      padding: 0.65rem 0 0.05rem;
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-    }
-
-    .sys h3 { font-size: 1rem; margin-bottom: 0.35rem; color: var(--ink); }
-    .sys .list { gap: 0.3rem; }
-
-    .foot-panel {
-      border-top: 2px solid var(--accent);
-      padding: 0.65rem 0 0.05rem;
-      margin-top: 0.25rem;
-      background: transparent;
-    }
-
-    .foot-panel p {
-      color: var(--ink-soft);
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-    }
-
-    /* ── Watermark ── */
-    .watermark {
-      position: absolute;
-      right: var(--slide-pad);
-      bottom: calc(var(--slide-pad) + 0.15rem);
-      font-family: var(--font-display);
-      font-size: clamp(4.5rem, 12vw, 9.5rem);
-      font-weight: 800;
-      line-height: 0.8;
-      letter-spacing: -0.06em;
-      color: rgba(6, 90, 99, 0.06);
-      pointer-events: none;
-      z-index: 0;
-      user-select: none;
-      max-width: none;
-    }
-
-    .cover .watermark,
-    .closing .watermark { color: rgba(255, 255, 255, 0.05); }
-
-    /* ── Enter animations ── */
-    .slide.active .anim {
-      animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .slide.active .anim-d1 { animation-delay: 0.07s; }
-    .slide.active .anim-d2 { animation-delay: 0.14s; }
-    .slide.active .anim-d3 { animation-delay: 0.21s; }
-    .slide.active .anim-d4 { animation-delay: 0.28s; }
-    .slide.active .anim-d5 { animation-delay: 0.35s; }
-
-    .slide.active .panel,
-    .slide.active .port-item,
-    .slide.active .kpi,
-    .slide.active .case,
-    .slide.active .skill-block,
-    .slide.active .sys {
-      animation: rise 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-
-    .slide.active .panel:nth-child(1),
-    .slide.active .port-item:nth-child(1),
-    .slide.active .kpi:nth-child(1),
-    .slide.active .case:nth-child(1),
-    .slide.active .skill-block:nth-child(1),
-    .slide.active .sys:nth-child(1) { animation-delay: 0.08s; }
-
-    .slide.active .panel:nth-child(2),
-    .slide.active .port-item:nth-child(2),
-    .slide.active .kpi:nth-child(2),
-    .slide.active .case:nth-child(2),
-    .slide.active .skill-block:nth-child(2),
-    .slide.active .sys:nth-child(2) { animation-delay: 0.15s; }
-
-    .slide.active .panel:nth-child(3),
-    .slide.active .port-item:nth-child(3),
-    .slide.active .kpi:nth-child(3),
-    .slide.active .case:nth-child(3),
-    .slide.active .skill-block:nth-child(3),
-    .slide.active .sys:nth-child(3) { animation-delay: 0.22s; }
-
-    .slide.active .panel:nth-child(4),
-    .slide.active .port-item:nth-child(4),
-    .slide.active .kpi:nth-child(4),
-    .slide.active .skill-block:nth-child(4),
-    .slide.active .sys:nth-child(4) { animation-delay: 0.29s; }
-
-    .slide.active .kpi:nth-child(5),
-    .slide.active .skill-block:nth-child(5) { animation-delay: 0.36s; }
-
-    .slide.active .kpi:nth-child(6),
-    .slide.active .skill-block:nth-child(6) { animation-delay: 0.42s; }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes growX {
-      from { transform: scaleX(0); opacity: 0; }
-      to { transform: scaleX(1); opacity: 1; }
-    }
-
-    /* ── Chrome ── */
-    .progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-deep), var(--accent));
-      z-index: 60;
-      transition: width 0.38s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .chrome {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.55rem var(--slide-pad);
-      pointer-events: none;
-      color: var(--ink-muted);
-      font-size: var(--text-xs);
-      font-weight: 500;
-    }
-
-    body:has(.slide.cover.active) .chrome,
-    body:has(.slide.closing.active) .chrome {
-      color: var(--on-dark-muted);
-    }
-
-    .chrome span:last-child {
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.06em;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 960px) {
-      .grid-2, .grid-3, .grid-4, .two-col, .sys-grid,
-      .quality-layout, .case-row, .kpi-row {
-        grid-template-columns: 1fr;
-      }
-      .qa, .impact-strip, .challenge-pair { grid-template-columns: 1fr; }
-      .scope-list { grid-template-columns: 1fr; }
-      .flow-bar { flex-direction: column; align-items: flex-start; }
-      .kpi-pct { text-align: left; }
-      h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); }
-      .cover-brand { font-size: clamp(2.4rem, 11vw, 4rem); }
-      .watermark { display: none; }
-      .slide { overflow-y: auto; padding-left: var(--slide-pad); }
-      .slide::after { display: none; }
-    }
-
-    @media (max-height: 760px) {
-      :root {
-        --text-base: 1rem;
-        --text-md: 1.08rem;
-        --text-lg: 1.16rem;
-        --text-2xl: 1.6rem;
-      }
-      .slide { gap: 0.5rem; }
-      .fill { gap: 0.5rem; }
-    }
-
-    .project-focus .port-item {
-      grid-template-columns: auto 1fr;
-      row-gap: 0.55rem;
-      border-top-color: var(--accent);
-      padding-top: 0.85rem;
-    }
-
-    .project-focus .port-item h3 {
-      font-size: var(--text-xl);
-      color: var(--accent-deep);
-    }
-
-    .project-focus .port-body {
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(0.75rem, 1.5vh, 1.1rem) clamp(1.2rem, 2.5vw, 2rem);
-    }
-
-    .project-focus .port-block {
-      border-top: 1px solid var(--line);
-      padding-top: 0.45rem;
-    }
-
-    .project-focus .port-block p {
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-    }
-
-    .key-projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1.2rem, 2.5vw, 2.2rem);
-      align-items: start;
-    }
-
-    .key-project {
-      border-top: 3px solid var(--accent);
-      padding-top: 0.65rem;
-    }
-
-    .key-project h3 {
-      color: var(--ink);
-      margin-bottom: 0.65rem;
-      font-size: var(--text-lg);
-    }
-
-    .key-project dl { margin: 0; }
-    .key-project dt {
-      margin-top: 0.55rem;
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .key-project dd {
-      margin: 0.15rem 0 0;
-      font-size: clamp(0.78rem, 0.9vw, 0.92rem);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
-    }
-
-    .key-project .port-status { margin-top: 0.75rem; }
-
-    @media (max-width: 900px) {
-      .summary-grid { grid-template-columns: 1fr 1fr; }
-      .project-focus .port-body { grid-template-columns: 1fr; }
-    }
-
-    @media (min-width: 1440px) and (min-height: 800px) {
-      .slide { gap: clamp(0.85rem, 1.6vh, 1.25rem); }
-      .fill { gap: clamp(0.8rem, 1.5vh, 1.15rem); }
-      .contrib-table th,
-      .contrib-table td { padding-top: 0.72rem; padding-bottom: 0.72rem; }
-      .kpi-row { padding-top: 0.65rem; padding-bottom: 0.45rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
-
-    /* ── Presentation-ready minimal theme ── */
-    :root {
-      --accent: #08747c;
-      --accent-deep: #075a60;
-      --accent-soft: rgba(8, 116, 124, 0.08);
-      --ink: #17282c;
-      --ink-soft: #445a5f;
-      --ink-muted: #738489;
-      --line: rgba(23, 40, 44, 0.12);
-      --bg-light-top: #fbfcfc;
-      --bg-light-bot: #f7f9f9;
-      --content-w: min(90vw, 78rem);
-    }
-
-    .slide {
-      background: #fbfcfc;
-      padding-left: var(--slide-pad);
-      transform: translateY(6px);
-      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
-    }
-
-    .slide::after { display: none; }
-
-    .slide.cover,
-    .slide.closing {
-      background: #123e44;
-    }
-
-    .cover-brand {
-      background: none;
-      color: #fff;
-      -webkit-text-fill-color: currentColor;
-      filter: none;
-    }
-
-    .cover-brand .year {
-      background: none;
-      color: #8dd2d6;
-      -webkit-text-fill-color: currentColor;
-    }
-
-    .slide.cover.active .cover-brand::after,
-    .slide.closing.active .cover-brand::after { display: none; }
-
-    .eyebrow::before { width: 1rem; height: 1px; }
-    .slide-head { padding-bottom: 0.7rem; border-bottom: 1px solid var(--line); }
-    .cover .slide-head { border-bottom: 0; }
-
-    .summary-item strong { color: #17282c; }
-    .summary-item h3 { color: var(--accent-deep); letter-spacing: 0.02em; }
-    .summary-message { border-top-color: var(--accent); }
-
-    .panel,
-    .portfolio-group,
-    .key-project,
-    .foot-panel { border-top-width: 1px; }
-
-    .portfolio-row { padding: 0.5rem 0; }
-    .port-status {
-      border: 0;
-      border-left: 3px solid var(--accent);
-      background: transparent;
-      padding: 0.12rem 0 0.12rem 0.5rem;
-    }
-
-    .watermark {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      color: rgba(23, 40, 44, 0.045);
-    }
-
-    .progress { height: 2px; background: var(--accent); transition: width 0.2s ease; }
-    .chrome { padding-top: 0.35rem; padding-bottom: 0.35rem; }
-
-    .slide.active .anim,
-    .slide.active .panel,
-    .slide.active .port-item,
-    .slide.active .kpi,
-    .slide.active .case,
-    .slide.active .skill-block,
-    .slide.active .sys {
-      animation-duration: 0.28s;
-      animation-delay: 0s !important;
-    }
-
-    /* ── Consistent title and content positioning ── */
-    .slide:not(.cover):not(.closing) {
-      padding-top: clamp(1.55rem, 3.5vh, 2.8rem);
-      padding-bottom: clamp(2rem, 4vh, 3.2rem);
-      gap: clamp(0.8rem, 1.7vh, 1.2rem);
-    }
-
-    .slide:not(.cover):not(.closing) .slide-head {
-      min-height: clamp(6.2rem, 15vh, 8.4rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding-bottom: clamp(0.65rem, 1.4vh, 0.95rem);
-      margin-bottom: 0;
-    }
-
-    .slide-head .eyebrow { margin-bottom: 0.38rem; }
-    .slide-head h2 {
-      max-width: 64rem;
-      margin-bottom: 0;
-      text-wrap: balance;
-    }
-
-    .slide-head .sub {
-      max-width: 68rem;
-      margin-top: 0.38rem;
-      text-wrap: pretty;
-    }
-
-    .slide:not(.cover):not(.closing) .fill {
-      flex: 1 1 auto;
-      min-height: 0;
-      justify-content: center;
-    }
-
-    .slide[data-title="Executive Summary"] .fill,
-    .slide[data-title="Project Portfolio"] .fill,
-    .slide[data-title="Skills & Growth"] .fill {
-      justify-content: flex-start;
-    }
-
-    .slide[data-title="Executive Summary"] .summary-grid {
-      width: 100%;
-      padding-top: clamp(0.5rem, 1.5vh, 1rem);
-      row-gap: clamp(1.5rem, 3.5vh, 2.5rem);
-    }
-
-    .slide[data-title="Executive Summary"] .summary-message {
-      margin-top: auto;
-    }
-
-    .slide[data-title="Expanded Ownership"] .grid-2 {
-      gap: clamp(2rem, 4vw, 4rem);
-    }
-
-    .slide[data-title="Expanded Ownership"] .grid-3 {
-      padding-top: 0.15rem;
-      border-top: 1px solid var(--line);
-    }
-
-    .slide[data-title="Project Portfolio"] .slide-head,
-    .slide[data-title="Skills & Growth"] .slide-head {
-      min-height: clamp(7rem, 17vh, 9.2rem);
-    }
-
-    .slide[data-title="Project Portfolio"] .portfolio-columns {
-      gap: clamp(2.2rem, 4vw, 4.5rem);
-    }
-
-    .slide[data-title="Business Impact & Trust"] .grid-2,
-    .slide[data-title="Self-Reflection"] .grid-2 {
-      gap: clamp(2.4rem, 5vw, 5rem);
-    }
-
-    .slide[data-title="Key Contributions"] .fill { justify-content: center; }
-    .slide[data-title="Key Contributions"] .key-projects-grid {
-      gap: clamp(1.5rem, 3vw, 3rem);
-    }
-
-    .slide[data-title="Looking Ahead"] .grid-2 {
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1.4rem, 2.6vw, 2.4rem);
-    }
-
-    .slide[data-title="Looking Ahead"] .panel h3 {
-      min-height: 3.2em;
-    }
-
-    @media (max-width: 960px) {
-      .slide:not(.cover):not(.closing) .slide-head { min-height: auto; }
-      .slide[data-title="Looking Ahead"] .grid-2 { grid-template-columns: 1fr; }
-      .slide[data-title="Looking Ahead"] .panel h3 { min-height: 0; }
-    }
-
-    /* ── White portfolio layout inspired by the reference ── */
-    :root { --rail-w: clamp(11.5rem, 16vw, 15rem); }
-
-    .profile-rail {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 40;
-      width: var(--rail-w);
-      padding: clamp(1.6rem, 4vh, 3rem) clamp(1.1rem, 1.8vw, 1.8rem);
-      display: flex;
-      flex-direction: column;
-      background: #f4f7f7;
-      border-right: 1px solid var(--line);
-      color: var(--ink);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .profile-mark {
-      width: 3.2rem;
-      height: 3.2rem;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--accent);
-      color: #fff;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-
-    .profile-rail h2 {
-      font-size: var(--text-xl);
-      margin: 0;
-      color: var(--ink);
-    }
-
-    .profile-role {
-      margin-top: 0.25rem;
-      font-size: var(--text-sm);
-      color: var(--ink-muted);
-    }
-
-    .profile-period {
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--line);
-    }
-
-    .profile-period span,
-    .rail-label {
-      display: block;
-      font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--accent-deep);
-      margin-bottom: 0.3rem;
-    }
-
-    .profile-period strong { font-size: var(--text-sm); color: var(--ink); }
-
-    .rail-focus {
-      margin-top: auto;
-      padding-top: 1rem;
-      border-top: 1px solid var(--line);
-    }
-
-    .rail-focus p {
-      font-size: var(--text-sm);
-      line-height: 1.5;
-      color: var(--ink-soft);
-    }
-
-    .slide:not(.cover):not(.closing) {
-      padding-left: calc(var(--rail-w) + clamp(1.8rem, 3vw, 3.4rem));
-      padding-right: clamp(1.8rem, 3vw, 3.4rem);
-    }
-
-    .slide:not(.cover):not(.closing) > * {
-      max-width: none;
-    }
-
-    body:has(.slide.cover.active) .profile-rail,
-    body:has(.slide.closing.active) .profile-rail {
-      opacity: 0;
-      transform: translateX(-100%);
-      pointer-events: none;
-    }
-
-    body:not(:has(.slide.cover.active)):not(:has(.slide.closing.active)) .chrome {
-      left: var(--rail-w);
-    }
-
-    .slide-head {
-      border-bottom: 2px solid var(--accent);
-    }
-
-    .summary-grid { column-gap: clamp(1.5rem, 3vw, 3rem); }
-    .summary-item { border-top: 1px solid var(--line); padding-top: 0.75rem; }
-    .summary-item strong { color: var(--accent-deep); }
-    .slide[data-title="Executive Summary"] .summary-grid {
-      align-items: stretch;
-      grid-auto-rows: clamp(9.5rem, 18vh, 10.75rem);
-    }
-    .slide[data-title="Executive Summary"] .summary-item {
-      height: 100%;
-      min-height: 0;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .slide[data-title="Executive Summary"] .summary-item strong {
-      margin-bottom: 0.45rem;
-    }
-    .slide[data-title="Executive Summary"] .summary-item h3 {
-      margin-bottom: 0.18rem;
-    }
-
-    @media (max-width: 960px) {
-      .profile-rail { display: none; }
-      .slide:not(.cover):not(.closing) {
-        padding-left: var(--slide-pad);
-        padding-right: var(--slide-pad);
-      }
-      body:not(:has(.slide.cover.active)):not(:has(.slide.closing.active)) .chrome { left: 0; }
-    }
-
-    /* ── Navy + yellow presentation theme ── */
-    :root {
-      --navy: #06284d;
-      --yellow: #ffc400;
-      --paper: #f8f8f6;
-      --accent: var(--yellow);
-      --accent-deep: #9a7200;
-      --accent-soft: rgba(255, 196, 0, 0.16);
-      --ink: var(--navy);
-      --ink-soft: #29435f;
-      --ink-muted: #6a7a8c;
-      --line: rgba(6, 40, 77, 0.22);
-      --content-w: min(88vw, 82rem);
-    }
-
-    .profile-rail { display: none !important; }
-
-    .slide,
-    .slide:not(.cover):not(.closing) {
-      background: var(--paper);
-      padding-left: clamp(2.6rem, 6vw, 6.5rem);
-      padding-right: clamp(2.6rem, 6vw, 6.5rem);
-    }
-
-    .slide::before {
-      content: "";
-      position: absolute;
-      inset: clamp(0.45rem, 1vw, 0.8rem);
-      border: 1px solid rgba(6, 40, 77, 0.18);
-      border-radius: 1rem;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .slide:not(.cover):not(.closing)::after {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 9%;
-      bottom: 9%;
-      left: 0;
-      width: clamp(1.8rem, 4vw, 3.8rem);
-      border: 2px solid var(--navy);
-      border-left: 0;
-      border-radius: 0 1.4rem 1.4rem 0;
-      background: transparent;
-      opacity: 1;
-      z-index: 0;
-    }
-
-    .slide:not(.cover):not(.closing)::selection { background: var(--yellow); }
-
-    .slide.cover,
-    .slide.closing {
-      background: var(--paper);
-      color: var(--navy);
-    }
-
-    .slide.cover::after,
-    .slide.closing::after {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 10%;
-      bottom: 10%;
-      right: 0;
-      left: auto;
-      width: clamp(3rem, 6vw, 6rem);
-      border-radius: 1.6rem 0 0 1.6rem;
-      background: var(--navy);
-      opacity: 1;
-    }
-
-    .cover h1, .closing h1,
-    .cover-brand,
-    .cover-brand .year {
-      color: var(--navy);
-      -webkit-text-fill-color: currentColor;
-    }
-
-    .cover .sub, .closing .sub { color: var(--ink-soft); }
-    .cover .eyebrow, .closing .eyebrow { color: var(--navy); }
-    .meta-row { border-top-color: var(--yellow); }
-    .meta-item label { color: var(--accent-deep); }
-    .meta-item strong { color: var(--navy); }
-
-    .slide-head {
-      border-bottom: 0;
-      align-items: flex-start;
-    }
-
-    .slide-head .eyebrow {
-      display: inline-flex;
-      width: auto;
-      padding: 0.25rem 0.85rem;
-      border-radius: 999px;
-      background: var(--yellow);
-      color: var(--navy);
-      font-weight: 700;
-      letter-spacing: 0.06em;
-    }
-
-    .slide-head .eyebrow::before { display: none; }
-    .slide-head h2 {
-      font-size: clamp(2rem, 3.5vw, 3.3rem);
-      color: var(--navy);
-      text-transform: uppercase;
-      letter-spacing: -0.02em;
-    }
-
-    .slide-head .sub {
-      display: inline-block;
-      width: auto;
-      padding: 0.28rem 1rem;
-      border-radius: 999px;
-      background: var(--yellow);
-      color: var(--navy);
-      font-weight: 600;
-      line-height: 1.25;
-    }
-
-    h3 { color: var(--navy); }
-    .panel,
-    .portfolio-group,
-    .key-project,
-    .skill-block {
-      border-top: 0;
-      border: 2px solid var(--navy);
-      border-radius: 1.15rem;
-      padding: 1rem 1.15rem;
-      background: #fff;
-    }
-
-    .portfolio-row { border-top-color: rgba(6, 40, 77, 0.14); }
-    .portfolio-group h3,
-    .key-project h3,
-    .skill-block h3 {
-      display: inline-block;
-      padding: 0.28rem 0.8rem;
-      border-radius: 999px;
-      background: var(--yellow);
-      color: var(--navy);
-    }
-
-    .summary-item {
-      border-top: 0;
-      border-bottom: 3px solid var(--yellow);
-      padding: 0.6rem 0 0.75rem;
-    }
-    .summary-item strong { color: var(--navy); }
-    .summary-item h3 { color: var(--navy); }
-    .summary-message {
-      padding: 0.65rem 1rem;
-      border: 0;
-      border-radius: 999px;
-      background: var(--yellow);
-      color: var(--navy);
-    }
-
-    .port-status {
-      border-left-color: var(--yellow);
-      color: var(--navy);
-    }
-
-    .watermark { color: rgba(6, 40, 77, 0.05); }
-    .progress { background: var(--yellow); }
-    .chrome,
-    body:not(:has(.slide.cover.active)):not(:has(.slide.closing.active)) .chrome { left: 0; color: var(--navy); }
-
-    @media (max-width: 960px) {
-      .slide,
-      .slide:not(.cover):not(.closing) {
-        padding-left: var(--slide-pad);
-        padding-right: var(--slide-pad);
-      }
-      .slide:not(.cover):not(.closing)::after { display: none; }
-    }
-
-    /* ── Final layout alignment for navy/yellow theme ── */
-    .slide:not(.cover):not(.closing) {
-      padding-top: clamp(1.4rem, 3vh, 2.2rem);
-      padding-bottom: clamp(2rem, 4.5vh, 3.4rem);
-      padding-left: clamp(4.5rem, 8vw, 8.2rem);
-      padding-right: clamp(3.2rem, 6vw, 6.2rem);
-      gap: clamp(0.65rem, 1.3vh, 0.95rem);
-    }
-
-    .slide:not(.cover):not(.closing) .slide-head {
-      min-height: 0;
-      justify-content: flex-start;
-      padding: 0;
-      margin: 0;
-      gap: 0.32rem;
-    }
-
-    .slide-head .eyebrow { order: 1; margin: 0; }
-    .slide-head h2 { order: 2; margin: 0; line-height: 1.03; }
-    .slide-head .sub { order: 3; margin: 0.15rem 0 0; }
-
-    .slide:not(.cover):not(.closing) .fill {
-      justify-content: flex-start;
-      padding-top: clamp(0.45rem, 1.2vh, 0.9rem);
-    }
-
-    .slide[data-title="Executive Summary"] .summary-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(1.1rem, 2.5vh, 1.8rem) clamp(1.6rem, 3vw, 3rem);
-      padding-top: 0.25rem;
-    }
-
-    .slide[data-title="Executive Summary"] .summary-item {
-      min-height: clamp(5.6rem, 12vh, 7.2rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-
-    .slide[data-title="Executive Summary"] .summary-message {
-      margin-top: clamp(0.8rem, 2vh, 1.4rem);
-      align-self: flex-start;
-      max-width: 64rem;
-    }
-
-    .slide[data-title="Project Portfolio"] .portfolio-columns {
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: clamp(1rem, 2vw, 1.8rem);
-      align-items: stretch;
-    }
-
-    .slide[data-title="Project Portfolio"] .portfolio-group {
-      height: 100%;
-      padding: clamp(0.75rem, 1.4vw, 1rem);
-    }
-
-    .slide[data-title="Project Portfolio"] .portfolio-row {
-      grid-template-columns: minmax(8.5rem, 0.8fr) minmax(0, 1.55fr);
-      padding: 0.34rem 0;
-    }
-
-    .slide[data-title="Project Portfolio"] .portfolio-row strong,
-    .slide[data-title="Project Portfolio"] .portfolio-row p {
-      line-height: 1.3;
-    }
-
-    .slide[data-title="Key Contributions"] .key-projects-grid,
-    .slide[data-title="Skills & Growth"] .grid-3,
-    .slide[data-title="Looking Ahead"] .grid-2 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(1rem, 2vw, 1.8rem);
-      align-items: stretch;
-    }
-
-    .slide[data-title="Key Contributions"] .key-project,
-    .slide[data-title="Skills & Growth"] .skill-block,
-    .slide[data-title="Looking Ahead"] .panel {
-      height: 100%;
-    }
-
-    .slide[data-title="Key Contributions"] .key-project h3,
-    .slide[data-title="Skills & Growth"] .skill-block h3 {
-      margin-bottom: 0.55rem;
-    }
-
-    .slide[data-title="Looking Ahead"] .panel h3 {
-      min-height: 0;
-      margin-bottom: 0.65rem;
-    }
-
-    .slide[data-title="Looking Ahead"] .kpi-note { margin-top: auto !important; }
-
-    @media (max-width: 960px) {
-      .slide:not(.cover):not(.closing) {
-        padding-left: var(--slide-pad);
-        padding-right: var(--slide-pad);
-      }
-      .slide[data-title="Executive Summary"] .summary-grid,
-      .slide[data-title="Project Portfolio"] .portfolio-columns,
-      .slide[data-title="Key Contributions"] .key-projects-grid,
-      .slide[data-title="Skills & Growth"] .grid-3,
-      .slide[data-title="Looking Ahead"] .grid-2 { grid-template-columns: 1fr; }
-      .slide[data-title="Executive Summary"] .summary-item { min-height: 0; }
-    }
-
-    /* ── Corporate soft-blue theme ── */
-    :root {
-      --blue: #5872c8;
-      --blue-deep: #2d3950;
-      --blue-soft: #edf1ff;
-      --lavender: #dedaf2;
-      --paper: #ffffff;
-      --accent: var(--blue);
-      --accent-deep: var(--blue);
-      --accent-soft: rgba(88, 114, 200, 0.1);
-      --ink: var(--blue-deep);
-      --ink-soft: #455166;
-      --ink-muted: #758096;
-      --line: rgba(45, 57, 80, 0.2);
-    }
-
-    .slide,
-    .slide:not(.cover):not(.closing),
-    .slide.cover,
-    .slide.closing {
-      background:
-        radial-gradient(circle at 88% 8%, rgba(175, 194, 239, 0.24), transparent 24%),
-        radial-gradient(circle at 6% 82%, rgba(203, 211, 244, 0.22), transparent 22%),
-        var(--paper);
-      color: var(--ink);
-      padding-left: clamp(3rem, 5.2vw, 5.4rem);
-      padding-right: clamp(3rem, 5.2vw, 5.4rem);
-    }
-
-    .slide::before,
-    .slide:not(.cover):not(.closing)::after,
-    .slide.cover::after,
-    .slide.closing::after { display: none; }
-
-    .slide:not(.cover):not(.closing) .slide-head {
-      padding-top: clamp(1.6rem, 3vh, 2.2rem);
-      padding-bottom: clamp(0.75rem, 1.5vh, 1rem);
-      border-bottom: 2px solid rgba(88, 114, 200, 0.65);
-      position: relative;
-    }
-
-
-    .slide-head .eyebrow {
-      padding: 0;
-      border-radius: 0;
-      background: transparent;
-      color: var(--blue-deep);
-      font-size: var(--text-xs);
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .slide-head h2 {
-      color: var(--blue);
-      font-size: clamp(2.15rem, 4vw, 3.65rem);
-      text-transform: none;
-      letter-spacing: -0.035em;
-      line-height: 1.04;
-      margin-top: clamp(0.65rem, 1.5vh, 1.15rem);
-    }
-
-    .slide-head .sub {
-      padding: 0;
-      border-radius: 0;
-      background: transparent;
-      color: var(--ink-soft);
-      font-weight: 400;
-      margin-top: 0.4rem;
-      max-width: 62rem;
-    }
-
-    .slide:not(.cover):not(.closing) .fill {
-      padding-top: clamp(0.8rem, 2vh, 1.45rem);
-    }
-
-    .cover-brand,
-    .cover-brand .year,
-    .cover h1,
-    .closing h1 { color: var(--blue-deep); }
-    .cover-brand .year { color: var(--blue); }
-    .cover .sub, .closing .sub { color: var(--ink-soft); }
-    .cover .eyebrow, .closing .eyebrow { color: var(--blue); }
-    .meta-row { border-top-color: rgba(88, 114, 200, 0.5); }
-    .meta-item label { color: var(--blue); }
-    .meta-item strong { color: var(--blue-deep); }
-
-    .summary-item {
-      padding: 0.9rem 1rem;
-      border: 0;
-      border-radius: 1.15rem;
-      background: linear-gradient(135deg, rgba(222, 226, 250, 0.95), rgba(247, 247, 250, 0.95));
-    }
-    .summary-item strong,
-    .summary-item h3 { color: var(--blue); }
-    .summary-message {
-      padding: 0.65rem 1rem;
-      border: 1px solid rgba(88, 114, 200, 0.3);
-      border-radius: 0.85rem;
-      background: rgba(237, 241, 255, 0.7);
-      color: var(--ink);
-    }
-
-    .panel,
-    .portfolio-group,
-    .key-project,
-    .skill-block {
-      border: 1.5px solid rgba(88, 114, 200, 0.3);
-      border-radius: 1.15rem;
-      background: rgba(247, 248, 253, 0.88);
-      box-shadow: none;
-    }
-
-    .portfolio-group h3,
-    .key-project h3,
-    .skill-block h3 {
-      padding: 0;
-      border-radius: 0;
-      background: transparent;
-      color: var(--blue);
-    }
-
-    .portfolio-row { border-top-color: rgba(88, 114, 200, 0.22); }
-    .port-status {
-      border-left-color: var(--blue);
-      color: var(--blue);
-    }
-
-    .kpi-note,
-    .principle {
-      color: var(--ink-soft);
-    }
-
-    .watermark { color: rgba(88, 114, 200, 0.07); }
-    .progress { background: linear-gradient(90deg, #6f4bd8, var(--blue)); }
-    .chrome { color: var(--ink-muted); }
-
-    .list li::before { background: var(--blue); border-radius: 50%; }
-
-    @media (max-width: 960px) {
-      .slide,
-      .slide:not(.cover):not(.closing),
-      .slide.cover,
-      .slide.closing {
-        padding-left: var(--slide-pad);
-        padding-right: var(--slide-pad);
-      }
-    }
-
-    /* ── Final theme: clean teal status-report system ── */
-    :root {
-      --accent: #34988f;
-      --accent-deep: #267d76;
-      --accent-soft: #e6f1ef;
-      --ink: #20242d;
-      --ink-soft: #626a73;
-      --ink-muted: #7f8790;
-      --line: #ccd0cf;
-      --paper: #ffffff;
-    }
-
-    body { background: #eef0f2; }
-
-    .slide,
-    .slide:not(.cover):not(.closing),
-    .slide.cover,
-    .slide.closing {
-      background: var(--paper);
-      color: var(--ink);
-      padding: clamp(2rem, 4.2vh, 3.15rem) clamp(3.1rem, 5.2vw, 5.3rem) clamp(3.2rem, 6vh, 4.5rem);
-    }
-
-    .slide::before,
-    .slide:not(.cover):not(.closing)::after,
-    .slide.cover::after,
-    .slide.closing::after { display: none; }
-
-    .slide:not(.cover):not(.closing) .slide-head {
-      padding: 0 0 clamp(0.55rem, 1.15vh, 0.85rem);
-      border: 0;
-    }
-
-    .slide-head .eyebrow,
-    .cover > .eyebrow {
-      display: inline-flex;
-      align-items: center;
       min-height: 2rem;
       padding: 0.35rem 1.15rem;
       border-radius: 999px;
@@ -2170,12 +131,18 @@
       text-transform: uppercase;
     }
 
+    h1, h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
     .slide-head h2 {
       margin-top: clamp(0.65rem, 1.3vh, 0.95rem);
-      color: var(--ink);
       font-size: clamp(2.45rem, 4.6vw, 4.3rem);
       line-height: 0.98;
       letter-spacing: -0.05em;
+      text-wrap: balance;
     }
 
     .slide-head .sub {
@@ -2184,45 +151,103 @@
       color: var(--ink-soft);
       font-size: clamp(0.96rem, 1.2vw, 1.22rem);
       font-weight: 400;
+      line-height: 1.25;
+      text-wrap: pretty;
     }
 
-    .slide:not(.cover):not(.closing) .fill {
+    /* Headings stay pinned at the same height on every slide; the body is
+       centred in whatever space is left so no slide bottom-heavies or voids. */
+    .fill {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(0.65rem, 1.3vh, 0.95rem);
       padding-top: clamp(0.45rem, 1.2vh, 0.8rem);
     }
 
-    .watermark {
-      top: clamp(2.05rem, 4.35vh, 3.2rem);
-      right: clamp(3.1rem, 5.2vw, 5.3rem);
-      color: var(--ink);
-      font-size: clamp(0.7rem, 0.82vw, 0.86rem);
+    /* ── Cover & Closing ── */
+    .cover, .closing { justify-content: flex-start; align-items: stretch; text-align: left; }
+
+    /* Cover pins its meta row to the bottom, so it needs extra clearance */
+    .cover { padding-bottom: calc(var(--slide-pad-b) + 2.1rem); }
+
+    .cover-main { margin: auto 0; max-width: 57rem; padding: clamp(1.2rem, 3vh, 2.4rem) 0; }
+
+    .cover-brand {
+      margin: 0.45rem 0 0.85rem;
+      max-width: 12ch;
+      font-family: var(--font-display);
+      font-size: clamp(3.7rem, 7.8vw, 7.2rem);
       font-weight: 800;
-      letter-spacing: 0.08em;
-      opacity: 1;
-      transform: none;
+      line-height: 0.88;
+      letter-spacing: -0.065em;
+      color: var(--ink);
     }
 
-    .slide:not(.cover):not(.closing) .slide-head::before,
-    .cover::before {
-      content: none;
-      display: none;
+    .cover-brand .year {
+      display: inline-block;
+      margin-top: 0.12em;
+      font-weight: 700;
+      color: var(--accent);
     }
 
-    .panel,
-    .portfolio-group,
-    .key-project,
-    .skill-block,
-    .summary-item {
+    .cover .sub {
+      margin-top: 0.9rem;
+      max-width: 38rem;
+      color: var(--ink-soft);
+      font-size: clamp(1rem, 1.4vw, 1.35rem);
+      line-height: var(--leading-normal);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem 2.25rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .meta-item label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .meta-item strong { font-size: var(--text-md); font-weight: 600; color: var(--ink); }
+
+    /* ── Shared card surface ── */
+    .card {
       border: 1px solid var(--line);
       border-radius: 0.9rem;
-      background: #fff;
-      box-shadow: none;
+      background: var(--paper);
+    }
+
+    /* ── Executive summary ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: clamp(9.5rem, 18vh, 10.75rem);
+      align-items: stretch;
+      gap: clamp(1.1rem, 2.5vh, 1.8rem) clamp(1.6rem, 3vw, 3rem);
+      padding-top: 0.25rem;
     }
 
     .summary-item {
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
       padding: 1rem 1.15rem;
     }
+
     .summary-item::before {
       content: "";
       position: absolute;
@@ -2230,529 +255,499 @@
       width: 0.28rem;
       background: var(--accent);
     }
-    .summary-item strong,
-    .summary-item h3,
-    .portfolio-group h3,
-    .key-project h3,
-    .skill-block h3 { color: var(--ink); }
-    .summary-item strong { color: var(--accent-deep); }
-    .slide[data-title="Executive Summary"] .summary-grid {
-      align-items: stretch;
-      grid-auto-rows: clamp(9.5rem, 18vh, 10.75rem);
+
+    .summary-item strong {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.7rem, 5.5vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+      color: var(--accent-deep);
     }
-    .slide[data-title="Executive Summary"] .summary-item {
-      height: 100%;
-      min-height: 0;
-      box-sizing: border-box;
-      justify-content: center;
+
+    .summary-item strong.metric-word {
+      font-size: clamp(1.6rem, 2.9vw, 2.7rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
     }
-    .summary-message {
-      padding: 0.75rem 1.1rem;
-      border: 0;
-      border-radius: 0.75rem;
-      background: var(--accent-soft);
+
+    .summary-item h3 {
+      margin-bottom: 0.18rem;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
       color: var(--ink);
     }
 
-    .portfolio-group h3,
-    .key-project h3,
-    .skill-block h3 {
-      padding-bottom: 0.55rem;
-      border-bottom: 2px solid var(--accent);
-    }
-    .portfolio-row { border-top-color: #e2e4e3; }
-    .portfolio-row strong,
-    .key-project dt { color: var(--accent-deep); }
-    .port-status {
-      border-left-color: var(--accent);
-      color: var(--accent-deep);
-      background: var(--accent-soft);
-    }
-    .list li::before { background: var(--accent); }
-    .kpi-note,
-    .principle { background: var(--accent-soft); color: var(--ink-soft); }
-
-    .cover {
-      justify-content: flex-start;
-      align-items: stretch;
-      text-align: left;
-    }
-    .cover-main {
-      margin: auto 0;
-      max-width: 57rem;
-      padding: clamp(1.2rem, 3vh, 2.4rem) 0;
-    }
-    .cover-brand,
-    .cover-brand .year {
-      color: var(--ink);
-      font-size: clamp(3.7rem, 7.8vw, 7.2rem);
-      line-height: 0.88;
-      letter-spacing: -0.065em;
-    }
-    .cover-brand .year { color: var(--accent); }
-    .cover .sub { color: var(--ink-soft); font-size: clamp(1rem, 1.4vw, 1.35rem); }
-    .meta-row {
-      border-top: 1px solid var(--line);
-      padding-top: 1rem;
-    }
-    .meta-item label { color: var(--ink-muted); }
-    .meta-item strong { color: var(--ink); }
-
-    .chrome {
-      left: clamp(3.1rem, 5.2vw, 5.3rem);
-      right: clamp(3.1rem, 5.2vw, 5.3rem);
-      bottom: clamp(1.3rem, 2.5vh, 2rem);
-      padding-top: 0.7rem;
-      border-top: 1px solid var(--line);
-      color: var(--ink-soft);
-      font-size: clamp(0.65rem, 0.75vw, 0.78rem);
-    }
-    .progress { height: 3px; background: var(--accent); }
-
-    .portfolio-three {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(0.75rem, 1.35vw, 1.15rem);
-      align-items: stretch;
-    }
-    .portfolio-three .portfolio-group { padding: 0.75rem 0.9rem; }
-    .portfolio-three .portfolio-row {
-      display: block;
-      padding: 0.42rem 0;
-    }
-    .portfolio-three .portfolio-row strong {
-      display: block;
-      margin-bottom: 0.1rem;
-      font-size: var(--text-base);
-    }
-    .portfolio-three .portfolio-row p {
-      font-size: var(--text-sm);
-      line-height: 1.28;
-    }
-    .learning-lead {
-      font-size: var(--text-base);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
-      max-width: 62rem;
-      margin-bottom: 0.3rem;
-    }
-    .learning-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(0.9rem, 1.6vw, 1.35rem);
-    }
-    .learning-grid .skill-block {
-      height: 100%;
-      padding: clamp(0.85rem, 1.3vw, 1.15rem) clamp(0.95rem, 1.5vw, 1.3rem);
-    }
-    .learning-grid .skill-block h3 {
-      font-size: var(--text-base);
-      margin-bottom: 0.5rem;
-    }
-    .learning-subhead {
-      font-size: var(--text-xs);
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--accent-deep);
-      margin: -0.15rem 0 0.5rem;
-    }
-    .learning-grid .skill-block .list {
-      gap: 0.45rem;
-    }
-    .learning-grid .skill-block .list li {
-      font-size: var(--text-sm);
-      line-height: 1.35;
-    }
-    .learning-grid .lesson-no {
-      display: block;
-      margin-bottom: 0.4rem;
-      color: var(--accent);
-      font-size: clamp(1.3rem, 1.9vw, 1.85rem);
-      font-weight: 800;
-    }
-    .learning-proof {
-      margin-top: 0.65rem;
-      padding-top: 0.55rem;
-      border-top: 1px solid var(--line);
-      color: var(--ink-soft);
-      font-size: var(--text-xs);
-    }
-    .good-strip {
-      margin-top: clamp(0.8rem, 1.6vh, 1.15rem);
-      padding: clamp(0.75rem, 1.2vw, 1rem) clamp(1rem, 1.6vw, 1.3rem);
-    }
-    .good-strip h3 {
-      font-size: var(--text-base);
-      color: var(--accent-deep);
-      padding-bottom: 0.4rem;
-      margin-bottom: 0.6rem;
-      border-bottom: 2px solid var(--accent);
-    }
-    .good-cols {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1rem, 1.8vw, 1.6rem);
-    }
-    .good-cols p {
-      margin: 0;
-      font-size: var(--text-xs);
-      line-height: 1.35;
-      color: var(--ink-soft);
-    }
-    .progress-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: clamp(0.9rem, 1.6vw, 1.3rem);
-    }
-    .progress-grid .skill-block {
-      height: 100%;
-      padding: clamp(1rem, 1.6vw, 1.4rem) clamp(1rem, 1.5vw, 1.25rem);
-    }
-    .progress-tag {
-      display: inline-flex;
-      align-items: center;
-      font-size: var(--text-xs);
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--accent);
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      margin-bottom: 0.7rem;
-    }
-    .progress-text {
-      margin: 0;
+    .summary-item p {
+      max-width: 22rem;
       font-size: var(--text-sm);
       line-height: var(--leading-normal);
       color: var(--ink-soft);
     }
-    .progress-text strong {
-      color: var(--ink);
-    }
-    .progress-grid-5 {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-    }
-    .progress-subhead {
-      margin: 0.5rem 0 0.35rem;
-      font-size: var(--text-xs);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--accent-deep);
-    }
-    .progress-stats {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin: 0;
-      padding: 0;
-    }
-    .progress-stats li {
-      font-size: var(--text-xs);
-      line-height: 1.35;
-      color: var(--ink-soft);
-    }
-    .progress-stats li strong {
-      color: var(--ink);
-    }
-    @media (max-width: 960px) {
-      .progress-grid { grid-template-columns: 1fr; }
-    }
-    .test-coverage-panel {
-      margin-top: clamp(0.9rem, 1.8vh, 1.3rem);
-      margin-bottom: clamp(0.9rem, 1.8vh, 1.3rem);
-      padding: clamp(1rem, 1.6vw, 1.4rem) clamp(1.3rem, 2vw, 1.7rem);
-    }
-    .test-coverage-panel h3 {
-      font-size: var(--text-lg);
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.85rem;
-    }
-    .test-coverage-cols {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(1.6rem, 3vw, 2.6rem);
-    }
-    .test-coverage-col {
-      padding-left: clamp(1.3rem, 2.2vw, 1.8rem);
-      border-left: 1px solid var(--line);
-    }
-    .test-coverage-col:first-child {
-      padding-left: 0;
-      border-left: 0;
-    }
-    .tc-heading {
-      font-size: var(--text-base);
-      font-weight: 700;
-      color: var(--ink);
-      padding-bottom: 0.4rem;
-      margin-bottom: 0.5rem;
-      border-bottom: 2px solid var(--accent);
-    }
-    .tc-desc {
-      margin: 0;
-      font-size: var(--text-sm);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
-    }
-    @media (max-width: 960px) {
-      .test-coverage-cols { grid-template-columns: 1fr; }
-      .test-coverage-col:not(:first-child) { padding-left: 0; border-left: 0; margin-top: 1rem; }
-    }
-    .value-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: clamp(1rem, 2vw, 1.8rem);
-      align-items: stretch;
-    }
-    .value-grid .panel { padding: clamp(1rem, 1.8vw, 1.45rem); }
-    .value-grid h3 { color: var(--accent-deep); }
-    .value-statement {
-      margin-top: 0.85rem;
-      padding: 0.85rem 1rem;
-      border-left: 4px solid var(--accent);
-      background: var(--accent-soft);
-      color: var(--ink);
-      font-weight: 700;
-    }
 
-    @media (max-width: 960px) {
-      .slide,
-      .slide:not(.cover):not(.closing),
-      .slide.cover,
-      .slide.closing { padding-left: var(--slide-pad); padding-right: var(--slide-pad); }
-      .watermark { right: var(--slide-pad); }
-      .chrome { left: var(--slide-pad); right: var(--slide-pad); }
-      .portfolio-three,
-      .learning-grid,
-      .value-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── Restructure 2026-08: 7-slide deck ── */
-
-    /* Work portfolio, categorized (Business Core / Internal / Support) */
+    /* ── Work portfolio ── */
     .portfolio-categories {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: clamp(1.2rem, 2.4vw, 1.8rem);
-      margin-top: clamp(1.4rem, 3vh, 2.2rem);
       align-items: stretch;
+      margin-top: clamp(0.9rem, 2vh, 1.5rem);
     }
 
-    .category-col {
-      border: 1px solid var(--line);
-      border-radius: 0.9rem;
-      background: #fff;
-      padding: clamp(1.1rem, 1.7vw, 1.5rem) clamp(1.2rem, 1.9vw, 1.6rem);
-    }
+    .category-col { padding: clamp(1.1rem, 1.7vw, 1.5rem) clamp(1.2rem, 1.9vw, 1.6rem); }
 
     .category-title {
       display: flex;
       align-items: baseline;
-      gap: 0.55rem;
       flex-wrap: wrap;
-      font-size: var(--text-lg);
-      color: var(--ink);
-      margin-bottom: 0;
+      gap: 0.55rem;
       padding-bottom: 0.6rem;
       border-bottom: 2px solid var(--accent);
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--ink);
     }
 
     .category-title .category-sub {
-      font-family: var(--font-body);
-      font-weight: 500;
       font-size: var(--text-sm);
+      font-weight: 500;
       color: var(--ink-muted);
-      text-transform: none;
       letter-spacing: 0;
+      text-transform: none;
     }
 
-    .category-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      margin-top: 0.3rem;
-    }
+    .category-list { list-style: none; display: flex; flex-direction: column; margin-top: 0.3rem; }
 
-    .category-list li {
-      padding: 0.6rem 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .category-list li:first-child {
-      border-top: 0;
-      padding-top: 0.15rem;
-    }
+    .category-list li { padding: 0.5rem 0; border-top: 1px solid var(--line); }
+    .category-list li:first-child { border-top: 0; padding-top: 0.15rem; }
 
     .category-list li strong {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
       flex-wrap: wrap;
+      gap: 0.45rem;
       font-size: var(--text-base);
-      font-weight: 500;
+      font-weight: 400;
       color: var(--ink);
     }
 
-    .category-list li.flagship strong {
-      font-weight: 700;
-      color: var(--accent-deep);
-    }
+    .category-list li.flagship strong { font-weight: 700; color: var(--accent-deep); }
 
-    .category-list li p {
-      margin: 0;
-      font-size: var(--text-sm);
-      line-height: var(--leading-normal);
-      color: var(--ink-soft);
+    /* In the portfolio list the bold name already carries the emphasis,
+       so the badge stays quiet — outline instead of a filled pill. */
+    .category-list .flag-tag {
+      padding: 0.02rem 0.4rem;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent-deep);
+      font-size: clamp(0.6rem, 0.66vw, 0.7rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
     }
 
     .flag-tag {
       display: inline-flex;
       align-items: center;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
       font-size: var(--text-xs);
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #fff;
-      background: var(--accent);
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
     }
 
-    /* Single-project detail page */
-    .project-hero {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      flex-wrap: wrap;
-    }
-
+    /* ── Project detail card ── */
     .eyebrow.project-hero {
-      background: #fff;
-      color: var(--ink);
+      gap: 0.65rem;
+      padding: 0.4rem 1rem;
       border: 1px solid var(--line);
       border-radius: 0.75rem;
-      padding: 0.4rem 1rem;
+      background: var(--paper);
+      color: var(--ink);
     }
 
-    .project-detail-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: clamp(2.2rem, 4.5vw, 4.5rem);
-      align-items: start;
-    }
+    .project-card { padding: clamp(1.15rem, 1.9vw, 1.7rem) clamp(1.8rem, 2.8vw, 2.6rem); }
 
-    .project-block + .project-block {
-      margin-top: clamp(1.5rem, 2.8vh, 2.2rem);
-    }
-
-    .project-detail-grid h3 {
-      font-size: var(--text-lg);
-      color: var(--accent-deep);
-      margin-bottom: 0.5rem;
-    }
-
-    .project-detail-grid p {
-      font-size: var(--text-lg);
-      line-height: var(--leading-relaxed);
-      color: var(--ink-soft);
-    }
-
-    .project-side {
-      border-left: 3px solid var(--accent);
-      padding-left: clamp(1.3rem, 2.2vw, 2rem);
-    }
-
-    .project-side .port-status {
-      margin-top: 1.1rem;
-      font-size: var(--text-md);
-      padding: 0.32rem 0.75rem;
-    }
-
-    .project-side .port-status-note {
-      display: block;
-      margin-top: 0.5rem;
-      font-size: var(--text-sm);
-    }
-
-    /* Single-project detail page — card style */
-    .project-card {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 0.9rem;
-      background: #fff;
-      padding: clamp(1.3rem, 2.2vw, 1.9rem) clamp(2rem, 3.2vw, 3rem);
-    }
-
-    .slide[data-title="PayOut Fee Management"] .fill,
-    .slide[data-title="Admin Transfer"] .fill,
-    .slide[data-title="Operation Logs"] .fill {
-      justify-content: center;
+    /* Title on the left, delivery status on the right */
+    .project-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+      padding-bottom: 0.5rem;
+      margin-bottom: clamp(0.85rem, 1.8vh, 1.25rem);
+      border-bottom: 2px solid var(--accent);
     }
 
     .project-card-title {
       font-size: var(--text-lg);
       font-weight: 700;
       color: var(--ink);
-      padding-bottom: 0.4rem;
-      margin-bottom: 0.75rem;
-      border-bottom: 2px solid var(--accent);
     }
 
-    .project-card-section + .project-card-section {
-      margin-top: 0.8rem;
+    /* Four sections read as a 2x2 block instead of one long column */
+    .project-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(0.85rem, 1.9vh, 1.35rem) clamp(1.6rem, 3vw, 2.8rem);
+    }
+
+    /* Hairline between the two columns */
+    .project-card-section:nth-child(even) {
+      border-left: 1px solid var(--line);
+      padding-left: clamp(1.1rem, 1.9vw, 1.7rem);
+      margin-left: clamp(-1.5rem, -1.6vw, -0.9rem);
     }
 
     .project-card-section h4 {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
       font-size: var(--text-sm);
       font-weight: 800;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--accent-deep);
-      margin-bottom: 0.35rem;
+    }
+
+    .step {
+      font-family: var(--font-display);
+      font-size: 1.15em;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--accent);
     }
 
     .project-card-section p {
-      margin: 0;
       font-size: var(--text-base);
       line-height: var(--leading-normal);
       color: var(--ink-soft);
     }
 
-    .project-card .port-status {
-      margin-top: 1.2rem;
+    .port-status {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.12rem 0.5rem 0.12rem 0.5rem;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
-    .project-card .port-status-note {
+    .port-status.late {
+      border-left-color: var(--late);
+      background: rgba(138, 75, 18, 0.08);
+      color: var(--late);
+    }
+
+    .port-status-note {
       display: block;
-      margin-top: 0.5rem;
+      margin-top: clamp(0.8rem, 1.6vh, 1.15rem);
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--line);
       font-size: var(--text-sm);
+      color: var(--ink-muted);
     }
 
-    /* Learning & Results stat strip */
-    .results-strip {
+    /* ── Test coverage panel ── */
+    .test-coverage-panel {
+      padding: clamp(1rem, 1.6vw, 1.4rem) clamp(1.3rem, 2vw, 1.7rem);
+      margin-bottom: clamp(0.9rem, 1.8vh, 1.3rem);
+    }
+
+    .tc-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .tc-head h3 { font-size: var(--text-lg); font-weight: 700; color: var(--ink); }
+    .tc-total { font-size: var(--text-sm); color: var(--ink-muted); }
+    .tc-total strong { color: var(--accent-deep); }
+
+    .test-coverage-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.6rem, 3vw, 2.6rem); }
+    .test-coverage-col + .test-coverage-col { padding-left: clamp(1.3rem, 2.2vw, 1.8rem); border-left: 1px solid var(--line); }
+
+    .tc-heading {
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .tc-desc { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--ink-soft); }
+
+    /* ── Progress / goal cards ── */
+    .progress-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1.2rem, 2.5vw, 2rem);
-      padding-bottom: clamp(1.2rem, 2.4vh, 1.8rem);
-      margin-bottom: clamp(1.2rem, 2.4vh, 1.8rem);
-      border-bottom: 1px solid var(--line);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(0.9rem, 1.6vw, 1.3rem);
     }
 
+    .skill-block {
+      height: 100%;
+      padding: clamp(1rem, 1.6vw, 1.4rem) clamp(1rem, 1.5vw, 1.25rem);
+    }
+
+    .progress-tag {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .progress-text { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--ink-soft); }
+    .progress-text strong { color: var(--ink); }
+
+    /* ── Reflection strip ── */
+    .reflect-panel {
+      margin-top: clamp(0.8rem, 1.8vh, 1.3rem);
+      padding: clamp(0.9rem, 1.5vw, 1.25rem) clamp(1.3rem, 2vw, 1.7rem);
+    }
+
+    .reflect-panel h3 {
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+      border-bottom: 2px solid var(--accent);
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .reflect-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.2rem, 2.4vw, 2.2rem); }
+
+    .reflect-cols h4 {
+      margin-bottom: 0.22rem;
+      font-size: var(--text-sm);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+    }
+
+    .reflect-cols p { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--ink-soft); }
+
+    /* ── Closing ── */
+    .closing-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(1.4rem, 2.8vw, 2.6rem); align-items: stretch; }
+    .closing-panel {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(1.1rem, 1.8vw, 1.5rem) clamp(1.3rem, 2.2vw, 1.8rem);
+    }
+
+    .closing-panel h3 {
+      padding-bottom: 0.45rem;
+      margin-bottom: 0.7rem;
+      border-bottom: 2px solid var(--accent);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .list li { position: relative; padding-left: 1rem; font-size: var(--text-base); line-height: var(--leading-normal); color: var(--ink-soft); }
+    .list li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 0.34rem; height: 0.34rem; border-radius: 50%; background: var(--accent); }
+
+    .closing-statement {
+      margin-top: clamp(0.9rem, 2vh, 1.4rem);
+      padding: 0.85rem 1.15rem;
+      border-radius: 0.75rem;
+      background: var(--accent-soft);
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--ink);
+    }
+
+    /* Support asks: a headline per item, with the reason underneath */
+    .ask-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+
+    .ask-list li { padding-left: 0.85rem; border-left: 2px solid var(--accent); }
+
+    .ask-list h4 {
+      margin-bottom: 0.1rem;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: var(--leading-tight);
+    }
+
+    .ask-list p { font-size: var(--text-sm); line-height: var(--leading-normal); color: var(--ink-soft); }
+
+    .closing-foot {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.5rem;
+    }
+
+    .qa-line {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent-deep);
+    }
+
+    /* ── Data note ── */
+    .data-note {
+      margin-top: 0.6rem;
+      font-size: var(--text-xs);
+      color: var(--ink-muted);
+    }
+
+    /* ── Chrome ── */
+    .progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      z-index: 60;
+      transition: width 0.2s ease;
+    }
+
+    .chrome {
+      position: fixed;
+      left: var(--slide-pad-x);
+      right: var(--slide-pad-x);
+      bottom: clamp(1.3rem, 2.5vh, 2rem);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: clamp(0.65rem, 0.75vw, 0.78rem);
+      font-weight: 500;
+    }
+
+    .chrome-right { display: flex; align-items: center; gap: 0.75rem; }
+    .chrome-count { font-variant-numeric: tabular-nums; letter-spacing: 0.06em; }
+
+    .nav { display: flex; gap: 0.35rem; }
+
+    .nav button {
+      width: 1.85rem;
+      height: 1.85rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--paper);
+      color: var(--ink-soft);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .nav button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-deep); }
+    .nav button:disabled { opacity: 0.35; cursor: default; }
+    .nav button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .hint { color: var(--ink-muted); }
+
+    /* ── Enter animation ── */
+    .slide.active .anim,
+    .slide.active .card { animation: rise 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
     @media (max-width: 960px) {
+      .slide { overflow-y: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+      .watermark { right: 1.5rem; }
+      .chrome { left: 1.5rem; right: 1.5rem; }
+      .summary-grid,
       .portfolio-categories,
-      .project-detail-grid,
-      .results-strip { grid-template-columns: 1fr; }
-      .project-side {
-        border-left: none;
-        border-top: 3px solid var(--accent);
-        padding-left: 0;
-        padding-top: 1rem;
+      .progress-grid,
+      .test-coverage-cols,
+      .reflect-cols,
+      .closing-grid { grid-template-columns: 1fr; }
+      .summary-grid { grid-auto-rows: auto; }
+      .test-coverage-col + .test-coverage-col { padding-left: 0; border-left: 0; padding-top: 1rem; }
+    }
+
+    /* Short screens (1280x720 projectors): tighten the densest slide — the
+       project cards, which carry four sections of body copy. */
+    @media (max-height: 760px) {
+      :root { --text-base: 1rem; --text-md: 1.08rem; --text-lg: 1.16rem; }
+      .project-card { padding-top: 1rem; padding-bottom: 1rem; }
+      .project-card-head { margin-bottom: 0.7rem; }
+      .project-card-grid { gap: 0.7rem clamp(1.4rem, 2.6vw, 2.4rem); }
+      .project-card-section h4 { margin-bottom: 0.2rem; }
+      .project-card-section p { font-size: var(--text-sm); }
+
+      .test-coverage-panel { padding-top: 0.85rem; padding-bottom: 0.85rem; }
+      .tc-head { margin-bottom: 0.6rem; }
+      .skill-block { padding-top: 0.9rem; padding-bottom: 0.9rem; }
+      .progress-tag { margin-bottom: 0.5rem; }
+      .reflect-panel { padding-top: 0.8rem; padding-bottom: 0.8rem; }
+
+      .closing-panel { padding-top: 0.9rem; padding-bottom: 0.9rem; }
+      .closing-panel h3 { margin-bottom: 0.5rem; }
+      .ask-list { gap: 0.5rem; }
+      .closing-statement { margin-top: 0.8rem; padding: 0.7rem 1rem; font-size: var(--text-sm); }
+      .list { gap: 0.4rem; }
+      .list li { font-size: var(--text-sm); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    /* ── Print / PDF: one slide per page ── */
+    @media print {
+      @page { size: A4 landscape; margin: 0; }
+      html, body { height: auto; overflow: visible; background: #fff; }
+      .deck { width: auto; height: auto; }
+      .progress, .chrome { display: none !important; }
+      .slide {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 100vh;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        animation: none !important;
+        page-break-after: always;
+        break-after: page;
       }
+      .slide:last-child { page-break-after: auto; break-after: auto; }
+      .card { break-inside: avoid; }
     }
   </style>
 </head>
@@ -2763,15 +758,12 @@
 
     <!-- 1 Cover -->
     <section class="slide cover active" data-title="Cover">
-      <div class="watermark">01 / 08</div>
       <p class="eyebrow anim">Performance Review</p>
       <div class="cover-main">
-        <h1 class="cover-brand anim anim-d2">Mid-Year<br />Review <span class="year">2026</span></h1>
-        <p class="sub anim anim-d4" style="margin-top: 0.9rem; max-width: 38rem;">
-          ผลงาน ความรับผิดชอบที่เติบโตขึ้น และคุณค่าที่ส่งมอบในครึ่งปีแรก
-        </p>
+        <h1 class="cover-brand anim">Mid-Year<br />Review <span class="year">2026</span></h1>
+        <p class="sub anim">สรุปผลงาน ความรับผิดชอบที่เติบโตขึ้น และคุณค่าที่ส่งมอบตลอดครึ่งปีแรกที่ผ่านมา</p>
       </div>
-      <div class="meta-row anim anim-d4">
+      <div class="meta-row anim">
         <div class="meta-item">
           <label>Presenter</label>
           <strong>Phatson A.</strong>
@@ -2781,62 +773,70 @@
           <strong>Software Developer</strong>
         </div>
         <div class="meta-item">
-          <label>Period</label>
+          <label>Team</label>
+          <strong>Research and Development</strong>
+        </div>
+        <div class="meta-item">
+          <label>Review Period</label>
           <strong>January – June 2026</strong>
         </div>
       </div>
     </section>
 
-    <!-- 2 Executive Summary + Work Portfolio -->
+    <!-- 2 Executive Summary -->
     <section class="slide" data-title="Executive Summary">
-      <div class="watermark">02 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow">Mid-Year Snapshot</p>
         <h2>Executive Summary</h2>
-        <p class="sub">ภาพรวมผลงานและคุณภาพในครึ่งปีแรก</p>
+        <p class="sub">ภาพรวมผลงานและคุณภาพการทำงานตลอดครึ่งปีแรก · ข้อมูล ณ วันที่ 30 มิถุนายน 2026</p>
       </div>
-      <div class="fill anim anim-d1">
+      <div class="fill anim">
         <div class="summary-grid">
-          <article class="summary-item">
+          <article class="summary-item card">
+            <strong>11</strong>
+            <h3>Total Contributions</h3>
+            <p>Business Core 4 · Internal 3 · Support 4</p>
+          </article>
+          <article class="summary-item card">
             <strong>7</strong>
-            <h3>Projects Contributed</h3>
-            <p>Core Projects (3) + Mid-term Improvements (4)</p>
+            <h3>Development Projects</h3>
+            <p>Flagship 3 · Improvement 4 (ไม่รวมงาน Support)</p>
           </article>
-          <article class="summary-item">
+          <article class="summary-item card">
             <strong>3</strong>
-            <h3>Features / Improvements Delivered</h3>
+            <h3>Flagship Projects</h3>
+            <p>PayOut Fee Management, Admin Transfer, Operation Logs</p>
           </article>
-          <article class="summary-item">
-            <strong>1,358</strong>
-            <h3>Automated Test Cases</h3>
-            <p>ครอบคลุม API, Business Logic และ Critical Flow</p>
-          </article>
-          <article class="summary-item">
-            <strong>3</strong>
-            <h3>Independent, On-time Deliveries</h3>
-            <p>PayOut Fee Management, Operation Logs, Warning Transaction</p>
-          </article>
-          <article class="summary-item">
-            <strong>3</strong>
+          <article class="summary-item card">
+            <strong>4</strong>
             <h3>Support Cases Resolved</h3>
-            <p>สนับสนุน Finance และ CS จากปัญหาการใช้งานจริง</p>
+            <p>ให้การสนับสนุนทีม Finance และ CS ในปัญหาที่เกิดจากการใช้งานจริง</p>
+          </article>
+          <article class="summary-item card">
+            <strong>1,358</strong>
+            <h3>Automated Tests</h3>
+            <p>Unit Test 720 เคส · E2E Script 638 รายการ</p>
+          </article>
+          <article class="summary-item card">
+            <strong class="metric-word">BE + FE</strong>
+            <h3>Ownership Scope</h3>
+            <p>รับผิดชอบทั้งฝั่ง Backend และ Frontend พร้อมร่วมออกแบบระบบกับทีม Senior</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Work Portfolio, categorized -->
+    <!-- 3 Work Portfolio -->
     <section class="slide" data-title="Work Portfolio">
-      <div class="watermark">03 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow">Work Portfolio</p>
         <h2>Delivery, Improvement &amp; Support Work</h2>
-        <p class="sub">ครอบคลุมตั้งแต่งานพัฒนาฟีเจอร์หลักด้าน Business Core ไปจนถึงงาน Internal และ Support ที่ช่วยให้ทีมและระบบทำงานได้</p>
+        <p class="sub">ครอบคลุมตั้งแต่การพัฒนาฟีเจอร์หลักด้าน Business Core ไปจนถึงงาน Internal และ Support ที่ช่วยให้ทั้งทีมและระบบเดินหน้าต่อได้อย่างราบรื่น</p>
       </div>
-      <div class="fill anim anim-d1">
+      <div class="fill anim">
         <div class="portfolio-categories">
-          <div class="category-col">
-            <h3 class="category-title">Business Core <span class="category-sub">Payment / PayOut</span></h3>
+          <div class="category-col card">
+            <h3 class="category-title">Business Core <span class="category-sub">Payment / PayOut · 4 items</span></h3>
             <ul class="category-list">
               <li class="flagship">
                 <strong>PayOut Fee Management <span class="flag-tag">Flagship</span></strong>
@@ -2844,203 +844,276 @@
               <li class="flagship">
                 <strong>Admin Transfer <span class="flag-tag">Flagship</span></strong>
               </li>
-              <li>
-                <strong>Warning Transaction</strong>
-              </li>
-              <li>
-                <strong>Improvement Report Downloading</strong>
-              </li>
+              <li><strong>Warning Transaction</strong></li>
+              <li><strong>Improvement Report Downloading</strong></li>
             </ul>
           </div>
-          <div class="category-col">
-            <h3 class="category-title">Internal <span class="category-sub">Operation / Tools</span></h3>
+          <div class="category-col card">
+            <h3 class="category-title">Internal <span class="category-sub">Operation / Tools · 3 items</span></h3>
             <ul class="category-list">
               <li class="flagship">
                 <strong>Operation Logs <span class="flag-tag">Flagship</span></strong>
               </li>
-              <li>
-                <strong>ChillPay Documents Online</strong>
-              </li>
-              <li>
-                <strong>Unit Test Coverage</strong>
-              </li>
+              <li><strong>ChillPay Documents Online</strong></li>
+              <li><strong>Unit Test Coverage</strong></li>
             </ul>
           </div>
-          <div class="category-col">
-            <h3 class="category-title">Support <span class="category-sub">Incident / Cases</span></h3>
+          <div class="category-col card">
+            <h3 class="category-title">Support <span class="category-sub">Incident / Cases · 4 cases</span></h3>
             <ul class="category-list">
-              <li>
-                <strong>Payment Summary TXT</strong>
-              </li>
-              <li>
-                <strong>Merchant Report Access</strong>
-              </li>
-              <li>
-                <strong>PayOut API Error 3106</strong>
-              </li>
-              <li>
-                <strong>Process Payment Service</strong>
-              </li>
+              <li><strong>Payment Summary TXT</strong></li>
+              <li><strong>Merchant Report Access</strong></li>
+              <li><strong>PayOut API Error 3106</strong></li>
+              <li><strong>Process Payment Service</strong></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4 Project: PayOut Fee Management -->
+    <!-- 4 PayOut Fee Management -->
     <section class="slide" data-title="PayOut Fee Management">
-      <div class="watermark">04 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow project-hero">Business Core <span class="flag-tag">Flagship Project</span></p>
         <h2>PayOut Fee Management</h2>
-        <p class="sub">วิเคราะห์ Fee พัฒนา Logic และ Validation ที่เชื่อมโยง Transaction กับ Report ทั้งระบบ</p>
+        <p class="sub">วิเคราะห์เงื่อนไขค่าธรรมเนียม พัฒนา Logic และ Validation ที่เชื่อมโยง Transaction เข้ากับ Report ทั้งระบบ</p>
       </div>
-      <div class="fill anim anim-d1">
-        <div class="project-card">
-          <h3 class="project-card-title">PayOut Fee Management</h3>
-          <div class="project-card-section">
-            <h4>Result / Outcome</h4>
-            <p>พัฒนาฟีเจอร์ PayOut Fee Management เพื่อรองรับการคำนวณค่าธรรมเนียม พร้อมออกแบบ Layout ที่สามารถแยกได้ชัดเจนว่า Fee นั้นเรียกเก็บจากฝั่ง Receiver หรือ Merchant</p>
+      <div class="fill anim">
+        <div class="project-card card">
+          <div class="project-card-head">
+            <h3 class="project-card-title">PayOut Fee Management</h3>
+            <span class="port-status">Delivery · On Time</span>
           </div>
-          <div class="project-card-section">
-            <h4>Challenge</h4>
-            <p>เงื่อนไขการคิด Fee มีรายละเอียดและมุมมองที่แตกต่างกันไปในแต่ละ Transaction จึงต้องออกแบบ Logic ให้ครอบคลุมทุกกรณี โดยไม่กระทบความถูกต้องของ Report</p>
+          <div class="project-card-grid">
+            <div class="project-card-section">
+              <h4><span class="step">01</span> My Role / Scope</h4>
+              <p>พัฒนาทั้ง Backend และ Frontend พร้อมออกแบบ UI และ Logic การคิด Fee เองตั้งแต่ต้น โดยทำงานร่วมกับทีม Senior ตลอดกระบวนการ</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">02</span> Result / Outcome</h4>
+              <p>พัฒนาฟีเจอร์ PayOut Fee Management เพื่อรองรับการคำนวณค่าธรรมเนียม พร้อมออกแบบ Layout ที่แยกให้เห็นชัดเจนว่า Fee แต่ละรายการเรียกเก็บจากฝั่ง Receiver หรือ Merchant</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">03</span> Challenge</h4>
+              <p>เงื่อนไขการคิด Fee มีรายละเอียดปลีกย่อยและมุมมองที่แตกต่างกันในแต่ละ Transaction จึงต้องออกแบบ Logic ให้ครอบคลุมทุกกรณี โดยไม่กระทบความถูกต้องของ Report</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">04</span> Skills Growth</h4>
+              <p>โปรเจกต์นี้เป็นครั้งแรกที่ได้ออกแบบ UI เองตั้งแต่ต้น เพื่อให้รองรับเงื่อนไขและความซับซ้อนของงาน พร้อมทำให้เข้าใจ Business ของค่าธรรมเนียม PayOut ได้ลึกขึ้น</p>
+            </div>
           </div>
-          <div class="project-card-section">
-            <h4>Skills Growth</h4>
-            <p>สิ่งที่ได้จากโปรเจคนี้คือเริ่มออกแบบ UI เองตั้งแต่แรก เพื่อให้รองรับกับเงื่อนไขและความซับซ้อนของโปรเจค พร้อมเข้าใจ Business ของค่าธรรมเนียม PayOut มากขึ้น</p>
-          </div>
-          <span class="port-status">Delivery · On Time</span>
         </div>
       </div>
     </section>
 
-    <!-- 5 Project: Admin Transfer -->
+    <!-- 5 Admin Transfer -->
     <section class="slide" data-title="Admin Transfer">
-      <div class="watermark">05 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow project-hero">Business Core <span class="flag-tag">Flagship Project</span></p>
         <h2>Admin Transfer</h2>
-        <p class="sub">ฟีเจอร์สำหรับ Back-office ให้ทีมการเงินสั่งโอนผ่าน PayOut ได้เป็นระบบ ครบ Flow ตั้งแต่ Upload ถึง Approve</p>
+        <p class="sub">ฟีเจอร์ Back-office ที่ให้ทีมการเงินสั่งโอนผ่าน PayOut ได้อย่างเป็นระบบ ครบทั้ง Flow ตั้งแต่ Upload จนถึง Approve</p>
       </div>
-      <div class="fill anim anim-d1">
-        <div class="project-card">
-          <h3 class="project-card-title">Admin Transfer</h3>
-          <div class="project-card-section">
-            <h4>Result / Outcome</h4>
-            <p>พัฒนาและจัดทำขอบเขตฟีเจอร์ Admin Transfer สำหรับ Back-office ให้ทีมการเงินสั่งโอนผ่าน PayOut ได้เป็นระบบ ครอบคลุมการตั้งค่า Enable และจำนวนผู้อนุมัติระดับ Merchant, Flow อัปโหลด Excel → Validate → Check/Decline → Approve/Reject → ส่งต่อ PayOut รวมถึง Dashboard, Detail, Approval History และ Export</p>
+      <div class="fill anim">
+        <div class="project-card card">
+          <div class="project-card-head">
+            <h3 class="project-card-title">Admin Transfer</h3>
+            <span class="port-status late">Delivery · Late</span>
           </div>
-          <div class="project-card-section">
-            <h4>Challenge</h4>
-            <p>Requirement เปลี่ยนบ่อย ต้องคุม Scope, Multi-approver และความเสี่ยงโอนซ้ำ พร้อมประสานหลายทีมให้สรุป Flow ได้ตรงกัน นอกจากนี้ระบบ PayOut ถูกปิดใช้งานระหว่างทาง ทำให้ทดสอบ End-to-End ต่อไม่ได้ตามแผน ส่งผลให้ส่งมอบล่าช้ากว่ากำหนด</p>
+          <div class="project-card-grid">
+            <div class="project-card-section">
+              <h4><span class="step">01</span> My Role / Scope</h4>
+              <p>พัฒนาทั้ง Backend และ Frontend พร้อมร่วมจัดทำขอบเขตฟีเจอร์และออกแบบ Flow กับทีม Senior และทีมที่เกี่ยวข้อง</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">02</span> Result / Outcome</h4>
+              <p>พัฒนาและจัดทำขอบเขตฟีเจอร์ Admin Transfer สำหรับ Back-office ให้ทีมการเงินสั่งโอนผ่าน PayOut ได้อย่างเป็นระบบ ครอบคลุมตั้งแต่การตั้งค่า Enable และจำนวนผู้อนุมัติระดับ Merchant, Flow อัปโหลด Excel → Validate → Check/Decline → Approve/Reject → ส่งต่อ PayOut ไปจนถึง Dashboard, Detail, Approval History และ Export</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">03</span> Challenge</h4>
+              <p>Requirement เปลี่ยนแปลงบ่อย ต้องคุม Scope, Multi-approver และความเสี่ยงเรื่องโอนซ้ำ พร้อมประสานหลายทีมให้สรุป Flow ตรงกัน นอกจากนี้ระบบ PayOut ยังถูกปิดใช้งานระหว่างทาง ทำให้ทดสอบ End-to-End ต่อไม่ได้ตามแผนที่วางไว้</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">04</span> Skills Growth</h4>
+              <p>ออกแบบและพัฒนา UI ให้รองรับการใช้งานจริงของทีมการเงิน พร้อมเรียนรู้การ Integration ระหว่าง Web Back-office กับ PayOut API และการจัดการ JSON Response ทั้งกรณีสำเร็จและผิดพลาด ทำให้เข้าใจ Domain ของระบบ PayOut มากขึ้น เช่น PayOut Merchant, PayOut Receiver และ Balance</p>
+            </div>
           </div>
-          <div class="project-card-section">
-            <h4>Skills Growth</h4>
-            <p>ออกแบบและพัฒนา UI ให้รองรับการใช้งานจริงของทีมการเงิน เรียนรู้การ Integration ระหว่าง Web Back-office กับ PayOut API และการจัดการ JSON Response ทั้งกรณีสำเร็จและผิดพลาด พร้อมเข้าใจ Domain ของระบบ PayOut มากขึ้น เช่น PayOut Merchant, PayOut Receiver, Balance</p>
-          </div>
-          <span class="port-status late">Delivery · Late</span>
-          <span class="port-status-note">ล่าช้าเนื่องจาก PayOut ถูกปิดระบบระหว่างทดสอบ ไม่ใช่จากฝั่งงานพัฒนา</span>
+          <span class="port-status-note">ล่าช้าเนื่องจากระบบ PayOut ถูกปิดใช้งานในช่วงทดสอบ End-to-End</span>
         </div>
       </div>
     </section>
 
-    <!-- 6 Project: Operation Logs -->
+    <!-- 6 Operation Logs -->
     <section class="slide" data-title="Operation Logs">
-      <div class="watermark">06 / 08</div>
       <div class="slide-head anim">
         <p class="eyebrow project-hero">Internal <span class="flag-tag">Flagship Project</span></p>
         <h2>Operation Logs</h2>
-        <p class="sub">ออกแบบระบบบันทึกประวัติการเปลี่ยนแปลงข้อมูลของ ChillPay ตั้งแต่ต้นจนจบ</p>
+        <p class="sub">ออกแบบระบบบันทึกประวัติการเปลี่ยนแปลงข้อมูลของ ChillPay ตั้งแต่ต้นจนจบด้วยตัวเอง</p>
       </div>
-      <div class="fill anim anim-d1">
-        <div class="project-card">
-          <h3 class="project-card-title">Operation Logs</h3>
-          <div class="project-card-section">
-            <h4>Result / Outcome</h4>
-            <p>พัฒนาระบบบันทึกประวัติการเปลี่ยนแปลงข้อมูลของ ChillPay แยก Frontend และ Operation Logs API โดย Frontend ส่ง Log ผ่าน API หลัง Business Action สำเร็จ และ Admin สามารถค้นหา/ดูรายละเอียดก่อน–หลังแก้ไขได้</p>
+      <div class="fill anim">
+        <div class="project-card card">
+          <div class="project-card-head">
+            <h3 class="project-card-title">Operation Logs</h3>
+            <span class="port-status">Delivery · On Time</span>
           </div>
-          <div class="project-card-section">
-            <h4>Challenge</h4>
-            <p>ออกแบบระบบและพัฒนา API ของโปรเจกต์ใหม่ตั้งแต่ต้น ตั้งแต่โครงสร้างข้อมูล ไปจนถึงวิธีที่ Frontend และระบบอื่นเรียกใช้งานอย่างปลอดภัยและสม่ำเสมอ</p>
+          <div class="project-card-grid">
+            <div class="project-card-section">
+              <h4><span class="step">01</span> My Role / Scope</h4>
+              <p>ออกแบบระบบและพัฒนา API ขึ้นใหม่ตั้งแต่ต้น ดูแลทั้งฝั่ง Frontend และ Operation Logs API โดยออกแบบร่วมกับทีม Senior</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">02</span> Result / Outcome</h4>
+              <p>พัฒนาระบบบันทึกประวัติการเปลี่ยนแปลงข้อมูลของ ChillPay โดยแยก Frontend และ Operation Logs API ออกจากกัน ฝั่ง Frontend จะส่ง Log ผ่าน API หลัง Business Action สำเร็จ ส่วน Admin สามารถค้นหาและดูรายละเอียดข้อมูลก่อน–หลังแก้ไขได้</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">03</span> Challenge</h4>
+              <p>ต้องวางโครงสร้างข้อมูลและ API ของโปรเจกต์ใหม่ตั้งแต่ศูนย์ ให้ครอบคลุมทั้งวิธีที่ Frontend และระบบอื่นเรียกใช้งานได้อย่างปลอดภัยและสม่ำเสมอ</p>
+            </div>
+            <div class="project-card-section">
+              <h4><span class="step">04</span> Skills Growth</h4>
+              <p>ได้ฝึกฝน System Design ทั้งการวางโครงสร้าง Audit Log ให้นำไปใช้ร่วมกันได้หลายระบบ รวมถึง Audit Logging, Validation และ Technical Documentation</p>
+            </div>
           </div>
-          <div class="project-card-section">
-            <h4>Skills Growth</h4>
-            <p>System design, การวางโครงสร้าง Audit Log ให้ใช้ร่วมกันได้หลายระบบ, Audit Logging, Validation และ Technical Documentation</p>
-          </div>
-          <span class="port-status">Delivery · On Time</span>
         </div>
       </div>
     </section>
 
     <!-- 7 Learning & Results -->
-    <section class="slide" data-title="Learning & Results">
-      <div class="watermark">07 / 08</div>
+    <section class="slide" data-title="Learning &amp; Growth">
       <div class="slide-head anim">
-        <p class="eyebrow">First-Half Learning</p>
-        <h2>สิ่งที่ได้เรียนรู้ในครึ่งปีแรก</h2>
-        <p class="sub">ความก้าวหน้าในครึ่งปีแรก ตั้งแต่ความเข้าใจธุรกิจ การทำงานกับ Requirement คุณภาพงาน ไปจนถึงการนำ AI มาใช้จริง</p>
+        <p class="eyebrow">First-Half Progress</p>
+        <h2>Learning &amp; Growth</h2>
+        <p class="sub">ความก้าวหน้าตลอดครึ่งปีแรก ตั้งแต่ความเข้าใจธุรกิจ การทำงานกับ Requirement คุณภาพงาน ไปจนถึงการนำ AI มาใช้จริง</p>
       </div>
-      <div class="fill anim anim-d1">
-        <div class="panel test-coverage-panel">
-          <h3>Automated Test Coverage</h3>
+      <div class="fill anim">
+        <div class="test-coverage-panel card">
+          <div class="tc-head">
+            <h3>Automated Test Coverage</h3>
+            <span class="tc-total">Total <strong>1,358</strong> (Unit Test 720 + E2E Script 638)</span>
+          </div>
           <div class="test-coverage-cols">
             <div class="test-coverage-col">
-              <p class="tc-heading">720 Test Cases</p>
-              <p class="tc-desc">Unit Test ครอบคลุม BAY Direct Debit API, Recurring API, Operation Logs และ Process Payment Services V4</p>
+              <p class="tc-heading">720 Unit Test Cases</p>
+              <p class="tc-desc">ครอบคลุม BAY Direct Debit API, Recurring API, Operation Logs และ Process Payment Services V4</p>
             </div>
             <div class="test-coverage-col">
-              <p class="tc-heading">638 Test Scripts</p>
-              <p class="tc-desc">Playwright Automation 54 Spec Files ครอบคลุม Admin Transfer และ PayOut + Integration</p>
+              <p class="tc-heading">638 E2E Test Scripts</p>
+              <p class="tc-desc">Playwright Automation จำนวน 54 Spec Files ครอบคลุม Admin Transfer และ PayOut + Integration</p>
             </div>
           </div>
         </div>
         <div class="progress-grid">
-          <div class="skill-block">
+          <div class="skill-block card">
             <p class="progress-tag">Business Knowledge</p>
-            <p class="progress-text">เข้าใจภาพรวมทางธุรกิจมากขึ้น โดยเฉพาะ Flow ที่เกี่ยวข้องกับ Payment, Fee และกระบวนการทำงานของแต่ละโปรเจค</p>
+            <p class="progress-text">เข้าใจภาพรวมทางธุรกิจมากขึ้น โดยเฉพาะ Flow ที่เกี่ยวข้องกับ Payment, Fee และขั้นตอนการทำงานของแต่ละโปรเจกต์</p>
           </div>
-          <div class="skill-block">
+          <div class="skill-block card">
             <p class="progress-tag">Requirement &amp; Communication</p>
-            <p class="progress-text">พัฒนาความสามารถด้านการเก็บและสรุป Requirement ทำให้สามารถสื่อสารและยืนยันความต้องการร่วมกับทีมได้ชัดเจนขึ้น ลดความคลาดเคลื่อนระหว่างการพัฒนา</p>
+            <p class="progress-text">พัฒนาความสามารถด้านการเก็บและสรุป Requirement ทำให้สื่อสารและยืนยันความต้องการร่วมกับทีมได้ชัดเจนขึ้น ช่วยลดความคลาดเคลื่อนระหว่างการพัฒนา</p>
           </div>
-          <div class="skill-block">
+          <div class="skill-block card">
             <p class="progress-tag">Technical Growth</p>
-            <p class="progress-text">เสริมทักษะด้านการออกแบบและพัฒนาระบบ ทั้งในส่วนของ UI, API และโครงสร้างงาน ทำให้เข้าใจการทำงานแบบ End-to-End มากขึ้น</p>
+            <p class="progress-text">เสริมทักษะด้านการออกแบบและพัฒนาระบบ ทั้งในส่วนของ UI, API และโครงสร้างงาน ทำให้เข้าใจภาพรวมการทำงานแบบ End-to-End มากขึ้น</p>
           </div>
-          <div class="skill-block">
+          <div class="skill-block card">
             <p class="progress-tag">AI Adoption</p>
-            <p class="progress-text">เริ่มนำ Automation และ AI มาประยุกต์ใช้กับงานจริง เพื่อเพิ่มประสิทธิภาพ ลดงาน Manual และช่วยยกระดับคุณภาพของงานที่ส่งมอบ</p>
+            <p class="progress-text">เริ่มนำ Automation และ AI มาประยุกต์ใช้กับงานจริง เช่น ใช้ AI ช่วยร่าง Playwright Test Script จาก Flow ที่สรุปไว้ ก่อนรีวิวและปรับให้ตรงกับระบบจริงอีกครั้ง ช่วยลดงาน Manual และขยาย Test Coverage ได้เร็วขึ้น</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8 Future Goals -->
-    <section class="slide" data-title="Future Goals">
-      <div class="watermark">08 / 08</div>
+    <!-- 8 Future Goals & Self-Reflection -->
+    <section class="slide" data-title="Goals &amp; Plan">
       <div class="slide-head anim">
         <p class="eyebrow">Next-Half Plan</p>
-        <h2>เป้าหมาย &amp; แผนครึ่งปีหลัง 2026</h2>
-        <p class="sub">เป้าหมายที่อยากต่อยอดในครึ่งปีหลัง ต่อเนื่องจากสิ่งที่ได้เรียนรู้มา</p>
+        <h2>Goals &amp; Plan for H2 2026</h2>
+        <p class="sub">เป้าหมายที่ตั้งใจต่อยอดในครึ่งปีหลัง ต่อเนื่องจากสิ่งที่ได้เรียนรู้มาตลอดครึ่งปีแรก</p>
       </div>
-      <div class="fill anim anim-d1">
+      <div class="fill anim">
         <div class="progress-grid">
-          <div class="skill-block">
+          <div class="skill-block card">
             <p class="progress-tag">Business Depth</p>
-            <p class="progress-text">ต่อยอดความเข้าใจด้านธุรกิจให้ลึกขึ้น โดยเฉพาะในส่วนของ Payment และงานที่เกี่ยวข้องกับ Core Process</p>
+            <p class="progress-text">ต่อยอดความเข้าใจด้านธุรกิจให้ลึกขึ้น โดยเฉพาะในส่วนของ Payment และงานที่เกี่ยวข้องกับ Core Process ของระบบ</p>
           </div>
-          <div class="skill-block">
+          <div class="skill-block card">
             <p class="progress-tag">Automation &amp; AI</p>
-            <p class="progress-text">ขยายการนำ Automation และ AI มาใช้ในโปรเจคหลักอย่างต่อเนื่อง เพื่อเพิ่มความครอบคลุมของการทดสอบ ลดภาระงาน Manual และเพิ่ม Productivity ในการทำงาน</p>
+            <p class="progress-text">ขยายการนำ Automation และ AI มาใช้ในโปรเจกต์หลักอย่างต่อเนื่อง เพื่อเพิ่มความครอบคลุมของการทดสอบ ลดภาระงาน Manual และเพิ่ม Productivity ในการทำงานโดยรวม</p>
           </div>
-          <div class="skill-block">
+          <div class="skill-block card">
             <p class="progress-tag">Knowledge Sharing</p>
-            <p class="progress-text">รวบรวมเคส Support ที่เกิดซ้ำ เช่น PayOut API Error 3106 ให้เป็น Known Issue / Runbook กลาง เพื่อให้ทีม CS และทีมรับ Incident แก้ปัญหาลักษณะเดียวกันได้เองในครั้งถัดไป</p>
+            <p class="progress-text">รวบรวมเคส Support ที่เกิดซ้ำ เช่น PayOut API Error 3106 จัดทำเป็น Known Issue / Runbook กลาง เพื่อให้ทีม CS และทีมรับ Incident แก้ปัญหาลักษณะเดียวกันได้เองในครั้งถัดไป</p>
           </div>
-          <div class="skill-block">
+          <div class="skill-block card">
             <p class="progress-tag">UX Improvement</p>
-            <p class="progress-text">พัฒนาการออกแบบ Flow และ UX ให้ใช้งานง่ายขึ้น โดยมุ่งลดความซับซ้อนและเพิ่มประสิทธิภาพของการใช้งาน</p>
+            <p class="progress-text">พัฒนาการออกแบบ Flow และ UX ให้ใช้งานง่ายขึ้น โดยมุ่งลดความซับซ้อนและเพิ่มประสิทธิภาพในการใช้งาน</p>
           </div>
+        </div>
+        <div class="reflect-panel card">
+          <h3>Lessons Learned &amp; What I&rsquo;ll Improve</h3>
+          <div class="reflect-cols">
+            <div>
+              <h4>Locking Requirements Earlier</h4>
+              <p>จากบทเรียนของ Admin Transfer ที่ Requirement เปลี่ยนบ่อยและต้องคุม Scope ระหว่างทาง ครึ่งปีหลังจะสรุปและยืนยัน Requirement ร่วมกับทีมที่เกี่ยวข้องให้เรียบร้อยก่อนเริ่มพัฒนา</p>
+            </div>
+            <div>
+              <h4>Planning for External Test Dependencies</h4>
+              <p>จากกรณีที่ทดสอบ End-to-End ต่อไม่ได้เมื่อระบบที่เชื่อมต่ออยู่ถูกปิดใช้งาน จะระบุ Dependency ของการทดสอบตั้งแต่ต้นโปรเจกต์ พร้อมเตรียมทางเลือกสำรองไว้ล่วงหน้า</p>
+            </div>
+            <div>
+              <h4>Sharing Test Results More Clearly</h4>
+              <p>จากผลการทดสอบอัตโนมัติที่มีอยู่จำนวนมากแต่ยังเข้าใจยากสำหรับคนนอกสาย Dev ครึ่งปีหลังจะสรุปเป็น Test Report ที่อ่านง่าย เพื่อสร้างความมั่นใจก่อน Release ให้กับทั้งทีม ไม่ใช่แค่ทีมพัฒนา</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 Closing -->
+    <section class="slide closing" data-title="Summary &amp; Support">
+      <div class="slide-head anim">
+        <p class="eyebrow">Closing</p>
+        <h2>Summary &amp; Support Needed</h2>
+        <p class="sub">สรุปภาพรวมครึ่งปีแรก พร้อมสิ่งที่จะช่วยให้การทำงานในครึ่งปีหลังราบรื่นยิ่งขึ้น</p>
+      </div>
+      <div class="fill anim">
+        <div class="closing-grid">
+          <div class="closing-panel card">
+            <h3>First-Half Summary</h3>
+            <ul class="list">
+              <li>ส่งมอบผลงานรวม 11 รายการ แบ่งเป็นงานพัฒนา 7 โปรเจกต์ และงาน Support 4 เคส</li>
+              <li>รับผิดชอบ Flagship 3 โปรเจกต์ ครอบคลุมทั้ง Backend และ Frontend โดยร่วมออกแบบกับทีม Senior ตลอดกระบวนการ</li>
+              <li>ขยายขอบเขตงานจากการพัฒนาตาม Requirement ไปสู่การออกแบบระบบใหม่ตั้งแต่ต้น (Operation Logs)</li>
+              <li>ยกระดับคุณภาพงานด้วย Automated Test รวม 1,358 รายการ ครอบคลุมทั้งระดับ Unit และ End-to-End</li>
+            </ul>
+            <p class="closing-statement">
+              ในครึ่งปีหลัง ตั้งใจต่อยอดจากรากฐานเดิม ทั้งความเข้าใจธุรกิจด้าน Payment การนำ Automation และ AI มาใช้ให้กว้างขึ้น และการส่งต่อความรู้เพื่อให้ทีมทำงานได้เร็วขึ้น
+            </p>
+          </div>
+          <div class="closing-panel card">
+            <h3>Support Needed</h3>
+            <ul class="ask-list">
+              <li>
+                <h4>Stable Test Environment</h4>
+                <p>โดยเฉพาะระบบที่ต้องเชื่อมต่อกับ PayOut เพื่อไม่ให้การทดสอบ End-to-End สะดุดกลางทางเหมือนกรณี Admin Transfer</p>
+              </li>
+              <li>
+                <h4>Requirement Sign-off Before Development</h4>
+                <p>ขอให้มีการสรุปและ Sign-off ร่วมกับผู้เกี่ยวข้องก่อนเริ่มรอบพัฒนา เพื่อลดการเปลี่ยน Scope ระหว่างทาง</p>
+              </li>
+              <li>
+                <h4>Dedicated Time for Test Automation</h4>
+                <p>บรรจุให้เป็นส่วนหนึ่งของแผนงานแต่ละโปรเจกต์ แทนการทำแทรกระหว่างงานฟีเจอร์ เพื่อให้ Coverage ขยายได้อย่างต่อเนื่อง</p>
+              </li>
+              <li>
+                <h4>Early Involvement in System Design</h4>
+                <p>เข้าร่วมตั้งแต่ช่วงเก็บ Requirement และออกแบบของโปรเจกต์ Core เพื่อต่อยอดความเข้าใจธุรกิจด้าน Payment ให้ลึกยิ่งขึ้น</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="closing-foot">
+          <p class="data-note">ข้อมูลผลงานและตัวเลขทั้งหมดในเอกสารนี้นับถึงวันที่ 30 มิถุนายน 2026</p>
+          <p class="qa-line">Q &amp; A</p>
         </div>
       </div>
     </section>
@@ -3048,19 +1121,37 @@
 
   <div class="chrome">
     <span id="slideTitle">Cover</span>
-    <span id="slideCounter">01 / 08</span>
+    <span class="chrome-right">
+      <span class="hint">← → เปลี่ยนสไลด์ · F เต็มจอ</span>
+      <span class="nav">
+        <button type="button" id="btnPrev" aria-label="สไลด์ก่อนหน้า">&#8592;</button>
+        <button type="button" id="btnNext" aria-label="สไลด์ถัดไป">&#8594;</button>
+      </span>
+      <span class="chrome-count" id="slideCounter">01 / 09</span>
+    </span>
   </div>
 
   <script>
-    const slides = [...document.querySelectorAll(".slide:not(.removed)")];
+    const slides = [...document.querySelectorAll(".slide")];
     const progress = document.getElementById("progress");
     const counter = document.getElementById("slideCounter");
     const titleEl = document.getElementById("slideTitle");
+    const btnPrev = document.getElementById("btnPrev");
+    const btnNext = document.getElementById("btnNext");
     let index = 0;
-    let prevIndex = 0;
+
+    const pad = (n) => String(n).padStart(2, "0");
+
+    // Slide numbers are generated so they can never drift from the real count.
+    slides.forEach((slide, i) => {
+      const mark = document.createElement("div");
+      mark.className = "watermark";
+      mark.textContent = pad(i + 1) + " / " + pad(slides.length);
+      slide.prepend(mark);
+    });
 
     function replayAnims(slide) {
-      slide.querySelectorAll(".anim, .panel, .port-item, .kpi, .case, .skill-block, .sys").forEach((el) => {
+      slide.querySelectorAll(".anim, .card").forEach((el) => {
         el.style.animation = "none";
         void el.offsetWidth;
         el.style.animation = "";
@@ -3068,24 +1159,25 @@
     }
 
     function show(i) {
-      const next = Math.max(0, Math.min(slides.length - 1, i));
-      slides.forEach((s, n) => {
-        s.classList.toggle("active", n === next);
-      });
-      index = next;
-      prevIndex = next;
+      index = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, n) => s.classList.toggle("active", n === index));
       replayAnims(slides[index]);
-      const pct = ((index + 1) / slides.length) * 100;
-      progress.style.width = pct + "%";
-      counter.textContent = String(index + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
+      progress.style.width = ((index + 1) / slides.length) * 100 + "%";
+      counter.textContent = pad(index + 1) + " / " + pad(slides.length);
       titleEl.textContent = slides[index].dataset.title || "";
+      btnPrev.disabled = index === 0;
+      btnNext.disabled = index === slides.length - 1;
     }
 
-    function next() { show(index + 1); }
-    function prev() { show(index - 1); }
+    const next = () => show(index + 1);
+    const prev = () => show(index - 1);
+
+    btnNext.addEventListener("click", next);
+    btnPrev.addEventListener("click", prev);
 
     document.addEventListener("keydown", (e) => {
       if (["ArrowRight", "ArrowDown", "PageDown", " ", "Enter"].includes(e.key)) {
+        if (e.target.closest("button")) return;
         e.preventDefault();
         next();
       } else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(e.key)) {
@@ -3097,7 +1189,7 @@
       } else if (e.key === "End") {
         e.preventDefault();
         show(slides.length - 1);
-      } else if (e.key.toLowerCase() === "f") {
+      } else if (e.key && e.key.toLowerCase() === "f") {
         if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
         else document.exitFullscreen?.();
       }
@@ -3113,12 +1205,6 @@
       if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
       touchX = null;
     }, { passive: true });
-
-    document.getElementById("deck").addEventListener("click", (e) => {
-      if (e.target.closest("a, button")) return;
-      if (e.clientX > window.innerWidth * 0.65) next();
-      else if (e.clientX < window.innerWidth * 0.35) prev();
-    });
 
     show(0);
   </script>
